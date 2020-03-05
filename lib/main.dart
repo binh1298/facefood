@@ -1,5 +1,6 @@
 import 'package:facefood/models/user_details.dart';
 import 'package:facefood/screens/explore.dart';
+import 'package:facefood/screens/home.dart';
 import 'package:facefood/screens/login.dart';
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/login',
       routes: {
-        '/explore': (context) => ExploreScreen(
+        '/explore': (context) => HomeScreen(
         ),
         '/login': (context) => LoginScreen(
         ),
