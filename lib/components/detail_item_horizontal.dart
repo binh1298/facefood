@@ -70,6 +70,7 @@ class DetailItemHoriziontal extends StatelessWidget {
                           style: textStyleDarkBackground,
                           iconColor: colorTextDarkBackground,
                         ),
+                        SizedBox(width: 5,),
                         IconTextComponent(
                           icon: Icons.chat_bubble_outline,
                           text: commentCount.toString(),
