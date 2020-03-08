@@ -20,9 +20,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 return DetailItemHoriziontal(
                   category: snapshot.data.categoryId.toString(),
                   name: snapshot.data.postName,
-                  likes: snapshot.data.likeCount,
+                  likeCount: snapshot.data.likeCount,
                   timeNeeded: snapshot.data.timeNeeded,
-                  comments: snapshot.data.commentCount,
+                  commentCount: snapshot.data.commentCount,
                 );
               } else if (snapshot.hasError) {
                 return Text(snapshot.error);
