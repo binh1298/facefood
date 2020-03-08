@@ -1,9 +1,9 @@
 import 'package:facefood/classes/destination.dart';
 import 'package:facefood/components/button_navigation.dart';
 import 'package:facefood/layouts/destination.dart';
-import 'package:facefood/screens/explore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:facefood/screens/guest/explore.dart';
 
 List<Destination> adminDestinations = <Destination>[
   Destination('Explore', Icons.person, ExploreScreen()),
@@ -11,12 +11,12 @@ List<Destination> adminDestinations = <Destination>[
   Destination('Create Post', Icons.person, ExploreScreen()),
 ];
 
-class HomeScreen extends StatefulWidget {
+class UserHomeScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _UserHomeScreenState createState() => _UserHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+class _UserHomeScreenState extends State<UserHomeScreen> with TickerProviderStateMixin {
   int _currentIndex = 0;
   AnimationController _hide;
 
