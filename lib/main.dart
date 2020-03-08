@@ -7,6 +7,9 @@ import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import 'screens/explore.dart';
+import 'screens/home.dart';
+
 void main() async {
   await DotEnv().load('.env');
   UserDetails user = await getUserFromToken();
@@ -28,14 +31,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/user-profile',
+      initialRoute: '/userProfile',
       routes: {
         '/explore': (context) => HomeScreen(
         ),
         '/login': (context) => LoginScreen(
         ),
-        'user-profile': (context) => UserProfile(
+        '/userProfile': (context) => UserProfile(
         ),
+
       },
       
     );
