@@ -1,3 +1,4 @@
+import 'package:facefood/components/detail_item_horizontal.dart';
 import 'package:facefood/models/post.dart';
 import 'package:flutter/material.dart';
 
@@ -12,13 +13,17 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return Scaffold(
       body: ListView(
         children: <Widget>[
-          FutureBuilder(
+          FutureBuilder<Post>(
             future: fetchLastestPost(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                // return CardPostDetails(
-                  
-                // );
+                return DetailItemHoriziontal(
+                  category: snapshot.data.categoryId.toString(),
+                  name: snapshot.data.postName,
+                  likes: snapshot.data.likeCount,
+                  timeNeeded: snapshot.data.timeNeeded,
+                  comments: snapshot.data.commentCount,
+                );
               } else if (snapshot.hasError) {
                 return Text(snapshot.error);
               } else if (snapshot.connectionState == ConnectionState.done) {

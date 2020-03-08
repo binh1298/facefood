@@ -1,9 +1,8 @@
 import 'package:facefood/components/button_full_width.dart';
 import 'package:facefood/components/detail_item_horizontal.dart';
 import 'package:facefood/components/user_detail_info.dart';
+import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
-
-import '../style/style.dart';
 
 class UserProfile extends StatefulWidget {
   @override
@@ -89,37 +88,37 @@ class _UserProfileState extends State<UserProfile> {
                   children: <Widget>[
                     DetailItemHoriziontal(
                       category: 'cate',
-                      comments: 2,
-                      likes: 3,
+                      commentCount: 2,
+                      likeCount: 3,
                       name: 'name name name',
-                      time: 333,
+                      timeNeeded: 333,
                       urlPic: 'https://i.picsum.photos/id/237/536/354.jpg',
                       urlPost: '',
                     ),
                     DetailItemHoriziontal(
                       category: 'cate',
-                      comments: 2,
-                      likes: 3,
+                      commentCount: 2,
+                      likeCount: 3,
                       name: 'name name name',
-                      time: 333,
+                      timeNeeded: 333,
                       urlPic: 'https://i.picsum.photos/id/237/536/354.jpg',
                       urlPost: '',
                     ),
                     DetailItemHoriziontal(
                       category: 'cate',
-                      comments: 2,
-                      likes: 3,
+                      commentCount: 2,
+                      likeCount: 3,
                       name: 'name name name',
-                      time: 333,
+                      timeNeeded: 333,
                       urlPic: 'https://i.picsum.photos/id/237/536/354.jpg',
                       urlPost: '',
                     ),
                     DetailItemHoriziontal(
                       category: 'cate',
-                      comments: 2,
-                      likes: 3,
+                      commentCount: 2,
+                      likeCount: 3,
                       name: 'name name name',
-                      time: 333,
+                      timeNeeded: 333,
                       urlPic: 'https://i.picsum.photos/id/237/536/354.jpg',
                       urlPost: '',
                     ),

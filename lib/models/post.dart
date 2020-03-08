@@ -2,12 +2,12 @@ import 'package:facefood/utils/api_caller.dart';
 import 'package:http/http.dart' as http;
 
 class Post {
-  int postId, timeNeeded, categoryId;
+  int postId, timeNeeded, categoryId, likeCount, commentCount;
   String postName, description, userId;
   bool isDeleted;
   String createdAt, updatedAt;
 
-  Post({this.categoryId, this.createdAt, this.description, this.isDeleted, this.postId, this.postName, this.timeNeeded, this.updatedAt, this.userId});
+  Post({this.likeCount, this.commentCount, this.categoryId, this.createdAt, this.description, this.isDeleted, this.postId, this.postName, this.timeNeeded, this.updatedAt, this.userId});
   factory Post.fromJson(dynamic json) {
     return Post(
       postId: json['postId'] as int,
@@ -24,9 +24,16 @@ class Post {
 }
 
 Future<Post> fetchLastestPost() async {
-  // final http.Response response = await apiCaller.get(route: 'test');
-  // const post = Post(
-    
-  // );
-  // return null;
+  // final http.Response response = await apiCaller.get();
+
+  Post post = Post(
+    categoryId: 1,
+    description: 'This taste really good',
+    postName: 'Fried Chicken',
+    timeNeeded: 30,
+    isDeleted: false,
+    likeCount: 3, 
+    commentCount: 2,
+  );
+  return post;
 }

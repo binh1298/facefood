@@ -1,14 +1,15 @@
 import 'package:facefood/classes/destination.dart';
 import 'package:facefood/components/button_navigation.dart';
 import 'package:facefood/layouts/destination.dart';
+import 'package:facefood/screens/user/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:facefood/screens/guest/explore.dart';
 
 List<Destination> adminDestinations = <Destination>[
-  Destination('Explore', Icons.person, ExploreScreen()),
-  Destination('Profile', Icons.person, ExploreScreen()),
   Destination('Create Post', Icons.person, ExploreScreen()),
+  Destination('Profile', Icons.person, UserProfile()),
+  Destination('Explore', Icons.person, ExploreScreen()),
 ];
 
 class UserHomeScreen extends StatefulWidget {

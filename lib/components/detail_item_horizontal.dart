@@ -6,19 +6,18 @@ class DetailItemHoriziontal extends StatelessWidget {
   final String name;
   final String urlPic;
   final String urlPost;
-  final int time;
+  final int timeNeeded;
   final String category;
-  final int likes;
-  final int comments;
-
+  final int likeCount;
+  final int commentCount;
   const DetailItemHoriziontal(
       {this.name,
       this.urlPic,
       this.urlPost,
-      this.time,
+      this.timeNeeded,
       this.category,
-      this.likes,
-      this.comments});
+      this.likeCount,
+      this.commentCount});
 
   @override
   Widget build(BuildContext context) {
@@ -53,15 +52,15 @@ class DetailItemHoriziontal extends StatelessWidget {
                       style: textStyleTitlePrimary,
                     ),
                     Text(
-                      likes.toString() +
+                      likeCount.toString() +
                           ' likes ' +
-                          comments.toString() +
+                          commentCount.toString() +
                           ' comments',
                       textAlign: TextAlign.left,
                       style: textStyleDefaultDark,
                     ),
                     Text(
-                      'Category: ' + category + ' | ' + time.toString() + "'",
+                      'Category: ' + category + ' | ' + timeNeeded.toString() + "'",
                       textAlign: TextAlign.left,
                       style: textStyleDefaultDark,
                     )
