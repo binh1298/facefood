@@ -1,13 +1,15 @@
 import 'package:facefood/classes/destination.dart';
 import 'package:facefood/components/button_navigation.dart';
 import 'package:facefood/layouts/destination.dart';
+import 'package:facefood/screens/guest/login.dart';
+import 'package:facefood/screens/guest/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:facefood/screens/guest/explore.dart';
 
 List<Destination> guestDestination = <Destination>[
-  Destination('Login', Icons.person, ExploreScreen()),
-  Destination('Register', Icons.person, ExploreScreen()),
+  Destination('Login', Icons.person, LoginScreen()),
+  Destination('Register', Icons.person, RegisterScreen()),
   Destination('Explore', Icons.person, ExploreScreen()),
 ];
 
