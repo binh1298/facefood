@@ -53,6 +53,44 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ),
           ),
           FutureBuilder<List<Post>>(
+            future: fetchPromotionList(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: snapshot.data
+                        .map(
+                          (post) => CardPostDetailsHalfSize(
+                            category: post.categoryId.toString(),
+                            name: post.postName,
+                            likeCount: post.likeCount,
+                            timeNeeded: post.timeNeeded,
+                            commentCount: post.commentCount,
+                            imageUrl: post.imageUrl,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Text(snapshot.error);
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                return Text('Unable to fetch lastest post');
+              } else
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextSafeComponent(
+              text: 'Popular',
+              style: textStyleTitle,
+            ),
+          ),
+          FutureBuilder<List<Post>>(
             future: fetchPopularPostsList(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {

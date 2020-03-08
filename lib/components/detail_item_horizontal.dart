@@ -46,10 +46,21 @@ class DetailItemHoriziontal extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      name,
-                      textAlign: TextAlign.left,
-                      style: textStyleTitleDarkBackground,
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          name,
+                          textAlign: TextAlign.left,
+                          style: textStyleTitleDarkBackground,
+                        ),
+                        SizedBox(width: 5,),
+                        IconTextComponent(
+                          icon: Icons.access_alarm,
+                          text: timeNeeded.toString() + "'",
+                          style: textStyleDarkBackground,
+                          iconColor: colorTextDarkBackground,
+                        ),
+                      ],
                     ),
                     Row(
                       children: <Widget>[
@@ -62,12 +73,6 @@ class DetailItemHoriziontal extends StatelessWidget {
                         IconTextComponent(
                           icon: Icons.chat_bubble_outline,
                           text: commentCount.toString(),
-                          style: textStyleDarkBackground,
-                          iconColor: colorTextDarkBackground,
-                        ),
-                        IconTextComponent(
-                          icon: Icons.access_alarm,
-                          text: timeNeeded.toString() + "'",
                           style: textStyleDarkBackground,
                           iconColor: colorTextDarkBackground,
                         ),
