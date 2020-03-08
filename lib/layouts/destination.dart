@@ -1,5 +1,5 @@
 import 'package:facefood/classes/view_navigation_observer.dart';
-import 'package:facefood/screens/explore.dart';
+import 'package:facefood/screens/guest/explore.dart';
 import 'package:flutter/material.dart';
 import '../classes/destination.dart';
 
