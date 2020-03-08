@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "42272474813",
+    "firebase_url": "https://facefood-ed8f7.firebaseio.com",
+    "project_id": "facefood-ed8f7",
+    "storage_bucket": "facefood-ed8f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42272474813:android:f035d1e88bc5d877df99d4",
+        "android_client_info": {
+          "package_name": "com.example.facefood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42272474813-rmlp16sinl225njon6ve2bqhtjmhicui.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.facefood",
+            "certificate_hash": "dc561a372d981a993b4dd93598b510e29f306c7c"
+          }
+        },
+        {
+          "client_id": "42272474813-i7i4du08refmj1a7v26ngcuhea5vrqpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYaJhnQsLLMfN9kgVRWWHY7O8oCzAZvak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42272474813-i7i4du08refmj1a7v26ngcuhea5vrqpn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

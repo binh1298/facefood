@@ -1,6 +1,7 @@
 import 'package:facefood/models/user_details.dart';
 import 'package:facefood/restart_app.dart';
 import 'package:facefood/screens/guest/home.dart';
+import 'package:facefood/screens/user/create_post.dart';
 import 'package:facefood/screens/user/home.dart';
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
@@ -30,10 +31,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute:
-          (user != null) ? '/user' : '/guest',
+          (user != null) ? '/user' : '/create_post',
       routes: {
         '/user': (context) => UserHomeScreen(),
         '/guest': (context) => GuestHomeScreen(),
+        '/create_post': (context) => CreatePostScreen(),
       },
     );
   }
