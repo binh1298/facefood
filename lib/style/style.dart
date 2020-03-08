@@ -25,6 +25,9 @@ TextStyle textStyleTitlePrimary = textStyleDefault.copyWith(
 TextStyle textStyleSubtitle = textStyleDefault.copyWith(
   fontSize: 20.0,
 );
+TextStyle textStyleSubtitleBold = textStyleSubtitle.copyWith(
+  fontWeight: FontWeight.bold,
+);
 
 TextStyle textStyleErrorMessage = TextStyle(color: colorError);
 
@@ -39,6 +42,11 @@ TextStyle textStyleDefaultPrimary = textStyleDefault.copyWith(
 
 TextStyle textStyleDefaultDark = textStyleDefault.copyWith(
   color: colorTextDark,
+);
+
+TextStyle textStyleQuotation = textStyleDefault.copyWith(
+  fontFamily: 'Times New Roman',
+  fontStyle: FontStyle.italic,
 );
 
 // Color
@@ -58,4 +66,10 @@ BoxDecoration decorationRoundContainer = BoxDecoration(
   topLeft: Radius.circular(20),
   topRight: Radius.circular(20),
   )
+);
+
+BoxDecoration boxDecorationDefault = BoxDecoration(
+  color: colorBackground,
+  
+  border: Border.all(width: 0.5),
 );
