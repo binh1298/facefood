@@ -1,9 +1,9 @@
 import 'package:facefood/utils/resources.dart';
 import 'package:flutter/material.dart';
 
-class UserImageSafe extends StatelessWidget {
+class ImagePostSafe extends StatelessWidget {
   final String imgUrl;
-  UserImageSafe({this.imgUrl});
+  ImagePostSafe({this.imgUrl});
 
   @override
   Widget build(BuildContext context) {

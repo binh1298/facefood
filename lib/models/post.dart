@@ -1,3 +1,6 @@
+import 'package:facefood/utils/api_caller.dart';
+import 'package:http/http.dart' as http;
+
 class Post {
   int postId, timeNeeded, categoryId;
   String postName, description, userId;
@@ -20,6 +23,10 @@ class Post {
   }
 }
 
-Future<Post> fetchLastestPost() {
-  
+Future<Post> fetchLastestPost() async {
+  // final http.Response response = await apiCaller.get(route: 'test');
+  // const post = Post(
+    
+  // );
+  // return null;
 }

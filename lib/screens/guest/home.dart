@@ -4,10 +4,11 @@ import 'package:facefood/layouts/destination.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:facefood/screens/guest/explore.dart';
+
 List<Destination> guestDestination = <Destination>[
+  Destination('Login', Icons.person, ExploreScreen()),
+  Destination('Register', Icons.person, ExploreScreen()),
   Destination('Explore', Icons.person, ExploreScreen()),
-  Destination('Profile', Icons.person, ExploreScreen()),
-  Destination('Create Post', Icons.person, ExploreScreen()),
 ];
 
 class GuestHomeScreen extends StatefulWidget {
@@ -15,7 +16,8 @@ class GuestHomeScreen extends StatefulWidget {
   _GuestHomeScreenState createState() => _GuestHomeScreenState();
 }
 
-class _GuestHomeScreenState extends State<GuestHomeScreen> with TickerProviderStateMixin {
+class _GuestHomeScreenState extends State<GuestHomeScreen>
+    with TickerProviderStateMixin {
   int _currentIndex = 0;
   AnimationController _hide;
 
@@ -70,8 +72,12 @@ class _GuestHomeScreenState extends State<GuestHomeScreen> with TickerProviderSt
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {},
+          child: Icon(Icons.person),
+          onPressed: () {
+            setState(() {
+              _currentIndex = 2;
+            });
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
