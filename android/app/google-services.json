@@ -1,20 +1,32 @@
 {
   "project_info": {
+<<<<<<< HEAD
     "project_number": "42272474813",
     "firebase_url": "https://facefood-ed8f7.firebaseio.com",
     "project_id": "facefood-ed8f7",
     "storage_bucket": "facefood-ed8f7.appspot.com"
+=======
+    "project_number": "673604164811",
+    "firebase_url": "https://facefood-ee948.firebaseio.com",
+    "project_id": "facefood-ee948",
+    "storage_bucket": "facefood-ee948.appspot.com"
+>>>>>>> 68d20a4d85ee923ea0a684e99df6eecf1674a240
   },
   "client": [
     {
       "client_info": {
+<<<<<<< HEAD
         "mobilesdk_app_id": "1:42272474813:android:f035d1e88bc5d877df99d4",
+=======
+        "mobilesdk_app_id": "1:673604164811:android:0dccc8440bc981476c0f4e",
+>>>>>>> 68d20a4d85ee923ea0a684e99df6eecf1674a240
         "android_client_info": {
           "package_name": "com.example.facefood"
         }
       },
       "oauth_client": [
         {
+<<<<<<< HEAD
           "client_id": "42272474813-rmlp16sinl225njon6ve2bqhtjmhicui.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -24,19 +36,30 @@
         },
         {
           "client_id": "42272474813-i7i4du08refmj1a7v26ngcuhea5vrqpn.apps.googleusercontent.com",
+=======
+          "client_id": "673604164811-pokv8jf51gpsq2he1rrqg5d6ld70frmo.apps.googleusercontent.com",
+>>>>>>> 68d20a4d85ee923ea0a684e99df6eecf1674a240
           "client_type": 3
         }
       ],
       "api_key": [
         {
+<<<<<<< HEAD
           "current_key": "AIzaSyDYaJhnQsLLMfN9kgVRWWHY7O8oCzAZvak"
+=======
+          "current_key": "AIzaSyBF38yK9TnP_bKyGVsAa4D9R2X0VAG7TIU"
+>>>>>>> 68d20a4d85ee923ea0a684e99df6eecf1674a240
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
+<<<<<<< HEAD
               "client_id": "42272474813-i7i4du08refmj1a7v26ngcuhea5vrqpn.apps.googleusercontent.com",
+=======
+              "client_id": "673604164811-pokv8jf51gpsq2he1rrqg5d6ld70frmo.apps.googleusercontent.com",
+>>>>>>> 68d20a4d85ee923ea0a684e99df6eecf1674a240
               "client_type": 3
             }
           ]

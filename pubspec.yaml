@@ -23,9 +23,18 @@ dependencies:
   flutter_dotenv: ^2.1.0
   cupertino_icons: ^0.1.2
   flutter_secure_storage: ^3.3.1+1
+<<<<<<< HEAD
   image_picker: ^0.6.0+17    
   firebase_storage: ^3.0.3   
   
+=======
+  # Check that you have this dependency (added in the previous step)
+  firebase_core: ^0.4.0+9
+
+  # Add the dependency for the FlutterFire plugin for Google Analytics
+  firebase_analytics: ^5.0.2
+
+>>>>>>> 68d20a4d85ee923ea0a684e99df6eecf1674a240
 dev_dependencies:
   flutter_test:
     sdk: flutter
