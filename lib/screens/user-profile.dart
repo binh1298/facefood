@@ -80,9 +80,12 @@ class _UserProfileState extends State<UserProfile> {
               ButtonFullWidth(
                 label: 'Follow',
               ),
+              SizedBox(
+                height: 10,
+              ),
               Flexible(
                 child: ListView(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
                   children: <Widget>[
                     DetailItemHoriziontal(
                       category: 'cate',
