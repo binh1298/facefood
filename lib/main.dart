@@ -1,7 +1,9 @@
 import 'package:facefood/models/user_details.dart';
 import 'package:facefood/restart_app.dart';
 import 'package:facefood/screens/guest/home.dart';
+import 'package:facefood/screens/post-detail.dart';
 import 'package:facefood/screens/register.dart';
+import 'package:facefood/screens/user-profile.dart';
 import 'package:facefood/screens/user/home.dart';
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,7 @@ void main() async {
   UserDetails user = await getUserFromToken();
   if (user != null)
     runApp(RestartWidget(
-          child: MyApp(
+      child: MyApp(
         user: user,
       ),
     ));
@@ -30,12 +32,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute:
-          (user != null) ? '/user' : '/guest',
+      initialRoute: '/postDetail',
+      //(user != null) ? '/user' : '/guest',
       routes: {
         '/user': (context) => UserHomeScreen(),
         '/guest': (context) => GuestHomeScreen(),
-         '/register':(context) => RegisterScreen(),
+        '/register': (context) => RegisterScreen(),
+        '/userProfile': (context) => UserProfile(),
+        '/postDetail' : (context) => PostDetailScreen(),
       },
     );
   }
