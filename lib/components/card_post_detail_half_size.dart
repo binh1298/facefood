@@ -24,7 +24,7 @@ class CardPostDetailsHalfSize extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width / 2,
-      height: 200,
+      height: MediaQuery.of(context).size.width / 2,
       child: Card(
         elevation: 10,
         child: InkWell(
@@ -36,7 +36,7 @@ class CardPostDetailsHalfSize extends StatelessWidget {
               children: <Widget>[
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 270,
+                  height: MediaQuery.of(context).size.width,
                   child: FittedBox(
                     child: Image.network(imageUrl),
                     fit: BoxFit.cover,
