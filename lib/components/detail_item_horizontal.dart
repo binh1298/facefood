@@ -1,3 +1,4 @@
+import 'package:facefood/components/icon_text.dart';
 import 'package:flutter/material.dart';
 
 import '../style/style.dart';
@@ -34,9 +35,8 @@ class DetailItemHoriziontal extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: 270,
                 child: FittedBox(
-                  child: Image.network(
-                      imageUrl),
-                      fit: BoxFit.fill,
+                  child: Image.network(imageUrl),
+                  fit: BoxFit.fill,
                 ),
               ),
               Container(
@@ -49,21 +49,30 @@ class DetailItemHoriziontal extends StatelessWidget {
                     Text(
                       name,
                       textAlign: TextAlign.left,
-                      style: textStyleTitlePrimary,
+                      style: textStyleTitleDarkBackground,
                     ),
-                    Text(
-                      likeCount.toString() +
-                          ' likes ' +
-                          commentCount.toString() +
-                          ' comments',
-                      textAlign: TextAlign.left,
-                      style: textStyleDefaultDark,
+                    Row(
+                      children: <Widget>[
+                        IconTextComponent(
+                          icon: Icons.thumb_up,
+                          text: likeCount.toString(),
+                          style: textStyleDarkBackground,
+                          iconColor: colorTextDarkBackground,
+                        ),
+                        IconTextComponent(
+                          icon: Icons.chat_bubble_outline,
+                          text: commentCount.toString(),
+                          style: textStyleDarkBackground,
+                          iconColor: colorTextDarkBackground,
+                        ),
+                        IconTextComponent(
+                          icon: Icons.access_alarm,
+                          text: timeNeeded.toString() + "'",
+                          style: textStyleDarkBackground,
+                          iconColor: colorTextDarkBackground,
+                        ),
+                      ],
                     ),
-                    Text(
-                      'Category: ' + category + ' | ' + timeNeeded.toString() + "'",
-                      textAlign: TextAlign.left,
-                      style: textStyleDefaultDark,
-                    )
                   ],
                 ),
               ),

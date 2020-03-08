@@ -1,5 +1,8 @@
+import 'package:facefood/components/card_post_detail_half_size.dart';
 import 'package:facefood/components/detail_item_horizontal.dart';
+import 'package:facefood/components/text_safe.dart';
 import 'package:facefood/models/post.dart';
+import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -13,6 +16,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return Scaffold(
       body: ListView(
         children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextSafeComponent(
+              text: 'Recommended for You',
+              style: textStyleTitle,
+            ),
+          ),
           FutureBuilder<Post>(
             future: fetchLastestPost(),
             builder: (context, snapshot) {
@@ -35,8 +45,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 );
             },
           ),
-
-
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextSafeComponent(
+              text: 'Promotion: 20% Off This Week!',
+              style: textStyleTitle,
+            ),
+          ),
           FutureBuilder<List<Post>>(
             future: fetchPopularPostsList(),
             builder: (context, snapshot) {
@@ -44,16 +59,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 return SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: snapshot.data.map(
-                      (post) => DetailItemHoriziontal(
-                        category: post.categoryId.toString(),
-                        name: post.postName,
-                        likeCount: post.likeCount,
-                        timeNeeded: post.timeNeeded,
-                        commentCount: post.commentCount,
-                        imageUrl: post.imageUrl,
-                      ),
-                    ).toList(),
+                    children: snapshot.data
+                        .map(
+                          (post) => CardPostDetailsHalfSize(
+                            category: post.categoryId.toString(),
+                            name: post.postName,
+                            likeCount: post.likeCount,
+                            timeNeeded: post.timeNeeded,
+                            commentCount: post.commentCount,
+                            imageUrl: post.imageUrl,
+                          ),
+                        )
+                        .toList(),
                   ),
                 );
               } else if (snapshot.hasError) {

@@ -41,7 +41,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
                 backgroundColor: colorAppBar,
                 title: Text(
                   settings.name == '/' ? widget.destination.title : title,
-                  style: textStyleTitle,
+                  style: textStyleHeading,
                 ),
                 elevation: 0,
               ),
