@@ -2,6 +2,7 @@ import 'package:facefood/models/user_details.dart';
 import 'package:facefood/screens/explore.dart';
 import 'package:facefood/screens/home.dart';
 import 'package:facefood/screens/login.dart';
+import 'package:facefood/screens/user-profile.dart';
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -27,11 +28,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/login',
+      initialRoute: '/user-profile',
       routes: {
         '/explore': (context) => HomeScreen(
         ),
         '/login': (context) => LoginScreen(
+        ),
+        'user-profile': (context) => UserProfile(
         ),
       },
       
