@@ -7,10 +7,11 @@ TextStyle textStyleHeading = textStyleDefault.copyWith(
   fontWeight: FontWeight.bold,
   fontSize: 30.0,
 );
-TextStyle textStyleHeadingPrimary = textStyleDefault.copyWith(
-  fontWeight: FontWeight.bold,
-  fontSize: 30.0,
+TextStyle textStyleHeadingPrimary = textStyleHeading.copyWith(
   color: colorPrimary,
+);
+TextStyle textStyleHeadingDark = textStyleHeading.copyWith(
+  color: colorTextDark,
 );
 TextStyle textStyleTitle = textStyleDefault.copyWith(
   fontWeight: FontWeight.bold,
