@@ -1,7 +1,7 @@
 import 'package:facefood/models/user_details.dart';
-import 'package:facefood/screens/explore.dart';
 import 'package:facefood/screens/home.dart';
 import 'package:facefood/screens/login.dart';
+import 'package:facefood/screens/register.dart';
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -16,10 +16,11 @@ void main() async {
   else
     runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   final UserDetails user;
   MyApp({Key key, this.user}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,14 +28,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/login',
+      initialRoute: '/register',
       routes: {
-        '/explore': (context) => HomeScreen(
-        ),
-        '/login': (context) => LoginScreen(
-        ),
+        '/explore': (context) => HomeScreen(),
+        '/login': (context) => LoginScreen(),
+        '/register':(context) => RegisterScreen(),
       },
-      
     );
   }
 }
