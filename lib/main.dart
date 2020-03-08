@@ -1,9 +1,6 @@
 import 'package:facefood/models/user_details.dart';
 import 'package:facefood/restart_app.dart';
-import 'package:facefood/screens/explore.dart';
 import 'package:facefood/screens/guest/home.dart';
-import 'package:facefood/screens/home.dart';
-import 'package:facefood/screens/login.dart';
 import 'package:facefood/screens/register.dart';
 import 'package:facefood/screens/user-profile.dart';
 import 'package:facefood/screens/user/home.dart';
@@ -11,8 +8,6 @@ import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'screens/explore.dart';
-import 'screens/home.dart';
 
 void main() async {
   await DotEnv().load('.env');
