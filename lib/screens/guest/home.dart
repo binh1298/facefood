@@ -1,22 +1,23 @@
 import 'package:facefood/classes/destination.dart';
 import 'package:facefood/components/button_navigation.dart';
 import 'package:facefood/layouts/destination.dart';
-import 'package:facefood/screens/explore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:facefood/screens/guest/explore.dart';
 
-List<Destination> adminDestinations = <Destination>[
+List<Destination> guestDestination = <Destination>[
+  Destination('Login', Icons.person, ExploreScreen()),
+  Destination('Register', Icons.person, ExploreScreen()),
   Destination('Explore', Icons.person, ExploreScreen()),
-  Destination('Profile', Icons.person, ExploreScreen()),
-  Destination('Create Post', Icons.person, ExploreScreen()),
 ];
 
-class HomeScreen extends StatefulWidget {
+class GuestHomeScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _GuestHomeScreenState createState() => _GuestHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+class _GuestHomeScreenState extends State<GuestHomeScreen>
+    with TickerProviderStateMixin {
   int _currentIndex = 0;
   AnimationController _hide;
 
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           top: false,
           child: IndexedStack(
             index: _currentIndex,
-            children: adminDestinations.map<Widget>((Destination destination) {
+            children: guestDestination.map<Widget>((Destination destination) {
               return DestinationLayout(
                 destination: destination,
                 onNavigation: () {
@@ -71,8 +72,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {},
+          child: Icon(Icons.person),
+          onPressed: () {
+            setState(() {
+              _currentIndex = 2;
+            });
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
@@ -86,8 +91,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   Row(
                     children: <Widget>[
                       ButtonNavigation(
-                        title: adminDestinations[0].title,
-                        iconData: adminDestinations[0].iconData,
+                        title: guestDestination[0].title,
+                        iconData: guestDestination[0].iconData,
                         isActive: _currentIndex == 0,
                         onPressed: () {
                           setState(() {
@@ -100,8 +105,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   Row(
                     children: <Widget>[
                       ButtonNavigation(
-                        title: adminDestinations[1].title,
-                        iconData: adminDestinations[1].iconData,
+                        title: guestDestination[1].title,
+                        iconData: guestDestination[1].iconData,
                         isActive: _currentIndex == 1,
                         onPressed: () {
                           setState(() {
