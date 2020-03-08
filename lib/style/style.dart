@@ -59,3 +59,8 @@ BoxDecoration decorationRoundContainer = BoxDecoration(
   topRight: Radius.circular(20),
   )
 );
+
+
+// Textbox Width
+const double textboxWidthMedium = 220.0;
+const double textboxWidthLarge = 280.0;
