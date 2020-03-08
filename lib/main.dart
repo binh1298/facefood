@@ -8,13 +8,12 @@ import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-
 void main() async {
   await DotEnv().load('.env');
   UserDetails user = await getUserFromToken();
   if (user != null)
     runApp(RestartWidget(
-          child: MyApp(
+      child: MyApp(
         user: user,
       ),
     ));
@@ -32,13 +31,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/userProfile',
+      initialRoute: (user != null) ? '/user' : '/guest',
       routes: {
         '/user': (context) => UserHomeScreen(),
         '/guest': (context) => GuestHomeScreen(),
-         '/register':(context) => RegisterScreen(),
-         '/userProfile': (context) => UserProfile(
-        ),
+        '/register': (context) => RegisterScreen(),
+        '/userProfile': (context) => UserProfile(),
       },
     );
   }
