@@ -23,6 +23,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   likeCount: snapshot.data.likeCount,
                   timeNeeded: snapshot.data.timeNeeded,
                   commentCount: snapshot.data.commentCount,
+                  imageUrl: snapshot.data.imageUrl,
                 );
               } else if (snapshot.hasError) {
                 return Text(snapshot.error);
@@ -35,7 +36,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             },
           ),
 
-          
+
           FutureBuilder<List<Post>>(
             future: fetchPopularPostsList(),
             builder: (context, snapshot) {
@@ -50,6 +51,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         likeCount: post.likeCount,
                         timeNeeded: post.timeNeeded,
                         commentCount: post.commentCount,
+                        imageUrl: post.imageUrl,
                       ),
                     ).toList(),
                   ),

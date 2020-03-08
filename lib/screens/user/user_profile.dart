@@ -92,7 +92,7 @@ class _UserProfileState extends State<UserProfile> {
                       likeCount: 3,
                       name: 'name name name',
                       timeNeeded: 333,
-                      urlPic: 'https://i.picsum.photos/id/237/536/354.jpg',
+                      imageUrl: 'https://i.picsum.photos/id/237/536/354.jpg',
                       urlPost: '',
                     ),
                     DetailItemHoriziontal(
@@ -101,7 +101,7 @@ class _UserProfileState extends State<UserProfile> {
                       likeCount: 3,
                       name: 'name name name',
                       timeNeeded: 333,
-                      urlPic: 'https://i.picsum.photos/id/237/536/354.jpg',
+                      imageUrl: 'https://i.picsum.photos/id/237/536/354.jpg',
                       urlPost: '',
                     ),
                     DetailItemHoriziontal(
@@ -110,7 +110,7 @@ class _UserProfileState extends State<UserProfile> {
                       likeCount: 3,
                       name: 'name name name',
                       timeNeeded: 333,
-                      urlPic: 'https://i.picsum.photos/id/237/536/354.jpg',
+                      imageUrl: 'https://i.picsum.photos/id/237/536/354.jpg',
                       urlPost: '',
                     ),
                     DetailItemHoriziontal(
@@ -119,7 +119,7 @@ class _UserProfileState extends State<UserProfile> {
                       likeCount: 3,
                       name: 'name name name',
                       timeNeeded: 333,
-                      urlPic: 'https://i.picsum.photos/id/237/536/354.jpg',
+                      imageUrl: 'https://i.picsum.photos/id/237/536/354.jpg',
                       urlPost: '',
                     ),
                     RaisedButton(

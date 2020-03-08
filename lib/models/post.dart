@@ -46,6 +46,7 @@ Future<Post> fetchLastestPost() async {
     isDeleted: false,
     likeCount: 3,
     commentCount: 2,
+    imageUrl: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/11/2/0/DV1510H_fried-chicken-recipe-10_s4x3.jpg.rend.hgtvcom.826.620.suffix/1568222255998.jpeg',
   );
   return post;
 }
@@ -59,7 +60,7 @@ Future<List<Post>> fetchPopularPostsList() async {
     isDeleted: false,
     likeCount: 3,
     commentCount: 2,
-    imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.foodnetwork.com%2Frecipes%2Ffried-chicken-recipe10-3381583&psig=AOvVaw11l_eII5xyEzrCy8EVmYzj&ust=1583784721067000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIDktv_Xi-gCFQAAAAAdAAAAABAD',
+    imageUrl: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/11/2/0/DV1510H_fried-chicken-recipe-10_s4x3.jpg.rend.hgtvcom.826.620.suffix/1568222255998.jpeg',
   );
   Post post2 = Post(
     categoryId: 1,
@@ -69,7 +70,7 @@ Future<List<Post>> fetchPopularPostsList() async {
     isDeleted: false,
     likeCount: 3, 
     commentCount: 2,
-    imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.foodnetwork.com%2Frecipes%2Ffried-chicken-recipe10-3381583&psig=AOvVaw11l_eII5xyEzrCy8EVmYzj&ust=1583784721067000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIDktv_Xi-gCFQAAAAAdAAAAABAD',
+    imageUrl: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/11/2/0/DV1510H_fried-chicken-recipe-10_s4x3.jpg.rend.hgtvcom.826.620.suffix/1568222255998.jpeg',
   );
   Post post3 = Post(
     categoryId: 1,
@@ -79,7 +80,7 @@ Future<List<Post>> fetchPopularPostsList() async {
     isDeleted: false,
     likeCount: 3, 
     commentCount: 2,
-    imageUrl: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.foodnetwork.com%2Frecipes%2Ffried-chicken-recipe10-3381583&psig=AOvVaw11l_eII5xyEzrCy8EVmYzj&ust=1583784721067000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIDktv_Xi-gCFQAAAAAdAAAAABAD',
+    imageUrl: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/11/2/0/DV1510H_fried-chicken-recipe-10_s4x3.jpg.rend.hgtvcom.826.620.suffix/1568222255998.jpeg',
   );
 
   List<Post> list = List();

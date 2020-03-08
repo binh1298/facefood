@@ -4,7 +4,7 @@ import '../style/style.dart';
 
 class DetailItemHoriziontal extends StatelessWidget {
   final String name;
-  final String urlPic;
+  final String imageUrl;
   final String urlPost;
   final int timeNeeded;
   final String category;
@@ -12,7 +12,7 @@ class DetailItemHoriziontal extends StatelessWidget {
   final int commentCount;
   const DetailItemHoriziontal(
       {this.name,
-      this.urlPic,
+      this.imageUrl,
       this.urlPost,
       this.timeNeeded,
       this.category,
@@ -35,7 +35,7 @@ class DetailItemHoriziontal extends StatelessWidget {
                 height: 270,
                 child: FittedBox(
                   child: Image.network(
-                      'https://i.picsum.photos/id/237/536/354.jpg'),
+                      imageUrl),
                       fit: BoxFit.fill,
                 ),
               ),
