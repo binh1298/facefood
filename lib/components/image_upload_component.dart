@@ -1,6 +1,7 @@
-import 'package:firebase_storage/firebase_storage.dart'; // For File Upload To Firestore
+import 'package:facefood/models/post.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart'; // For Image Picker
+import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
 
 class ImageUploadComponent extends StatefulWidget {
@@ -17,7 +18,6 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
 
   @override
   Widget build(BuildContext context) {
-    String location = widget.location;
     return Padding(
       padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
       child: Row(
@@ -26,14 +26,16 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
             children: <Widget>[
               _image == null
                   ? RaisedButton(
-                      child: Text('Add Image'),
+                      child: Text('Add Image',
+                          style: TextStyle(color: Colors.white)),
                       onPressed: chooseFile,
                       color: Colors.red,
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 0))
                   : Container(),
               _image != null
                   ? RaisedButton(
-                      child: Text('Update'),
+                      child:
+                          Text('Update', style: TextStyle(color: Colors.white)),
                       onPressed: chooseFile,
                       color: Colors.red,
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 0))
@@ -61,7 +63,9 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
     await uploadFile('posts');
   }
 
-  Future uploadFile(String location) async {
+  Future uploadFile(
+    String location,
+  ) async {
     StorageReference storageReference = FirebaseStorage.instance
         .ref()
         .child(location + '/${Path.basename(_image.path)}');
