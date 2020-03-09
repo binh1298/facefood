@@ -3,42 +3,48 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart'; // For Image Picker
 import 'package:path/path.dart' as Path;
 
-var location;
 class ImageUploadComponent extends StatefulWidget {
+  final String location;
 
   @override
-  ImageUploadComponent(location);
+  ImageUploadComponent(this.location);
 
   _ImageUploadComponentState createState() => _ImageUploadComponentState();
 }
 
 class _ImageUploadComponentState extends State<ImageUploadComponent> {
-  var _image, _uploadedFileURL, location;
+  var _image, _uploadedFileURL;
 
   @override
   Widget build(BuildContext context) {
+    String location = widget.location;
     return Padding(
       padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
       child: Row(
         children: <Widget>[
-          _image == null
-              ? RaisedButton(
-                  child: Text('Choose File'),
-                  onPressed: chooseFile,
-                  color: Colors.cyan,
-                )
-              : Container(),
-          _image != null
-              ? RaisedButton(
-                  child: Text('Update Image'),
-                  onPressed: chooseFile,
-                  color: Colors.cyan,
-                )
-              : Container(),
+          Column(
+            children: <Widget>[
+              _image == null
+                  ? RaisedButton(
+                      child: Text('Add Image'),
+                      onPressed: chooseFile,
+                      color: Colors.red,
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0))
+                  : Container(),
+              _image != null
+                  ? RaisedButton(
+                      child: Text('Update'),
+                      onPressed: chooseFile,
+                      color: Colors.red,
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0))
+                  : Container(),
+            ],
+          ),
           _uploadedFileURL != null
               ? Image.network(
                   _uploadedFileURL,
-                  height: 150,
+                  height: 200,
+                  width: 300,
                 )
               : Container(),
         ],
@@ -52,10 +58,10 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
         _image = image;
       });
     });
-    await uploadFile();
+    await uploadFile('posts');
   }
 
-  Future uploadFile() async {
+  Future uploadFile(String location) async {
     StorageReference storageReference = FirebaseStorage.instance
         .ref()
         .child(location + '/${Path.basename(_image.path)}');
