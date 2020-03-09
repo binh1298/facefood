@@ -1,6 +1,7 @@
 import 'package:facefood/components/button_full_width.dart';
-import 'package:facefood/components/detail_item_horizontal.dart';
+import 'package:facefood/components/card_post_fullwidth.dart';
 import 'package:facefood/components/user_detail_info.dart';
+import 'package:facefood/models/post.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,6 @@ class _UserProfileState extends State<UserProfile> {
         body: SafeArea(
           child: Column(
             children: <Widget>[
-              UserDetail(),
               SizedBox(
                 height: 20,
               ),
@@ -27,55 +27,22 @@ class _UserProfileState extends State<UserProfile> {
               SizedBox(
                 height: 10,
               ),
-              Flexible(
-                child: ListView(
-                  padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
-                  children: <Widget>[
-                    DetailItemHoriziontal(
-                      category: 'Korean food',
-                      commentCount: 13,
-                      likeCount: 49,
-                      name: 'Korean beef stew',
-                      timeNeeded: 90,
-                      imageUrl: 'https://images.kitchenstories.io/wagtailOriginalImages/R1998-photo-final-1/R1998-photo-final-1-medium-landscape-150.jpg',
-                      urlPost: '',
-                    ),
-                    DetailItemHoriziontal(
-                      category: 'Banquet Meal',
-                      commentCount: 4,
-                      likeCount: 23,
-                      name: 'Beef ragout & celery root',
-                      timeNeeded: 30,
-                      imageUrl: 'https://images.kitchenstories.io/recipeImages/R1100-photo-final/R1100-photo-final-medium-landscape-150.jpg',
-                      urlPost: '',
-                    ),
-                    DetailItemHoriziontal(
-                      category: 'Tradition Germany',
-                      commentCount: 2,
-                      likeCount: 13,
-                      name: 'Roast pork & potatoes',
-                      timeNeeded: 120,
-                      imageUrl: 'https://images.kitchenstories.io/recipeImages/R872-photo-final-4x3/R872-photo-final-4x3-medium-landscape-150.jpg',
-                      urlPost: '',
-                    ),
-                    DetailItemHoriziontal(
-                      category: 'Roast',
-                      commentCount: 2,
-                      likeCount: 3,
-                      name: 'Roast beef with cabbage',
-                      timeNeeded: 333,
-                      imageUrl: 'https://images.kitchenstories.io/recipeImages/R881-photo-final-4x3/R881-photo-final-4x3-medium-landscape-150.jpg',
-                      urlPost: '',
-                    ),
-                    RaisedButton(
-                      onPressed: () {},
-                      textColor: colorTextPrimary,
-                      color: colorPrimary,
-                      child: Text('Load more'),
-                    )
-                  ],
-                ),
-              )
+              FutureBuilder<List<Post>>(
+                future: fetchPostListFromAUser(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListViewPost(
+                      listPost: snapshot.data,
+                    );
+                  } else if (snapshot.error) {
+                    return Text(snapshot.error.toString());
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
             ],
           ),
         ),
@@ -84,9 +51,57 @@ class _UserProfileState extends State<UserProfile> {
   }
 }
 
+class ListViewPost extends StatelessWidget {
+  final List<Post> listPost;
+
+  const ListViewPost({
+    Key key,
+    this.listPost,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: ListView(
+        padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+        children: <Widget>[
+          Column(
+            children: listPost
+                .map(
+                  (post) => CardPostFullWidth(
+                    categoryId: post.categoryId,
+                    commentCount: post.commentCount,
+                    imageUrl: post.imageUrl,
+                    likeCount: post.likeCount,
+                    postId: post.postId,
+                    postName: post.postName,
+                    timeNeeded: post.timeNeeded,
+                  ),
+                )
+                .toList(),
+          ),
+          RaisedButton(
+            onPressed: () {},
+            textColor: colorTextPrimary,
+            color: colorPrimary,
+            child: Text('Load more'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class UserDetail extends StatelessWidget {
+  final String username;
+  final String totalFollowersCount;
+  final String totalFollowingCount;
+
   const UserDetail({
     Key key,
+    this.username,
+    this.totalFollowersCount,
+    this.totalFollowingCount,
   }) : super(key: key);
 
   @override

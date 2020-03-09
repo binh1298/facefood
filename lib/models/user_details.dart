@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:facefood/models/post.dart';
 import 'package:facefood/utils/api_caller.dart';
 import 'package:facefood/utils/api_routes.dart';
 import 'package:http/http.dart' as http;
@@ -55,3 +56,4 @@ Future<List<UserDetails>> fetchUsersDetailsList() async {
     return null;
   }
 }
+
