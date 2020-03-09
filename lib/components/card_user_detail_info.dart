@@ -1,76 +1,90 @@
+import 'package:facefood/components/box_single_detail_info.dart';
+import 'package:facefood/models/user_related_infos.dart';
+import 'package:facefood/style/style.dart';
+import 'package:flutter/material.dart';
 
 class CardUserDetailInfo extends StatelessWidget {
-  final String username;
-  final String totalFollowersCount;
-  final String totalFollowingCount;
+  final String userId;
 
   const CardUserDetailInfo({
     Key key,
-    this.username,
-    this.totalFollowersCount,
-    this.totalFollowingCount,
+    this.userId,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Container(
-          padding: EdgeInsets.only(left: 10, right: 10),
-          width: MediaQuery.of(context).size.width / 6,
-          height: MediaQuery.of(context).size.width / 6,
-          child: CircleAvatar(
-            backgroundColor: Colors.black,
-            child: Icon(
-              Icons.person,
-              size: MediaQuery.of(context).size.width / 8,
-            ),
-          ),
-        ),
-        Expanded(
-          child: Container(
-            height: 100,
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 32,
-                  child: Text(
-                    'Reanu Keeves',
-                    style: textStyleHeading,
-                  ),
+    return FutureBuilder(
+      future: fetchUserRelatedInfos(userId),
+      builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        return Row(
+          children: <Widget>[
+            // Avartar container
+            Container(
+              padding: EdgeInsets.only(left: 10, right: 10),
+              width: MediaQuery.of(context).size.width / 4,
+              height: MediaQuery.of(context).size.width / 4,
+              child: CircleAvatar(
+                backgroundColor: Colors.black,
+                child: Icon(
+                  Icons.person,
+                  size: MediaQuery.of(context).size.width / 7,
                 ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: UserDetailInfo(
-                            title: 'Followers',
-                            number: 1,
-                          ),
-                        ),
-                        Expanded(
-                          child: UserDetailInfo(
-                            title: 'Likes',
-                            number: 13,
-                          ),
-                        ),
-                        Expanded(
-                          child: UserDetailInfo(
-                            title: 'Following',
-                            number: 15,
-                          ),
-                        ),
-                      ],
+              ),
+            ),
+            // Name & info boxes container
+            Expanded(
+              child: Container(
+                height: 100,
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      height: 32,
+                      child: Text(
+                        snapshot.data.username,
+                        style: textStyleHeading,
+                      ),
                     ),
-                  ),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: BoxSingleDetailInfo(
+                                title: 'Followers',
+                                number: snapshot.data.totalFollowers,
+                              ),
+                            ),
+                            Expanded(
+                              child: BoxSingleDetailInfo(
+                                title: 'Likes',
+                                number: snapshot.data.likeCount,
+                              ),
+                            ),
+                            Expanded(
+                              child: BoxSingleDetailInfo(
+                                title: 'Following',
+                                number: snapshot.data.totalFollowings,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ],
-    );
+          ],
+        );
+      } else if (snapshot.error) {
+        return Text(snapshot.error.toString());
+      } else {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+    });
   }
 }
