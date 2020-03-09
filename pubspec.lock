@@ -71,8 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.2.1"
-  firebase_core:
-    dependency: transitive
   firebase_analytics:
     dependency: "direct main"
     description:
