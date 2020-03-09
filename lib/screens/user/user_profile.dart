@@ -2,7 +2,6 @@ import 'package:facefood/components/button_full_width.dart';
 import 'package:facefood/components/card_user_detail_info.dart';
 import 'package:facefood/components/list_view_card_post_fullwidth.dart';
 import 'package:facefood/models/post.dart';
-import 'package:facefood/models/user_details.dart';
 import 'package:flutter/material.dart';
 
 class UserProfile extends StatefulWidget {
