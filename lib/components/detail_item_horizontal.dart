@@ -1,24 +1,24 @@
+import 'package:facefood/components/icon_text.dart';
 import 'package:flutter/material.dart';
 
 import '../style/style.dart';
 
 class DetailItemHoriziontal extends StatelessWidget {
   final String name;
-  final String urlPic;
+  final String imageUrl;
   final String urlPost;
-  final int time;
+  final int timeNeeded;
   final String category;
-  final int likes;
-  final int comments;
-
+  final int likeCount;
+  final int commentCount;
   const DetailItemHoriziontal(
       {this.name,
-      this.urlPic,
+      this.imageUrl,
       this.urlPost,
-      this.time,
+      this.timeNeeded,
       this.category,
-      this.likes,
-      this.comments});
+      this.likeCount,
+      this.commentCount});
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +35,8 @@ class DetailItemHoriziontal extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: 270,
                 child: FittedBox(
-                  child: Image.network(
-                      'https://i.picsum.photos/id/237/536/354.jpg'),
-                      fit: BoxFit.fill,
+                  child: Image.network(imageUrl),
+                  fit: BoxFit.fill,
                 ),
               ),
               Container(
@@ -47,24 +46,39 @@ class DetailItemHoriziontal extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      name,
-                      textAlign: TextAlign.left,
-                      style: textStyleTitlePrimary,
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          name,
+                          textAlign: TextAlign.left,
+                          style: textStyleTitleDarkBackground,
+                        ),
+                        SizedBox(width: 5,),
+                        IconTextComponent(
+                          icon: Icons.access_alarm,
+                          text: timeNeeded.toString() + "'",
+                          style: textStyleDarkBackground,
+                          iconColor: colorTextDarkBackground,
+                        ),
+                      ],
                     ),
-                    Text(
-                      likes.toString() +
-                          ' likes ' +
-                          comments.toString() +
-                          ' comments',
-                      textAlign: TextAlign.left,
-                      style: textStyleDefaultDark,
+                    Row(
+                      children: <Widget>[
+                        IconTextComponent(
+                          icon: Icons.thumb_up,
+                          text: likeCount.toString(),
+                          style: textStyleDarkBackground,
+                          iconColor: colorTextDarkBackground,
+                        ),
+                        SizedBox(width: 5,),
+                        IconTextComponent(
+                          icon: Icons.chat_bubble_outline,
+                          text: commentCount.toString(),
+                          style: textStyleDarkBackground,
+                          iconColor: colorTextDarkBackground,
+                        ),
+                      ],
                     ),
-                    Text(
-                      'Category: ' + category + ' | ' + time.toString() + "'",
-                      textAlign: TextAlign.left,
-                      style: textStyleDefaultDark,
-                    )
                   ],
                 ),
               ),

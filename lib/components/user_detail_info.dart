@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 
+=======
+>>>>>>> c01f801d66ddcbedc7a125489a8acb720611381a
 import '../style/style.dart';
 
 class UserDetailInfo extends StatelessWidget {

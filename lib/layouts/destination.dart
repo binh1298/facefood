@@ -1,5 +1,6 @@
 import 'package:facefood/classes/view_navigation_observer.dart';
 import 'package:facefood/screens/guest/explore.dart';
+import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 import '../classes/destination.dart';
 
@@ -7,7 +8,8 @@ class DestinationLayout extends StatefulWidget {
   final Destination destination;
   final VoidCallback onNavigation;
 
-  DestinationLayout({Key key, this.destination, this.onNavigation}) : super(key: key);
+  DestinationLayout({Key key, this.destination, this.onNavigation})
+      : super(key: key);
 
   @override
   _DestinationLayoutState createState() => _DestinationLayoutState();
@@ -36,7 +38,12 @@ class _DestinationLayoutState extends State<DestinationLayout> {
           builder: (BuildContext context) {
             return Scaffold(
               appBar: AppBar(
-                title: Text(settings.name == '/' ? widget.destination.title : title),
+                backgroundColor: colorAppBar,
+                title: Text(
+                  settings.name == '/' ? widget.destination.title : title,
+                  style: textStyleHeading,
+                ),
+                elevation: 0,
               ),
               body: body,
             );

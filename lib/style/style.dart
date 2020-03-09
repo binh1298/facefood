@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 
 // Text
 TextStyle textStyleDefault =
-    TextStyle(fontFamily: 'Montserrat', fontSize: 18.0);
+    TextStyle(fontFamily: 'Montserrat', fontSize: 18.0, color: colorTextPrimary);
+
 TextStyle textStyleHeading = textStyleDefault.copyWith(
   fontWeight: FontWeight.bold,
-  fontSize: 30.0,
+  fontSize: 26.0,
 );
 TextStyle textStyleHeadingPrimary = textStyleHeading.copyWith(
   color: colorPrimary,
 );
 TextStyle textStyleHeadingDark = textStyleHeading.copyWith(
-  color: colorTextDark,
+  color: colorTextDarkBackground,
 );
 TextStyle textStyleTitle = textStyleDefault.copyWith(
   fontWeight: FontWeight.bold,
@@ -22,8 +23,16 @@ TextStyle textStyleTitlePrimary = textStyleDefault.copyWith(
   fontSize: 22.0,
   color: colorPrimary,
 );
+TextStyle textStyleTitleDarkBackground = textStyleDefault.copyWith(
+  fontWeight: FontWeight.bold,
+  fontSize: 22.0,
+  color: colorTextDarkBackground,
+);
 TextStyle textStyleSubtitle = textStyleDefault.copyWith(
   fontSize: 20.0,
+);
+TextStyle textStyleSubtitleBold = textStyleSubtitle.copyWith(
+  fontWeight: FontWeight.bold,
 );
 
 TextStyle textStyleErrorMessage = TextStyle(color: colorError);
@@ -37,8 +46,13 @@ TextStyle textStyleDefaultPrimary = textStyleDefault.copyWith(
   color: colorPrimary,
 );
 
-TextStyle textStyleDefaultDark = textStyleDefault.copyWith(
-  color: colorTextDark,
+TextStyle textStyleDarkBackground = textStyleDefault.copyWith(
+  color: colorTextDarkBackground,
+);
+
+TextStyle textStyleQuotation = textStyleDefault.copyWith(
+  fontFamily: 'Times New Roman',
+  fontStyle: FontStyle.italic,
 );
 
 // Color
@@ -48,8 +62,8 @@ Color colorBackgroundDark = Colors.black;
 Color colorInactive = Colors.grey;
 Color colorError = Colors.red;
 Color colorTextPrimary = Colors.white;
-Color colorTextDark = Colors.white;
-
+Color colorTextDarkBackground = Colors.white;
+Color colorAppBar = Colors.white;
 //decoration
 
 BoxDecoration decorationRoundContainer = BoxDecoration(
@@ -59,3 +73,13 @@ BoxDecoration decorationRoundContainer = BoxDecoration(
   topRight: Radius.circular(20),
   )
 );
+
+BoxDecoration boxDecorationDefault = BoxDecoration(
+  color: colorBackground,
+  
+  border: Border.all(width: 0.5),
+);
+
+// Textbox Width
+const double textboxWidthMedium = 220.0;
+const double textboxWidthLarge = 280.0;
