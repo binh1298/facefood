@@ -94,6 +94,47 @@ Future<List<Post>> fetchPromotionList() async {
   return list;
 }
 
+Future<List<Post>> fetchPostListFromAUser() async {
+  Post post1 = Post(
+    categoryId: 1,
+    description: 'This taste really good',
+    postName: 'Bánh Mì',
+    timeNeeded: 30,
+    isDeleted: false,
+    likeCount: 5,
+    commentCount: 7,
+    imageUrl:
+        'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fassets.epicurious.com%2Fphotos%2F562e49d300392e9c31da8947%2F2%3A1%2Fw_1260%252Ch_630%2FEP_10212015_BanhMi-4.jpg&f=1&nofb=1',
+  );
+  Post post2 = Post(
+    categoryId: 1,
+    description: 'This taste really good',
+    postName: 'Fried Chicken',
+    timeNeeded: 30,
+    isDeleted: false,
+    likeCount: 2,
+    commentCount: 5,
+    imageUrl:
+        'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F4.bp.blogspot.com%2F-weCr72uU__4%2FUDx4HtgMkYI%2FAAAAAAAAAls%2FUr8rBMPTjFY%2Fs1600%2Fpho-vietnam.jpg&f=1&nofb=1',
+  );
+  Post post3 = Post(
+    categoryId: 1,
+    description: 'This taste really good',
+    postName: 'Fried Chicken',
+    timeNeeded: 25,
+    isDeleted: false,
+    likeCount: 6,
+    commentCount: 9,
+    imageUrl:
+        'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/11/2/0/DV1510H_fried-chicken-recipe-10_s4x3.jpg.rend.hgtvcom.826.620.suffix/1568222255998.jpeg',
+  );
+
+  List<Post> list = List();
+  list.add(post1);
+  list.add(post2);
+  list.add(post3);
+  return list;
+}
 
 Future<List<Post>> fetchPopularPostsList() async {
   Post post1 = Post(
