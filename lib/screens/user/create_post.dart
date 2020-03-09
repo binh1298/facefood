@@ -78,7 +78,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         //   return '';
                         // },
                       ),
-                      ImageUploadComponent('posts'),
+                      ImageUploadComponent('posts', _post),
                       TextFormFieldComponent(
                         hintText: 'A short introduction of the dish',
                         labelText: 'Description',

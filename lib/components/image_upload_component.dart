@@ -6,9 +6,10 @@ import 'package:path/path.dart' as Path;
 
 class ImageUploadComponent extends StatefulWidget {
   final String location;
+  final Post _post;
 
   @override
-  ImageUploadComponent(this.location);
+  ImageUploadComponent(this.location, this._post);
 
   _ImageUploadComponentState createState() => _ImageUploadComponentState();
 }
@@ -28,7 +29,8 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
                   ? RaisedButton(
                       child: Text('Add Image',
                           style: TextStyle(color: Colors.white)),
-                      onPressed: chooseFile,
+                      onPressed: () =>
+                          chooseFile(widget.location, widget._post),
                       color: Colors.red,
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 0))
                   : Container(),
@@ -36,7 +38,8 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
                   ? RaisedButton(
                       child:
                           Text('Update', style: TextStyle(color: Colors.white)),
-                      onPressed: chooseFile,
+                      onPressed: () =>
+                          chooseFile(widget.location, widget._post),
                       color: Colors.red,
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 0))
                   : Container(),
@@ -54,18 +57,16 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
     );
   }
 
-  Future chooseFile() async {
+  Future chooseFile(String location, Post _post) async {
     await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
       setState(() {
         _image = image;
       });
     });
-    await uploadFile('posts');
+    await uploadFile(location, _post);
   }
 
-  Future uploadFile(
-    String location,
-  ) async {
+  Future uploadFile(String location, Post _post) async {
     StorageReference storageReference = FirebaseStorage.instance
         .ref()
         .child(location + '/${Path.basename(_image.path)}');
@@ -75,6 +76,7 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
     storageReference.getDownloadURL().then((fileURL) {
       setState(() {
         _uploadedFileURL = fileURL;
+        _post.imageUrl = _uploadedFileURL;
       });
     });
   }
