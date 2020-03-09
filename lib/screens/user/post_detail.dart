@@ -460,33 +460,33 @@ class TitleAppBar extends StatelessWidget {
                   text: TextSpan(children: [
                     TextSpan(
                       text: '40\' ',
-                      style: textStyleDefaultDark,
+                      style: textStyleDefault.copyWith(color: colorTextDarkBackground),
                     ),
                     WidgetSpan(
                         child: Icon(
                       Icons.timer,
-                      size: textStyleDefaultDark.fontSize,
-                      color: textStyleDefaultDark.color,
+                      size: textStyleDefault.fontSize,
+                      color: colorTextDarkBackground,
                     )),
                     TextSpan(
                       text: '     32 ',
-                      style: textStyleDefaultDark,
+                      style: textStyleDefault.copyWith(color: colorTextDarkBackground),
                     ),
                     WidgetSpan(
                         child: Icon(
                       Icons.favorite,
-                      size: textStyleDefaultDark.fontSize,
-                      color: textStyleDefaultDark.color,
+                      size: textStyleDefault.fontSize,
+                      color: colorTextDarkBackground,
                     )),
                     TextSpan(
                       text: '    14 ',
-                      style: textStyleDefaultDark,
+                      style: textStyleDefault.copyWith(color: colorTextDarkBackground),
                     ),
                     WidgetSpan(
                         child: Icon(
                       Icons.insert_comment,
-                      size: textStyleDefaultDark.fontSize,
-                      color: textStyleDefaultDark.color,
+                      size: textStyleDefault.fontSize,
+                      color: colorTextDarkBackground,
                     )),
                   ]),
                 ),
