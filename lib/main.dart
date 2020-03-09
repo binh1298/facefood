@@ -32,8 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      initialRoute: '/userProfile',
-      //(user != null) ? '/user' : '/guest',
+      initialRoute: (user != null) ? '/user' : '/guest',
       routes: {
         '/user': (context) => UserHomeScreen(),
         '/guest': (context) => GuestHomeScreen(),
