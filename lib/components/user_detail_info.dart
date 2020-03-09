@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../style/style.dart';
-import '../style/style.dart';
+
 import '../style/style.dart';
 
 class UserDetailInfo extends StatelessWidget {
