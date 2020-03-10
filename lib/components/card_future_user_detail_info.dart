@@ -13,7 +13,7 @@ class CardFutureUserDetailInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<UserRelatedInfos>(
         future: fetchUserRelatedInfos(userId),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -23,7 +23,7 @@ class CardFutureUserDetailInfo extends StatelessWidget {
                 children: <Widget>[
                   // Avartar container
                   GestureDetector(
-                    onTap: (){print('hihihi');},
+                    onTap: (){print('hihihi');},   // implement on tap
                     child: Container(
                       padding: EdgeInsets.only(left: 10, right: 10),
                       width: MediaQuery.of(context).size.width / 3.75,
