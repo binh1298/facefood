@@ -90,7 +90,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             ],
           );
         } else if (snapshot.hasError) {
-          return Text(snapshot.error);
+          return Text(snapshot.error.toString());
         } else if (snapshot.connectionState == ConnectionState.done) {
           return Text('Unable to fetch this post');
         } else

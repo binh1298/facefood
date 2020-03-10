@@ -136,6 +136,7 @@ Future<List<Post>> fetchPostListFromAUser() async {
   return list;
 }
 
+
 Future<List<Post>> fetchPopularPostsList() async {
   Post post1 = Post(
     categoryId: 1,
