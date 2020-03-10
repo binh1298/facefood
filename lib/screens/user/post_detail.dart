@@ -6,7 +6,6 @@ import 'package:facefood/components/list_view_step_card.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/models/post_step.dart';
 import 'package:facefood/models/user_details.dart';
-import 'package:facefood/models/user_related_infos.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
@@ -97,7 +96,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             ],
           );
         } else if (snapshot.hasError) {
-          return Text(snapshot.error);
+          return Text(snapshot.error.toString());
         } else if (snapshot.connectionState == ConnectionState.done) {
           return Text('Unable to fetch this post');
         } else

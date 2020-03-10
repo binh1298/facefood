@@ -62,10 +62,13 @@ class AppbarPostDetailContent extends StatelessWidget {
                           color: colorTextDarkBackground),
                     ),
                     WidgetSpan(
-                        child: Icon(
-                      Icons.timer,
-                      size: textStyleDefault.fontSize,
-                      color: colorTextDarkBackground,
+                        child: GestureDetector(
+                          onTap: (){print('hahaha');},    // button like
+                      child: Icon(
+                        Icons.timer,
+                        size: textStyleDefault.fontSize,
+                        color: colorTextDarkBackground,
+                      ),
                     )),
                     TextSpan(
                       text: '     $likeCount ',
