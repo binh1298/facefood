@@ -177,3 +177,21 @@ Future<List<Post>> fetchPopularPostsList() async {
   list.add(post3);
   return list;
 }
+
+
+Future<Post> fetchAPost(String postID) async {
+  // final http.Response response = await apiCaller.get();
+
+  Post post = Post(
+    categoryId: 1,
+    description: 'This taste really good',
+    postName: 'Hủ Tiếu Nam Vang',
+    timeNeeded: 30,
+    isDeleted: false,
+    likeCount: 10,
+    commentCount: 25,
+    imageUrl:
+        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F7%2F76%2FH%25E1%25BB%25A7_ti%25E1%25BA%25BFu_th%25E1%25BA%25ADp_c%25E1%25BA%25A9m.jpg%2F1200px-H%25E1%25BB%25A7_ti%25E1%25BA%25BFu_th%25E1%25BA%25ADp_c%25E1%25BA%25A9m.jpg&f=1&nofb=1',
+  );
+  return post;
+}
