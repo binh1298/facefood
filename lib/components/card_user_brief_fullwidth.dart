@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 class CardUserBriefFullwidth extends StatelessWidget {
   final String fullname, username, imgUrl;
   const CardUserBriefFullwidth({
-    Key key, this.fullname, this.username, this.imgUrl,
+    Key key,
+    this.fullname = 'default',
+    this.username = 'default',
+    this.imgUrl = 'default',
   }) : super(key: key);
 
   @override
