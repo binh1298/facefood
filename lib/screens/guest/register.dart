@@ -35,23 +35,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Text('Register', style: textStyleHeading),
                     SizedBox(height: 45.0),
                     TextFormFieldRectangle(
-                      hintText: 'Email',
-                      onSaved: (email) => setState(() => _user.email = email),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'Please enter your Email.';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 25.0),
-                    TextFormFieldRectangle(
                       hintText: 'Username',
                       onSaved: (username) =>
                           setState(() => _user.username = username),
                       validator: (value) {
                         if (value.isEmpty) {
                           return 'Please enter your Username.';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 25.0),
+                    TextFormFieldRectangle(
+                      hintText: 'Email',
+                      onSaved: (email) => setState(() => _user.email = email),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter your Email.';
                         }
                         return null;
                       },
@@ -77,27 +77,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           () => _user.confirmPassword = confirmPassword),
                     ),
                     SizedBox(height: 25.0),
-                    TextFormFieldRectangle(
-                      hintText: 'Full Name',
-                      onSaved: (fullname) =>
-                          setState(() => _user.fullname = fullname),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'Please enter your Password.';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 25.0),
                     ButtonConfirmComponent(
                       text: 'Register',
                       onPressed: () async {
                         final form = _formkey.currentState;
                         if (form.validate()) {
                           form.save();
-                          bool success = true;
+                          bool success = await _user.register(context);
                           if (success) {
-                            Navigator.pushNamed(context, '/login');
+                           Navigator.pushReplacementNamed(context, '/explore');
                           }
                         }
                       },
