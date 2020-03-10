@@ -26,21 +26,38 @@ void main() async {
 class MyApp extends StatelessWidget {
   final UserDetails user;
   MyApp({Key key, this.user}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    print(user);
     return MaterialApp(
-      title: 'Task Manager',
+      title: 'Facefood',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      initialRoute:(user != null) ? '/user' : '/guest',
+      initialRoute: (user != null) ? '/user' : '/guest',
       routes: {
-        '/user': (context) => UserHomeScreen(),
-        '/guest': (context) => GuestHomeScreen(),
-        '/register': (context) => RegisterScreen(),
-        '/userProfile': (context) => UserProfile(),
-        '/postDetail': (context) => PostDetailScreen(),
-        '/create_post': (context) => CreatePostScreen(),
+        '/user': (context) => FutureBuilder<UserDetails>(
+            future: getUserFromToken(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData)
+                return UserHomeScreen();
+              else
+                return GuestHomeScreen();
+            }),
+        '/guest': (context) => FutureBuilder<UserDetails>(
+            future: getUserFromToken(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData)
+                return UserHomeScreen();
+              else
+                return GuestHomeScreen();
+            }),
+
+        // '/register': (context) => RegisterScreen(),
+        // '/userProfile': (context) => UserProfile(),
+        // '/postDetail': (context) => PostDetailScreen(),
+        // '/create_post': (context) => CreatePostScreen(),
       },
     );
   }

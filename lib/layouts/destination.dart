@@ -1,6 +1,7 @@
 import 'package:facefood/classes/view_navigation_observer.dart';
 import 'package:facefood/screens/guest/explore.dart';
 import 'package:facefood/style/style.dart';
+import 'package:facefood/utils/authorization.dart';
 import 'package:flutter/material.dart';
 import '../classes/destination.dart';
 
@@ -36,6 +37,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
         return MaterialPageRoute(
           settings: settings,
           builder: (BuildContext context) {
+            print(widget.destination.title);
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: colorAppBar,
@@ -44,6 +46,19 @@ class _DestinationLayoutState extends State<DestinationLayout> {
                   style: textStyleHeading,
                 ),
                 elevation: 0,
+                actions: widget.destination.title == 'Profile'
+                    ? <Widget>[
+                        IconButton(
+                          icon: Icon(
+                            Icons.send,
+                            color: Colors.black,
+                          ),
+                          onPressed: () {
+                            logout(context);
+                          },
+                        ),
+                      ]
+                    : null,
               ),
               body: body,
             );

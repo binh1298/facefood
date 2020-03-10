@@ -37,7 +37,7 @@ class _UserProfileState extends State<UserProfile> {
                   return ListViewPost(
                     listPost: snapshot.data,
                   );
-                } else if (snapshot.error) {
+                } else if (snapshot.hasError) {
                   return Text(snapshot.error.toString());
                 } else {
                   return Center(

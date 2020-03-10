@@ -1,5 +1,7 @@
 import 'package:facefood/components/button_confirm_component.dart';
 import 'package:facefood/components/text_form_field_rectangle.dart';
+import 'package:facefood/restart_app.dart';
+import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:facefood/models/user_credentials.dart';
 import 'package:facefood/style/style.dart';
@@ -24,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Builder(
               builder: (context) => Form(
                 key: _loginFormKey,
-                child: ListView(
+                child: Column(
                   children: <Widget>[
                     Flexible(
                       child: Container(
@@ -72,8 +74,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (form.validate()) {
                           form.save();
                           bool success = await _userCredentials.login(context);
+                          var user = await getUserFromToken();
+                          print('after login $user');
                           if (success) {
-                            Navigator.pop(context);
+                            RestartWidget.restartApp(context);
                           }
                         }
                       },

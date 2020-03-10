@@ -7,12 +7,21 @@ import 'package:facefood/models/user_details.dart';
 final flutterSecureStorage = new FlutterSecureStorage();
 final jwtTokenName = 'jwtToken';
 
-void setJwtToken(token) {
-  flutterSecureStorage.write(key: jwtTokenName, value: token);
+Future<void> setJwtToken(token) async {
+  await flutterSecureStorage.write(key: jwtTokenName, value: token);
 }
 
-Future<String> getJwtToken() {
-  return flutterSecureStorage.read(key: jwtTokenName);
+Future<String> getJwtToken() async {
+  String string = await flutterSecureStorage.read(key: jwtTokenName);
+  return string;
+}
+
+Future<void> removeJwtToken() async {
+  await flutterSecureStorage.delete(key: jwtTokenName);
+}
+
+Future<void> deleteAllFromSecureStorage() async {
+  await flutterSecureStorage.deleteAll();
 }
 
 Future<UserDetails> getUserFromToken() async {
