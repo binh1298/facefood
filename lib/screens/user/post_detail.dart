@@ -1,8 +1,8 @@
 import 'package:facefood/components/appbar_post_detail.dart';
 import 'package:facefood/components/card_description_string.dart';
 import 'package:facefood/components/card_user_brief_fullwidth.dart';
-import 'package:facefood/components/future_list_ingredients.dart';
-import 'package:facefood/components/future_list_of_step_card.dart';
+import 'package:facefood/components/list_future_ingredient.dart';
+import 'package:facefood/components/list_future_steps.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +52,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   indent: 20,
                   endIndent: 20,
                 ),
-                FutureListIngredient(
+                ListFutureIngredient(
                   postID: snapshot.data.postId,
                 ),
                 Divider(
@@ -73,7 +73,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                       SizedBox(
                         height: 10,
                       ),
-                      FutureListOfStepCard(
+                      ListFutureSteps(
                         postID: snapshot.data.postId,
                       )
                     ],

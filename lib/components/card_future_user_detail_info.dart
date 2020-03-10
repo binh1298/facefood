@@ -3,10 +3,10 @@ import 'package:facefood/models/user_related_infos.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
-class CardUserDetailInfo extends StatelessWidget {
+class CardFutureUserDetailInfo extends StatelessWidget {
   final String userId;
 
-  const CardUserDetailInfo({
+  const CardFutureUserDetailInfo({
     Key key,
     this.userId,
   }) : super(key: key);

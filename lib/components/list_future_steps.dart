@@ -2,9 +2,9 @@ import 'package:facefood/components/card_step_post_detail.dart';
 import 'package:facefood/models/post_step.dart';
 import 'package:flutter/material.dart';
 
-class FutureListOfStepCard extends StatelessWidget {
+class ListFutureSteps extends StatelessWidget {
   final int postID;
-  const FutureListOfStepCard({
+  const ListFutureSteps({
     Key key,
     this.postID,
   }) : super(key: key);

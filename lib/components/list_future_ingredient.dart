@@ -2,9 +2,9 @@ import 'package:facefood/models/ingredient.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
-class FutureListIngredient extends StatelessWidget {
+class ListFutureIngredient extends StatelessWidget {
   final int postID;
-  const FutureListIngredient({
+  const ListFutureIngredient({
     Key key,
     this.postID,
   }) : super(key: key);
