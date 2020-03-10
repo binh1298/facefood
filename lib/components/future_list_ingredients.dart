@@ -1,22 +1,20 @@
 import 'package:facefood/models/ingredient.dart';
-import 'package:facefood/screens/user/post_detail.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
-class IngredientTable extends StatelessWidget {
-  final String postID;
-  const IngredientTable({
+class FutureListIngredient extends StatelessWidget {
+  final int postID;
+  const FutureListIngredient({
     Key key,
-    this.postID = '',
+    this.postID,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    return FutureBuilder<List<Ingredient>>(
       future: fetchListIngredient(postID),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          print(snapshot.data[0]);
           return Container(
             padding: EdgeInsets.all(10),
             child: Column(
@@ -41,10 +39,8 @@ class IngredientTable extends StatelessWidget {
                             style: textStyleDefault,
                           ),
                         ),
-                        Text( 
-                          ingredient.value.toString() +
-                              ' ' +
-                              ingredient.unitName,
+                        Text(
+                          '${ingredient.value} ${ingredient.unitName}',
                           style: textStyleDefault,
                         ),
                       ],

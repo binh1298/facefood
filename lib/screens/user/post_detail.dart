@@ -1,19 +1,15 @@
 import 'package:facefood/components/appbar_post_detail.dart';
 import 'package:facefood/components/card_description_string.dart';
 import 'package:facefood/components/card_user_brief_fullwidth.dart';
-import 'package:facefood/components/list_ingredients.dart';
-import 'package:facefood/components/list_view_step_card.dart';
+import 'package:facefood/components/future_list_ingredients.dart';
+import 'package:facefood/components/future_list_of_step_card.dart';
 import 'package:facefood/models/post.dart';
-import 'package:facefood/models/post_step.dart';
-import 'package:facefood/models/user_details.dart';
-import 'package:facefood/models/user_related_infos.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
 class PostDetailScreen extends StatefulWidget {
-  final String postID;
-  final String userID;
-  const PostDetailScreen({Key key, this.postID = '', this.userID = ''})
+  final int postID;
+  const PostDetailScreen({Key key, this.postID})
       : super(key: key);
   @override
   _PostDetailScreenState createState() => _PostDetailScreenState();
@@ -23,23 +19,20 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder(
-      future: Future.wait([
+        body: FutureBuilder<Post>(
+      future:
         fetchAPost(widget.postID),
-        fetchUserProfile(),
-        fetchListPostStep(widget.postID),
-      ]),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return CustomScrollView(
             slivers: <Widget>[
               AppbarPostDetail(
-                category: snapshot.data[0].categoryId.toString(),
-                commentCount: snapshot.data[0].commentCount,
-                imageUrl: snapshot.data[0].imageUrl,
-                likeCount: snapshot.data[0].likeCount,
-                postname: snapshot.data[0].postName,
-                timeNeeded: snapshot.data[0].timeNeeded,
+                category: snapshot.data.categoryId.toString(), // change to category
+                commentCount: snapshot.data.commentCount,
+                imageUrl: snapshot.data.imageUrl,
+                likeCount: snapshot.data.likeCount,
+                postname: snapshot.data.postName,
+                timeNeeded: snapshot.data.timeNeeded,
               ),
               SliverList(
                   delegate: SliverChildListDelegate(<Widget>[
@@ -53,14 +46,14 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   endIndent: 20,
                 ),
                 CardDescriptionString(
-                  description: snapshot.data[0].description,
+                  description: snapshot.data.description,
                 ),
                 Divider(
                   indent: 20,
                   endIndent: 20,
                 ),
-                IngredientTable(
-                  postID: widget.postID,
+                FutureListIngredient(
+                  postID: snapshot.data.postId,
                 ),
                 Divider(
                   indent: 20,
@@ -80,8 +73,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                       SizedBox(
                         height: 10,
                       ),
-                      ListCardViewStep(
-                        steps: snapshot.data[2],
+                      FutureListOfStepCard(
+                        postID: snapshot.data.postId,
                       )
                     ],
                   ),
