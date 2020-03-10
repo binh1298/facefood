@@ -16,6 +16,8 @@ class UserDetails {
       this.userId = ''
       });
 
+
+
   factory UserDetails.fromJson(dynamic json) {
     return UserDetails(
       avatar: json['avatar'] as String,
@@ -51,6 +53,20 @@ Future<List<UserDetails>> fetchUsersDetailsList() async {
   if (response.statusCode == 200) {
     var userDetailsListJson = json.decode(response.body)['result'] as List;
     return userDetailsListJson.map((userDetails) => UserDetails.fromJson(userDetails)).toList();
+  } else {
+    return null;
+  }
+}
+
+followUser(userId) async{
+ final http.Response response =
+      await apiCaller.post(route: apiRoutes.createUserActionRoute(userId, apiRoutes.followUser),
+      body: jsonEncode(<String, String>{
+          'followId':userId,
+        })
+      );
+  if (response.statusCode == 200) {
+    return true;
   } else {
     return null;
   }

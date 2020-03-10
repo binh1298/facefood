@@ -23,6 +23,7 @@ class _UserProfileState extends State<UserProfile> {
               ),
               ButtonFullWidth(
                 label: 'Follow',
+                
               ),
               SizedBox(
                 height: 10,
