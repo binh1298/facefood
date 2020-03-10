@@ -34,7 +34,7 @@ class UserLoginCredentials {
       route: apiRoutes.login,
     );
     bool success = response.statusCode == 200;
-    return true;
+    print(success);
     if (success) {
       setJwtToken(json.decode(response.body)['token']);
     } else {

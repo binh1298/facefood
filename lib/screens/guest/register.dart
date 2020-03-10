@@ -2,6 +2,7 @@ import 'package:facefood/components/button_confirm_component.dart';
 import 'package:facefood/components/text_form_field_rectangle.dart';
 import 'package:facefood/models/user_register.dart';
 import 'package:facefood/style/style.dart';
+import 'package:facefood/utils/snack_bar.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -83,9 +84,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         final form = _formkey.currentState;
                         if (form.validate()) {
                           form.save();
-                          bool success = await _user.register(context);
-                          if (success) {
-                           Navigator.pushReplacementNamed(context, '/explore');
+                          bool comparePassword = _user.comparePassword();
+                          if (comparePassword) {
+                            bool success = await _user.register(context);
+                            if (success) {
+                              Navigator.pushReplacementNamed(
+                                  context, '/user');
+                            }
+                          }else{
+                            showErrorSnackBar(context, 'Password and Confirm Password do not match');
                           }
                         }
                       },

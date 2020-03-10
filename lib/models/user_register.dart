@@ -9,6 +9,11 @@ class UserRegister {
   String username, password, email, confirmPassword;
   UserRegister(
       {this.email, this.username, this.password, this.confirmPassword});
+
+  bool comparePassword() {
+    return confirmPassword == password;
+  }
+
   Future<bool> register(BuildContext context) async {
     final http.Response response = await apiCaller.post(
         route: apiRoutes.createRootRoute(apiRoutes.register),
