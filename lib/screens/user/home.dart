@@ -1,13 +1,14 @@
 import 'package:facefood/classes/destination.dart';
 import 'package:facefood/components/button_navigation.dart';
 import 'package:facefood/layouts/destination.dart';
+import 'package:facefood/screens/user/create_post.dart';
 import 'package:facefood/screens/user/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:facefood/screens/guest/explore.dart';
 
-List<Destination> adminDestinations = <Destination>[
-  Destination('Create Post', Icons.person, ExploreScreen()),
+List<Destination> userDestinations = <Destination>[
+  Destination('Create Post', Icons.person, CreatePostScreen()),
   Destination('Profile', Icons.person, UserProfile()),
   Destination('Explore', Icons.person, ExploreScreen()),
 ];
@@ -61,7 +62,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> with TickerProviderStat
           top: false,
           child: IndexedStack(
             index: _currentIndex,
-            children: adminDestinations.map<Widget>((Destination destination) {
+            children: userDestinations.map<Widget>((Destination destination) {
               return DestinationLayout(
                 destination: destination,
                 onNavigation: () {
@@ -87,8 +88,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> with TickerProviderStat
                   Row(
                     children: <Widget>[
                       ButtonNavigation(
-                        title: adminDestinations[0].title,
-                        iconData: adminDestinations[0].iconData,
+                        title: userDestinations[0].title,
+                        iconData: userDestinations[0].iconData,
                         isActive: _currentIndex == 0,
                         onPressed: () {
                           setState(() {
@@ -101,8 +102,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> with TickerProviderStat
                   Row(
                     children: <Widget>[
                       ButtonNavigation(
-                        title: adminDestinations[1].title,
-                        iconData: adminDestinations[1].iconData,
+                        title: userDestinations[1].title,
+                        iconData: userDestinations[1].iconData,
                         isActive: _currentIndex == 1,
                         onPressed: () {
                           setState(() {
