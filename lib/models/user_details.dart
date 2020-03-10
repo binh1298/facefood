@@ -6,15 +6,15 @@ import 'package:http/http.dart' as http;
 class UserDetails {
   String userId, username, avatar, email, fullname, phoneNumber, roleName;
 
-  UserDetails(
-      {this.email = '',
-      this.fullname = '',
-      this.phoneNumber = '',
-      this.username = '',
-      this.avatar = '', 
-      this.roleName = '',
-      this.userId = ''
-      });
+  UserDetails({
+    this.email = '',
+    this.fullname = '',
+    this.phoneNumber = '',
+    this.username = '',
+    this.avatar = '',
+    this.roleName = '',
+    this.userId = '',
+  });
 
   factory UserDetails.fromJson(dynamic json) {
     return UserDetails(
@@ -30,29 +30,61 @@ class UserDetails {
 }
 
 Future<UserDetails> fetchUserDetails(String userId) async {
-  final http.Response response = await apiCaller.get(route: '${apiRoutes.createAdminRoute(apiRoutes.getUserProfile)}/${userId}');
-  if(response.statusCode == 200) {
+  final http.Response response = await apiCaller.get(
+      route:
+          '${apiRoutes.createAdminRoute(apiRoutes.getUserProfile)}/${userId}');
+  if (response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['user'];
     return UserDetails.fromJson(userDetailsJson);
-  } else return null;
+  } else
+    return null;
 }
 
 Future<UserDetails> fetchUserProfile() async {
-  final http.Response response = await apiCaller.get(route: '${apiRoutes.createAdminRoute(apiRoutes.getUserProfile)}');
-  if(response.statusCode == 200) {
+  final http.Response response = await apiCaller.get(
+      route: '${apiRoutes.createAdminRoute(apiRoutes.getUserProfile)}');
+  if (response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['user'];
     return UserDetails.fromJson(userDetailsJson);
-  } else return null;
+  } else
+    return null;
 }
 
 Future<List<UserDetails>> fetchUsersDetailsList() async {
-  final http.Response response =
-      await apiCaller.get(route: apiRoutes.createAdminRoute(apiRoutes.getUsers));
+  final http.Response response = await apiCaller.get(
+      route: apiRoutes.createAdminRoute(apiRoutes.getUsers));
   if (response.statusCode == 200) {
     var userDetailsListJson = json.decode(response.body)['result'] as List;
-    return userDetailsListJson.map((userDetails) => UserDetails.fromJson(userDetails)).toList();
+    return userDetailsListJson
+        .map((userDetails) => UserDetails.fromJson(userDetails))
+        .toList();
   } else {
     return null;
   }
 }
 
+followUser(userId) async {
+  final http.Response response = await apiCaller.post(
+      route: apiRoutes.createUserActionRoute(userId, apiRoutes.followUser),
+      body: jsonEncode(<String, String>{
+        'followId': userId,
+      }));
+  if (response.statusCode == 200) {
+    return true;
+  } else {
+    return null;
+  }
+}
+
+Future<List<UserDetails>> loadMore() async {
+  final http.Response response = await apiCaller.get(
+      route: apiRoutes.createAdminRoute(apiRoutes.getUsers));
+  if (response.statusCode == 200) {
+    var userDetailsListJson = json.decode(response.body)['result'] as List;
+    return userDetailsListJson
+        .map((userDetails) => UserDetails.fromJson(userDetails))
+        .toList();
+  } else {
+    return null;
+  }
+}

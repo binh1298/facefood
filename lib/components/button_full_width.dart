@@ -5,8 +5,9 @@ import '../style/style.dart';
 
 class ButtonFullWidth extends StatelessWidget {
   final String label;
+  final Function onPressed;
 
-  ButtonFullWidth({this.label});
+  ButtonFullWidth({this.label,this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class ButtonFullWidth extends StatelessWidget {
       height: 40,
       child: RaisedButton(
         color: colorPrimary,
-        onPressed: () {},
+        onPressed:onPressed,
         child: Text(label,
         style: textStyleButtonPrimary,),
       ),
