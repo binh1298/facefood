@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '../style/style.dart';
 
-class UserDetailInfo extends StatelessWidget {
+class BoxSingleDetailInfo extends StatelessWidget {
   final int number;
   final String title;
 
-  UserDetailInfo({this.number, this.title});
+  BoxSingleDetailInfo({this.number, this.title});
 
   @override
   Widget build(BuildContext context) {

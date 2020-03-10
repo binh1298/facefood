@@ -75,15 +75,16 @@ followUser(userId) async {
     return null;
   }
 }
+
 Future<List<UserDetails>> loadMore() async {
-    final http.Response response = await apiCaller.get(
-        route: apiRoutes.createAdminRoute(apiRoutes.getUsers));
-    if (response.statusCode == 200) {
-      var userDetailsListJson = json.decode(response.body)['result'] as List;
-      return userDetailsListJson
-          .map((userDetails) => UserDetails.fromJson(userDetails))
-          .toList();
-    } else {
-      return null;
-    }
+  final http.Response response = await apiCaller.get(
+      route: apiRoutes.createAdminRoute(apiRoutes.getUsers));
+  if (response.statusCode == 200) {
+    var userDetailsListJson = json.decode(response.body)['result'] as List;
+    return userDetailsListJson
+        .map((userDetails) => UserDetails.fromJson(userDetails))
+        .toList();
+  } else {
+    return null;
   }
+}

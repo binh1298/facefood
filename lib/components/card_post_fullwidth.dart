@@ -3,22 +3,23 @@ import 'package:flutter/material.dart';
 
 import '../style/style.dart';
 
-class DetailItemHoriziontal extends StatelessWidget {
-  final String name;
+class CardPostFullWidth extends StatelessWidget {
+  final String postName;
   final String imageUrl;
-  final String urlPost;
+  final int postId;
   final int timeNeeded;
-  final String category;
+  final int categoryId;
   final int likeCount;
   final int commentCount;
-  const DetailItemHoriziontal(
-      {this.name,
-      this.imageUrl,
-      this.urlPost,
+
+  const CardPostFullWidth(
+      {this.imageUrl,
       this.timeNeeded,
-      this.category,
       this.likeCount,
-      this.commentCount});
+      this.commentCount,
+      this.postName,
+      this.postId,
+      this.categoryId});
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +27,14 @@ class DetailItemHoriziontal extends StatelessWidget {
       elevation: 10,
       child: InkWell(
           onTap: () {
-            print('haha');
+            // TODO add logic
           },
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 270,
+                height: MediaQuery.of(context).size.width * 0.7,
                 child: FittedBox(
                   child: Image.network(imageUrl),
                   fit: BoxFit.fill,
@@ -49,14 +50,16 @@ class DetailItemHoriziontal extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Text(
-                          name,
+                          postName,
                           textAlign: TextAlign.left,
                           style: textStyleTitleDarkBackground,
                         ),
-                        SizedBox(width: 5,),
+                        SizedBox(
+                          width: 5,
+                        ),
                         IconTextComponent(
                           icon: Icons.access_alarm,
-                          text: timeNeeded.toString() + "'",
+                          text: timeNeeded.toString() + '\'',
                           style: textStyleDarkBackground,
                           iconColor: colorTextDarkBackground,
                         ),
@@ -70,7 +73,9 @@ class DetailItemHoriziontal extends StatelessWidget {
                           style: textStyleDarkBackground,
                           iconColor: colorTextDarkBackground,
                         ),
-                        SizedBox(width: 5,),
+                        SizedBox(
+                          width: 5,
+                        ),
                         IconTextComponent(
                           icon: Icons.chat_bubble_outline,
                           text: commentCount.toString(),

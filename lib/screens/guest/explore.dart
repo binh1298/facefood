@@ -1,5 +1,5 @@
 import 'package:facefood/components/card_post_detail_half_size.dart';
-import 'package:facefood/components/detail_item_horizontal.dart';
+import 'package:facefood/components/card_post_fullwidth.dart';
 import 'package:facefood/components/text_safe.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/style/style.dart';
@@ -27,9 +27,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
             future: fetchLastestPost(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return DetailItemHoriziontal(
-                  category: snapshot.data.categoryId.toString(),
-                  name: snapshot.data.postName,
+                return CardPostFullWidth(
+                  categoryId: snapshot.data.categoryId,
+                  postName: snapshot.data.postName,
                   likeCount: snapshot.data.likeCount,
                   timeNeeded: snapshot.data.timeNeeded,
                   commentCount: snapshot.data.commentCount,
