@@ -24,9 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Builder(
               builder: (context) => Form(
                 key: _loginFormKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: ListView(
                   children: <Widget>[
                     Flexible(
                       child: Container(
@@ -34,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Image.asset('lib/assets/images/logo.ico'),
                       ),
                     ),
-                    Text("Facefood", style: textStyleHeading),
+                    Center(child: Text("Facefood", style: textStyleHeading)),
                     SizedBox(height: 45.0),
                     TextFormFieldRectangle(
                       hintText: 'Username',
@@ -75,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           form.save();
                           bool success = await _userCredentials.login(context);
                           if (success) {
-                            Navigator.pushReplacementNamed(context, '/explore');
+                            Navigator.pop(context);
                           }
                         }
                       },
