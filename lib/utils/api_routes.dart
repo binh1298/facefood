@@ -14,9 +14,10 @@ class ApiRoutes {
     return '/$route';
   }
 
-  createUserActionRoute(userId, route) {
-    return '/$userId/$route';
+  createUserActionRoute(actions,userId, route) {
+    return '/$actions/$userId/$route';
   }
+  
   
 }
 

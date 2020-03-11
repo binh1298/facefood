@@ -65,7 +65,7 @@ Future<List<UserDetails>> fetchUsersDetailsList() async {
 
 followUser(userId) async {
   final http.Response response = await apiCaller.post(
-      route: apiRoutes.createUserActionRoute(userId, apiRoutes.followUser),
+      route: apiRoutes.createUserActionRoute('follows',userId, apiRoutes.followUser),
       body: jsonEncode(<String, String>{
         'followId': userId,
       }));
