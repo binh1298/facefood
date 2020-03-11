@@ -1,6 +1,6 @@
 import 'package:facefood/components/appbar_post_detail.dart';
 import 'package:facefood/components/card_description_string.dart';
-import 'package:facefood/components/card_user_brief_fullwidth.dart';
+import 'package:facefood/components/card_future_user_brief_fullwidth.dart';
 import 'package:facefood/components/list_future_ingredient.dart';
 import 'package:facefood/components/list_future_steps.dart';
 import 'package:facefood/models/post.dart';
@@ -36,10 +36,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               ),
               SliverList(
                   delegate: SliverChildListDelegate(<Widget>[
-                CardUserBriefFullwidth(
-                  // fullname: snapshot.data[1],
-                  // imgUrl: snapshot.data[1],
-                  // username: snapshot.data[1],
+                CardFutureUserBriefFullwidth(
+                  userId: snapshot.data.userId,
                 ),
                 Divider(
                   indent: 20,

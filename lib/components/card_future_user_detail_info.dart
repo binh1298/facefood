@@ -84,7 +84,7 @@ class CardFutureUserDetailInfo extends StatelessWidget {
                 ],
               ),
             );
-          } else if (snapshot.error) {
+          } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           } else {
             return Center(

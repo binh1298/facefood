@@ -30,10 +30,10 @@ class ListFutureSteps extends StatelessWidget {
                 }).toList()),
           );
         }
-        if (snapshot.error) {
+        else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         }
-        if (snapshot.connectionState == ConnectionState.done) {
+        else if (snapshot.connectionState == ConnectionState.done) {
           return Text('unable to fetch steps');
         } else
           return Center(
