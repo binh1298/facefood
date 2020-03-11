@@ -21,7 +21,7 @@ class _UserProfileState extends State<UserProfile> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 30,
+              height: 10,
             ),
             CardUserDetailInfo(userId: widget.userId),
             SizedBox(
