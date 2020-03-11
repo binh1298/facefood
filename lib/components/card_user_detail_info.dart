@@ -22,8 +22,8 @@ class CardUserDetailInfo extends StatelessWidget {
             // Avartar container
             Container(
               padding: EdgeInsets.only(left: 10, right: 10),
-              width: MediaQuery.of(context).size.width / 4,
-              height: MediaQuery.of(context).size.width / 4,
+              width: MediaQuery.of(context).size.width / 3,
+              height: MediaQuery.of(context).size.width / 3,
               child: CircleAvatar(
                 backgroundColor: Colors.black,
                 child: Icon(
@@ -41,7 +41,7 @@ class CardUserDetailInfo extends StatelessWidget {
                     Container(
                       height: 32,
                       child: Text(
-                        snapshot.data.username,
+                        snapshot.data.fullname,
                         style: textStyleHeading,
                       ),
                     ),
