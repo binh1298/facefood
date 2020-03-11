@@ -1,5 +1,6 @@
 import 'package:facefood/classes/view_navigation_observer.dart';
 import 'package:facefood/screens/guest/explore.dart';
+import 'package:facefood/screens/user/post_detail.dart';
 import 'package:facefood/style/style.dart';
 import 'package:facefood/utils/authorization.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,10 @@ class _DestinationLayoutState extends State<DestinationLayout> {
           case '/':
             body = widget.destination.component;
             break;
+          case '/viewPostDetails':
+            title = 'View Post Details';
+            body = PostDetailScreen();
+            break;
           default:
             body = ExploreScreen();
             break;
@@ -37,29 +42,32 @@ class _DestinationLayoutState extends State<DestinationLayout> {
         return MaterialPageRoute(
           settings: settings,
           builder: (BuildContext context) {
-            print(widget.destination.title);
+            print(title + widget.destination.title);
             return Scaffold(
-              appBar: AppBar(
-                backgroundColor: colorAppBar,
-                title: Text(
-                  settings.name == '/' ? widget.destination.title : title,
-                  style: textStyleHeading,
-                ),
-                elevation: 0,
-                actions: widget.destination.title == 'Profile'
-                    ? <Widget>[
-                        IconButton(
-                          icon: Icon(
-                            Icons.send,
-                            color: Colors.black,
-                          ),
-                          onPressed: () {
-                            logout(context);
-                          },
-                        ),
-                      ]
-                    : null,
-              ),
+              appBar: title == 'View Post Details'
+                  ? null
+                  : AppBar(
+                      backgroundColor: colorAppBar,
+                      title: Text(
+                        settings.name == '/' ? widget.destination.title : title,
+                        style: textStyleHeading,
+                      ),
+                      iconTheme: IconThemeData(color: Colors.black),
+                      elevation: 0,
+                      actions: widget.destination.title == 'Profile'
+                          ? <Widget>[
+                              IconButton(
+                                icon: Icon(
+                                  Icons.send,
+                                  color: Colors.black,
+                                ),
+                                onPressed: () {
+                                  logout(context);
+                                },
+                              ),
+                            ]
+                          : null,
+                    ),
               body: body,
             );
           },

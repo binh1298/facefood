@@ -31,7 +31,7 @@ class CardPostDetailsHalfSize extends StatelessWidget {
           elevation: 20,
           child: InkWell(
               onTap: () {
-                print('haha');
+                Navigator.pushNamed(context, '/viewPostDetails');
               },
               child: Stack(
                 alignment: Alignment.bottomCenter,

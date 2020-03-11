@@ -27,7 +27,7 @@ class CardPostFullWidth extends StatelessWidget {
       elevation: 10,
       child: InkWell(
           onTap: () {
-            // TODO add logic
+            Navigator.pushNamed(context, '/viewPostDetails');
           },
           child: Stack(
             alignment: Alignment.bottomCenter,

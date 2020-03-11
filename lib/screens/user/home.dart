@@ -18,7 +18,8 @@ class UserHomeScreen extends StatefulWidget {
   _UserHomeScreenState createState() => _UserHomeScreenState();
 }
 
-class _UserHomeScreenState extends State<UserHomeScreen> with TickerProviderStateMixin {
+class _UserHomeScreenState extends State<UserHomeScreen>
+    with TickerProviderStateMixin {
   int _currentIndex = 0;
   AnimationController _hide;
 
@@ -73,8 +74,12 @@ class _UserHomeScreenState extends State<UserHomeScreen> with TickerProviderStat
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {},
+          child: Icon(userDestinations[2].iconData),
+          onPressed: () {
+            setState(() {
+              _currentIndex = 2;
+            });
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
