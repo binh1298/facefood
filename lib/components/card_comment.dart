@@ -1,11 +1,11 @@
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
-class CardUserBriefFullwidth extends StatelessWidget {
-  final String fullname, username, imgUrl;
-  const CardUserBriefFullwidth({
+class CardComment extends StatelessWidget {
+  final String content, username, imgUrl;
+  const CardComment({
     Key key,
-    this.fullname = 'default',
+    this.content = 'default',
     this.username = 'default',
     this.imgUrl = 'default',
   }) : super(key: key);
@@ -21,11 +21,11 @@ class CardUserBriefFullwidth extends StatelessWidget {
             width: 10,
           ),
           Container(
-            width: MediaQuery.of(context).size.width / 6,
-            height: MediaQuery.of(context).size.width / 6,
+            width: MediaQuery.of(context).size.width / 8,
+            height: MediaQuery.of(context).size.width / 8,
             child: CircleAvatar(
-              child: Text('no pic'),
-            ),
+              backgroundImage: NetworkImage(imgUrl),
+              ),
           ),
           SizedBox(
             width: 10,
@@ -35,11 +35,11 @@ class CardUserBriefFullwidth extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                fullname,
+                username,
                 style: textStyleTitle,
               ),
               Text(
-                '@$username',
+                '  $content',
                 style: textStyleSubtitle,
               ),
             ],

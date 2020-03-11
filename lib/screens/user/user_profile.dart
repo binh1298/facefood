@@ -1,5 +1,5 @@
 import 'package:facefood/components/button_full_width.dart';
-import 'package:facefood/components/card_user_detail_info.dart';
+import 'package:facefood/components/card_future_user_detail_info.dart';
 import 'package:facefood/components/list_view_card_post_fullwidth.dart';
 import 'package:facefood/models/post.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class _UserProfileState extends State<UserProfile> {
             SizedBox(
               height: 10,
             ),
-            CardUserDetailInfo(userId: widget.userId),
+            CardFutureUserDetailInfo(userId: widget.userId),
             SizedBox(
               height: 20,
             ),

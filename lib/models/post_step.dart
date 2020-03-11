@@ -16,7 +16,7 @@ class PostStep {
 }
 
 //fake data
-Future<List<PostStep>> fetchListPostStep(String userId) async{
+Future<List<PostStep>> fetchListPostStep(int postID) async{
   PostStep step1 = PostStep(
     description:
         'Season salmon filets generously with salt and pepper. Quarter mushrooms',

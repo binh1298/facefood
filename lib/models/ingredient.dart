@@ -18,7 +18,7 @@ class Ingredient{
 }
 
 
-Future<List<Ingredient>> fetchListIngredient(String postID) async{
+Future<List<Ingredient>> fetchListIngredient(int postID) async{
   Ingredient ingredient1 = Ingredient(
     ingredientName: 'Beef',
     unitName: 'g',

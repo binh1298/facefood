@@ -42,7 +42,8 @@ Future<UserDetails> fetchUserDetails(String userId) async {
 
 Future<UserDetails> fetchUserProfile() async {
   final http.Response response = await apiCaller.get(
-      route: '${apiRoutes.createAdminRoute(apiRoutes.getUserProfile)}');
+      route: '/profile');
+  print(response.body);
   if (response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['user'];
     return UserDetails.fromJson(userDetailsJson);

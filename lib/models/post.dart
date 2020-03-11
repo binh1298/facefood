@@ -136,6 +136,7 @@ Future<List<Post>> fetchPostListFromAUser() async {
   return list;
 }
 
+
 Future<List<Post>> fetchPopularPostsList() async {
   Post post1 = Post(
     categoryId: 1,
@@ -179,7 +180,7 @@ Future<List<Post>> fetchPopularPostsList() async {
 }
 
 
-Future<Post> fetchAPost(String postID) async {
+Future<Post> fetchAPost(int postID) async {
   // final http.Response response = await apiCaller.get();
 
   Post post = Post(
