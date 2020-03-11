@@ -44,7 +44,7 @@ class CardStepPostDetail extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 5),
                     alignment: Alignment.centerRight,
                     child: Text(
-                      'Step $step',
+                      'Step ${step + 1} ',
                       style: textStyleSubtitleBold,
                     ),
                   ),
