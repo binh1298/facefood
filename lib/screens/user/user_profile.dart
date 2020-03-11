@@ -20,12 +20,18 @@ class _UserProfileState extends State<UserProfile> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
+            SizedBox(
+              height: 10,
+            ),
             CardFutureUserDetailInfo(userId: widget.userId),
             SizedBox(
               height: 20,
             ),
             ButtonFullWidth(
               label: 'Follow',
+              onPressed: () {
+                
+              },
             ),
             SizedBox(
               height: 10,
@@ -37,7 +43,7 @@ class _UserProfileState extends State<UserProfile> {
                   return ListViewPost(
                     listPost: snapshot.data,
                   );
-                } else if (snapshot.error) {
+                } else if (snapshot.hasError) {
                   return Text(snapshot.error.toString());
                 } else {
                   return Center(

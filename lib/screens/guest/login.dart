@@ -1,5 +1,7 @@
 import 'package:facefood/components/button_confirm_component.dart';
 import 'package:facefood/components/text_form_field_rectangle.dart';
+import 'package:facefood/restart_app.dart';
+import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:facefood/models/user_credentials.dart';
 import 'package:facefood/style/style.dart';
@@ -25,8 +27,6 @@ class _LoginScreenState extends State<LoginScreen> {
               builder: (context) => Form(
                 key: _loginFormKey,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Flexible(
                       child: Container(
@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Image.asset('lib/assets/images/logo.ico'),
                       ),
                     ),
-                    Text("Facefood", style: textStyleHeading),
+                    Center(child: Text("Facefood", style: textStyleHeading)),
                     SizedBox(height: 45.0),
                     TextFormFieldRectangle(
                       hintText: 'Username',
@@ -74,8 +74,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (form.validate()) {
                           form.save();
                           bool success = await _userCredentials.login(context);
+                          var user = await getUserFromToken();
+                          print('after login $user');
                           if (success) {
-                            Navigator.pushReplacementNamed(context, '/explore');
+                            RestartWidget.restartApp(context);
                           }
                         }
                       },

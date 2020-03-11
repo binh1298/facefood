@@ -3,12 +3,13 @@ import 'package:http/http.dart' as http;
 
 
 class UserRelatedInfos {
-  String username;
+  String username, fullname;
   int likeCount, totalFollowers, totalFollowings;
 
   UserRelatedInfos(
     {
     this.username,
+    this.fullname,
     this.totalFollowers,
     this.totalFollowings,
     this.likeCount,
@@ -16,6 +17,7 @@ class UserRelatedInfos {
   factory UserRelatedInfos.fromJson(dynamic json){
     return UserRelatedInfos(
       username: json['username'] as String,
+      fullname: json['fullname'] as String,
       totalFollowers: json['totalFollowers'] as int,
       totalFollowings: json['totalFollowings'] as int,
       likeCount: json['likeCount'] as int,
@@ -25,6 +27,7 @@ class UserRelatedInfos {
 
 Future<UserRelatedInfos> fetchUserRelatedInfos(String userId) async{
   UserRelatedInfos result = UserRelatedInfos(
+    fullname: 'Reanu Keeves',
     username: 'ReanuKeeves',
     likeCount: 10,
     totalFollowers: 11,

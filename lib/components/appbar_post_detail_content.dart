@@ -1,3 +1,4 @@
+import 'package:facefood/components/icon_text.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
@@ -38,61 +39,47 @@ class AppbarPostDetailContent extends StatelessWidget {
             Expanded(
               child: Container(),
             ), // push text to bottom
-            Text(
-              postname,
-              textAlign: TextAlign.left,
-              style: textStyleHeadingDark,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  postname,
+                  style: textStyleHeadingDark,
+                ),
+                Text(
+                  '-',
+                  style: textStyleHeadingDark,
+                ),
+                Text(
+                  category,
+                  style: textStyleHeadingDark,
+                ),
+              ],
             ),
             SizedBox(
               height: 10,
             ),
             Row(
               children: <Widget>[
-                Text(
-                  category,
-                  textAlign: TextAlign.right,
-                  style: textStyleDefaultPrimary,
+                IconTextComponent(
+                  icon: Icons.timer,
+                  text: timeNeeded.toString() + '\'',
+                  iconColor: colorOnDarkBackground,
+                  style: textStyleDarkBackground,
                 ),
-                Expanded(child: Container()),
-                RichText(
-                  text: TextSpan(children: [
-                    TextSpan(
-                      text: '$timeNeeded\' ',
-                      style: textStyleDefault.copyWith(
-                          color: colorTextDarkBackground),
-                    ),
-                    WidgetSpan(
-                        child: GestureDetector(
-                          onTap: (){print('hahaha');},    // button like
-                      child: Icon(
-                        Icons.timer,
-                        size: textStyleDefault.fontSize,
-                        color: colorTextDarkBackground,
-                      ),
-                    )),
-                    TextSpan(
-                      text: '     $likeCount ',
-                      style: textStyleDefault.copyWith(
-                          color: colorTextDarkBackground),
-                    ),
-                    WidgetSpan(
-                        child: Icon(
-                      Icons.favorite,
-                      size: textStyleDefault.fontSize,
-                      color: colorTextDarkBackground,
-                    )),
-                    TextSpan(
-                      text: '    $commentCount ',
-                      style: textStyleDefault.copyWith(
-                          color: colorTextDarkBackground),
-                    ),
-                    WidgetSpan(
-                        child: Icon(
-                      Icons.insert_comment,
-                      size: textStyleDefault.fontSize,
-                      color: colorTextDarkBackground,
-                    )),
-                  ]),
+                SizedBox(width: 10,),
+                IconTextComponent(
+                  icon: Icons.favorite,
+                  text: likeCount.toString(),
+                  iconColor: colorOnDarkBackground,
+                  style: textStyleDarkBackground,
+                ),
+                SizedBox(width: 10,),
+                IconTextComponent(
+                  icon: Icons.insert_comment,
+                  text: commentCount.toString() + '\'',
+                  iconColor: colorOnDarkBackground,
+                  style: textStyleDarkBackground,
                 ),
               ],
             )
