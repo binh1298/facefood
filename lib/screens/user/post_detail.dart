@@ -34,7 +34,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
           return CustomScrollView(
             slivers: <Widget>[
               AppbarPostDetail(
-                category: snapshot.data[0].categoryId.toString(),
+                // category: snapshot.data[0].categoryId.toString(),
+                category: 'Món nước',
                 commentCount: snapshot.data[0].commentCount,
                 imageUrl: snapshot.data[0].imageUrl,
                 likeCount: snapshot.data[0].likeCount,
