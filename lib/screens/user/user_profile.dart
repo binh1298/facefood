@@ -20,6 +20,9 @@ class _UserProfileState extends State<UserProfile> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
+            SizedBox(
+              height: 30,
+            ),
             CardUserDetailInfo(userId: widget.userId),
             SizedBox(
               height: 20,
