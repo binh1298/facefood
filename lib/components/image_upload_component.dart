@@ -1,4 +1,5 @@
 import 'package:facefood/models/post.dart';
+import 'package:facefood/style/style.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,7 +11,7 @@ class ImageUploadComponent extends StatefulWidget {
   final Post _post;
 
   @override
-  ImageUploadComponent(this.location,this._post);
+  ImageUploadComponent(this.location, this._post);
 
   _ImageUploadComponentState createState() => _ImageUploadComponentState();
 }
@@ -22,43 +23,54 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
-      child: Row(
+      child: Column(
         children: <Widget>[
-          Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _image == null
-                  ? RaisedButton(
-                      child: Text('Add Image',
-                          style: TextStyle(color: Colors.white)),
-                      onPressed: () => chooseFile(),
-                      color: Colors.red,
-                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0))
-                  : Container(),
-              _image != null
-                  ? RaisedButton(
-                      child:
-                          Text('Update', style: TextStyle(color: Colors.white)),
-                      onPressed: () => chooseFile(),
-                      color: Colors.red,
-                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0))
-                  : Container(),
-              _image != null
-                  ? RaisedButton(
-                      child:
-                          Text('Delete', style: TextStyle(color: Colors.white)),
-                      onPressed: () => deleteFile(),
-                      color: Colors.red,
-                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0))
-                  : Container(),
+              // now this button is add new or update depend on _image
+              Container(
+                padding: EdgeInsets.only(right: 2),
+                width: MediaQuery.of(context).size.width / 2 - 20,
+                child: RaisedButton(
+                    child: Text(_image == null ? "Add image" : "Update Image",
+                        style: TextStyle(color: Colors.white)),
+                    onPressed: () => chooseFile(),
+                    color: Colors.red,
+                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0)),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width / 2 - 20,
+                padding: EdgeInsets.only(left: 2),
+                child: RaisedButton(
+                    child: Text('Delete image',
+                        style: TextStyle(color: Colors.white)),
+                    onPressed: _image != null ? () => deleteFile() : null,
+                    color: Colors.red,
+                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0)),
+              )
             ],
           ),
-          _image != null
-              ? Image.asset(
-                  _image.path,
-                  height: 200,
-                  width: 300,
-                )
-              : Container(),
+          // this hold picture (if any) but allway show on screen
+          Container(
+            width: MediaQuery.of(context).size.width - 10,
+            height: MediaQuery.of(context).size.width * 0.7,
+            decoration:
+                BoxDecoration(border: Border.all(color: colorTextDefault)),
+            child: _image != null
+                ? FittedBox(
+                    child: Image.asset(
+                      _image.path,
+                      height: 200,
+                      width: 300,
+                    ),
+                    fit: BoxFit.cover,
+                  )
+                : Icon(
+                    Icons.add_a_photo,
+                    size: 100,
+                  ),
+          )
         ],
       ),
     );
