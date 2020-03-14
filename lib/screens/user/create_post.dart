@@ -1,9 +1,9 @@
 import 'package:facefood/components/button_confirm_component.dart';
 import 'package:facefood/components/image_upload_component.dart';
+import 'package:facefood/components/text_from_field_rectangle_with_title.dart';
 import 'package:facefood/models/post.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:facefood/components/text_form_field_register.dart';
 
 class CreatePostScreen extends StatefulWidget {
   @override
@@ -22,55 +22,53 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           Form(
               key: _formkey,
               child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      TextFormFieldComponent(
+                      SizedBox(height: 10,),
+                      TextFormFieldRectangleWithTitle(
                         hintText: 'Post name',
-                        labelText: 'Name',
-                        title: 'Name:              ',
+                        titleText: 'Name:',
                         onSaved: (postName) {
                           setState(() {
                             _post.postName = postName;
                           });
                         },
-                        maxLines: 1,
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter the post name!';
                           }
-                          return '';
+                          return null;
                         },
                       ),
-                      TextFormFieldComponent(
-                        hintText: 'Estimated time to finsh making the dish.',
-                        labelText: 'Time needed',
-                        title: 'Time Needed: ',
+                      SizedBox(height: 10,),
+                      TextFormFieldRectangleWithTitle(
+                        hintText: 'Time in minute',
+                        titleText: 'Time Needed: ',
+                        inputType: TextInputType.number,
                         onSaved: (timeNeeded) {
                           setState(() {
                             _post.timeNeeded = timeNeeded;
                           });
                         },
-                        maxLines: 1,
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Please enter time needed!';
                           }
-                          return '';
+                          return null;
                         },
                       ),
-                      TextFormFieldComponent(
+                      SizedBox(height: 10,),
+                      TextFormFieldRectangleWithTitle(
                         hintText: 'Category of the dish.',
-                        labelText: 'Category',
-                        title: 'Category:         ',
+                        titleText: 'Category:',
                         onSaved: (category) {
                           setState(() {
                             _post.categoryId = category;
                           });
                         },
-                        maxLines: 1,
                         // validator: (value) {
                         //   if (value.isEmpty) {
                         //     return 'Please enter time needed!';
@@ -78,11 +76,12 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         //   return '';
                         // },
                       ),
+                      SizedBox(height: 10,),
                       ImageUploadComponent('posts',_post),
-                      TextFormFieldComponent(
-                        hintText: 'A short introduction of the dish',
-                        labelText: 'Description',
-                        title: 'Description:     ',
+                      TextFormFieldRectangleWithTitle(
+                        maxLine: null,
+                        hintText: 'Describe your dish...',
+                        titleText: 'Description:',
                         onSaved: (description) {
                           setState(() {
                             _post.description = description;
@@ -92,10 +91,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           if (description.isEmpty) {
                             return 'Please enter description';
                           }
-                          return '';
+                          return null;
                         },
-                        textInputType: TextInputType.multiline,
                       ),
+                      SizedBox(height: 20,),
                       ButtonConfirmComponent(
                         onPressed: () async {
                           final form = _formkey.currentState;
@@ -108,7 +107,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           }
                         },
                         text: 'Create a Post',
-                      )
+                      ),
+                      SizedBox(height: 50,), // avoid overlap with navbar
                     ],
                   )))
         ]),
