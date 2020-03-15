@@ -8,8 +8,8 @@ import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
 class PostDetailScreen extends StatefulWidget {
-  final int postID;
-  const PostDetailScreen({Key key, this.postID})
+  final int postId;
+  const PostDetailScreen({Key key, this.postId})
       : super(key: key);
   @override
   _PostDetailScreenState createState() => _PostDetailScreenState();
@@ -21,13 +21,13 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     return Scaffold(
         body: FutureBuilder<Post>(
       future:
-        fetchAPost(widget.postID),
+        fetchAPost(widget.postId),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return CustomScrollView(
             slivers: <Widget>[
               AppbarPostDetail(
-                category: snapshot.data.categoryId.toString(), // change to category
+                postId: widget.postId, // change to category
                 commentCount: snapshot.data.commentCount,
                 imageUrl: snapshot.data.imageUrl,
                 likeCount: snapshot.data.likeCount,

@@ -33,7 +33,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
             break;
           case '/viewPostDetails':
             title = 'View Post Details';
-            body = PostDetailScreen();
+            body = PostDetailScreen(postId: settings.arguments);
             break;
           default:
             body = ExploreScreen();
@@ -42,7 +42,6 @@ class _DestinationLayoutState extends State<DestinationLayout> {
         return MaterialPageRoute(
           settings: settings,
           builder: (BuildContext context) {
-            print(title + widget.destination.title);
             return Scaffold(
               appBar: title == 'View Post Details'
                   ? null

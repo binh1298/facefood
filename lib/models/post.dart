@@ -22,7 +22,7 @@ class Post {
       this.imageUrl});
   factory Post.fromJson(dynamic json) {
     return Post(
-      postId: json['postId'] as int,
+      postId: json['id'] as int,
       timeNeeded: json['timeNeeded'] as int,
       categoryId: json['categoryId'] as int,
       postName: json['postName'] as String,
@@ -39,6 +39,7 @@ Future<Post> fetchLastestPost() async {
   // final http.Response response = await apiCaller.get();
 
   Post post = Post(
+    postId: 1,
     categoryId: 1,
     description: 'This taste really good',
     postName: 'Hủ Tiếu Nam Vang',
@@ -184,6 +185,7 @@ Future<Post> fetchAPost(int postID) async {
   // final http.Response response = await apiCaller.get();
 
   Post post = Post(
+    postId: 1,
     categoryId: 1,
     description: 'This taste really good',
     postName: 'Hủ Tiếu Nam Vang',

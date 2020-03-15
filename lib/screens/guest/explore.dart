@@ -28,6 +28,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return CardPostFullWidth(
+                  postId: snapshot.data.postId,
                   categoryId: snapshot.data.categoryId,
                   postName: snapshot.data.postName,
                   likeCount: snapshot.data.likeCount,
@@ -62,6 +63,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     children: snapshot.data
                         .map(
                           (post) => CardPostDetailsHalfSize(
+                            postId: post.postId,
                             category: post.categoryId.toString(),
                             name: post.postName,
                             likeCount: post.likeCount,
@@ -100,6 +102,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     children: snapshot.data
                         .map(
                           (post) => CardPostDetailsHalfSize(
+                            postId: post.postId,
                             category: post.categoryId.toString(),
                             name: post.postName,
                             likeCount: post.likeCount,

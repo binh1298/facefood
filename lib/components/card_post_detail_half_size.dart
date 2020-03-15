@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../style/style.dart';
 
 class CardPostDetailsHalfSize extends StatelessWidget {
+  final int postId;
   final String name;
   final String imageUrl;
   final String urlPost;
@@ -12,7 +13,9 @@ class CardPostDetailsHalfSize extends StatelessWidget {
   final int likeCount;
   final int commentCount;
   const CardPostDetailsHalfSize(
-      {this.name,
+      {
+        this.postId,
+        this.name,
       this.imageUrl,
       this.urlPost,
       this.timeNeeded,
@@ -31,7 +34,7 @@ class CardPostDetailsHalfSize extends StatelessWidget {
           elevation: 20,
           child: InkWell(
               onTap: () {
-                Navigator.pushNamed(context, '/viewPostDetails');
+                Navigator.pushNamed(context, '/viewPostDetails', arguments: postId);
               },
               child: Stack(
                 alignment: Alignment.bottomCenter,
