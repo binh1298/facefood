@@ -21,11 +21,11 @@ class ListViewPost extends StatelessWidget {
             children: listPost
                 .map(
                   (post) => CardPostFullWidth(
-                    categoryId: post.categoryId,
+                    categoryName: post.categoryName,
                     commentCount: post.commentCount,
                     imageUrl: post.imageUrl,
                     likeCount: post.likeCount,
-                    postId: post.postId,
+                    id: post.id,
                     postName: post.postName,
                     timeNeeded: post.timeNeeded,
                   ),

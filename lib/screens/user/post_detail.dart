@@ -37,7 +37,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               SliverList(
                   delegate: SliverChildListDelegate(<Widget>[
                 CardFutureUserBriefFullwidth(
-                  userId: snapshot.data.userId,
+                  userId: snapshot.data.username,
                 ),
                 Divider(
                   indent: 20,
@@ -51,7 +51,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   endIndent: 20,
                 ),
                 ListFutureIngredient(
-                  postID: snapshot.data.postId,
+                  postID: snapshot.data.id,
                 ),
                 Divider(
                   indent: 20,
@@ -72,7 +72,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                         height: 10,
                       ),
                       ListFutureSteps(
-                        postID: snapshot.data.postId,
+                        postID: snapshot.data.id,
                       )
                     ],
                   ),
