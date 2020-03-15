@@ -65,11 +65,7 @@ Future<List<Post>> fetchPromotionList() async {
   print(response.body);
   if (response.statusCode == 200) {
     var postListJson = json.decode(response.body)['message'] as List;
-    print('list below');
-    print(postListJson.toString());
-    return postListJson
-        .map((post) => Post.fromJson(post))
-        .toList();
+    return postListJson.map((post) => Post.fromJson(post)).toList();
   } else
     return null;
 }
@@ -117,45 +113,13 @@ Future<List<Post>> fetchPostListFromAUser() async {
 }
 
 Future<List<Post>> fetchPopularPostsList() async {
-  Post post1 = Post(
-    categoryName: 'mlem',
-    description: 'This taste really good',
-    postName: 'Bánh Mì',
-    timeNeeded: 30,
-    isDeleted: false,
-    likeCount: 20,
-    commentCount: 68,
-    imageUrl:
-        'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F_fogL-F6jDxo%2FS-hrZYJixBI%2FAAAAAAAABoQ%2FH2y1p4in8lk%2Fs1600%2Fsteak.jpg&f=1&nofb=1',
-  );
-  Post post2 = Post(
-    categoryName: 'mlem',
-    description: 'This taste really good',
-    postName: 'Fried Chicken',
-    timeNeeded: 30,
-    isDeleted: false,
-    likeCount: 77,
-    commentCount: 80,
-    imageUrl:
-        'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-VKjbK6ceUAs%2FTcsHVWRjFnI%2FAAAAAAAAAAs%2FdwLA8WpWhJM%2Fs1600%2Fmoqueca.jpg&f=1&nofb=1',
-  );
-  Post post3 = Post(
-    categoryName: 'mlem',
-    description: 'This taste really good',
-    postName: 'Fried Chicken',
-    timeNeeded: 30,
-    isDeleted: false,
-    likeCount: 70,
-    commentCount: 90,
-    imageUrl:
-        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FQztyrlFSPL8%2Fmaxresdefault.jpg&f=1&nofb=1',
-  );
-
-  List<Post> list = List();
-  list.add(post1);
-  list.add(post2);
-  list.add(post3);
-  return list;
+  final http.Response response = await apiCaller.get(route: '/posts/popular');
+  print(response.body);
+  if (response.statusCode == 200) {
+    var postListJson = json.decode(response.body)['message'] as List;
+    return postListJson.map((post) => Post.fromJson(post)).toList();
+  } else
+    return null;
 }
 
 Future<Post> fetchAPost(int postID) async {
