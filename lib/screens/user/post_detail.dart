@@ -3,13 +3,14 @@ import 'package:facefood/components/card_description_string.dart';
 import 'package:facefood/components/card_future_user_brief_fullwidth.dart';
 import 'package:facefood/components/list_future_ingredient.dart';
 import 'package:facefood/components/list_future_steps.dart';
+import 'package:facefood/components/list_of_steps.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
 class PostDetailScreen extends StatefulWidget {
   final int postId;
-  const PostDetailScreen({Key key, this.postId})
+  const PostDetailScreen({Key key, this.postId = 1})
       : super(key: key);
   @override
   _PostDetailScreenState createState() => _PostDetailScreenState();
@@ -29,6 +30,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               AppbarPostDetail(
                 postId: widget.postId, // change to category
                 commentCount: snapshot.data.commentCount,
+                category: snapshot.data.categoryName,
                 imageUrl: snapshot.data.imageUrl,
                 likeCount: snapshot.data.likeCount,
                 postname: snapshot.data.postName,
@@ -71,8 +73,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                       SizedBox(
                         height: 10,
                       ),
-                      ListFutureSteps(
-                        postID: snapshot.data.id,
+                      ListOfSteps(
+                        listSteps: snapshot.data.steps,
                       )
                     ],
                   ),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:facefood/models/post_step.dart';
 import 'package:facefood/utils/api_caller.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,6 +9,8 @@ class Post {
   String postName, description, imageUrl, username, categoryName;
   bool isDeleted;
   String createdAt, updatedAt;
+  int stepCount;
+  List<PostStep> steps;
 
   Post(
       {this.likeCount,
@@ -22,7 +25,9 @@ class Post {
       this.postName,
       this.timeNeeded,
       this.updatedAt,
-      this.imageUrl});
+      this.imageUrl,
+      this.stepCount,
+      this.steps});
   factory Post.fromJson(dynamic json) {
     return Post(
       id: json['id'] as int,
@@ -38,6 +43,9 @@ class Post {
       imageUrl: json['imageUrl'] as String,
       likeCount: json['likeCount'] as int,
       commentCount: json['commentCount'] as int,
+      stepCount: json["stepCount"],
+      steps:
+          List<PostStep>.from(json["steps"].map((x) => PostStep.fromJson(x))),
     );
   }
 }
@@ -62,7 +70,6 @@ Future<Post> fetchLastestPost() async {
 Future<List<Post>> fetchPromotionList() async {
   // fetch from explore route
   final http.Response response = await apiCaller.get(route: '/posts/explore');
-  print(response.body);
   if (response.statusCode == 200) {
     var postListJson = json.decode(response.body)['message'] as List;
     return postListJson.map((post) => Post.fromJson(post)).toList();
@@ -114,7 +121,6 @@ Future<List<Post>> fetchPostListFromAUser() async {
 
 Future<List<Post>> fetchPopularPostsList() async {
   final http.Response response = await apiCaller.get(route: '/posts/popular');
-  print(response.body);
   if (response.statusCode == 200) {
     var postListJson = json.decode(response.body)['message'] as List;
     return postListJson.map((post) => Post.fromJson(post)).toList();
@@ -123,18 +129,14 @@ Future<List<Post>> fetchPopularPostsList() async {
 }
 
 Future<Post> fetchAPost(int postID) async {
-  // final http.Response response = await apiCaller.get();
+  print('start fetching');
 
-  Post post = Post(
-    categoryName: 'Vietnamese',
-    description: 'This taste really good',
-    postName: 'Hủ Tiếu Nam Vang',
-    timeNeeded: 30,
-    isDeleted: false,
-    likeCount: 10,
-    commentCount: 25,
-    imageUrl:
-        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F7%2F76%2FH%25E1%25BB%25A7_ti%25E1%25BA%25BFu_th%25E1%25BA%25ADp_c%25E1%25BA%25A9m.jpg%2F1200px-H%25E1%25BB%25A7_ti%25E1%25BA%25BFu_th%25E1%25BA%25ADp_c%25E1%25BA%25A9m.jpg&f=1&nofb=1',
-  );
-  return post;
+  final http.Response response = await apiCaller.get(route: '/posts/$postID');
+  print('print something here');
+  print(response.body);
+  if (response.statusCode == 200) {
+    var userDetailsJson = json.decode(response.body)['message'];
+    return Post.fromJson(userDetailsJson);
+  } else
+    return null;
 }
