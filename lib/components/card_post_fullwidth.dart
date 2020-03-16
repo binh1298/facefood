@@ -23,12 +23,12 @@ class CardPostFullWidth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(postId);
+    print(id);
     return Card(
       elevation: 10,
       child: InkWell(
           onTap: () {
-            Navigator.pushNamed(context, '/viewPostDetails', arguments: postId);
+            Navigator.pushNamed(context, '/viewPostDetails', arguments: id);
           },
           child: Stack(
             alignment: Alignment.bottomCenter,
