@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 
 class AppbarPostDetail extends StatelessWidget {
   final String postname, imageUrl, category;
-  final int timeNeeded, likeCount, commentCount;
+  final int timeNeeded, likeCount, commentCount, postId;
   const AppbarPostDetail({
     Key key,
+    this.postId,
     this.postname,
     this.imageUrl,
     this.timeNeeded,
@@ -39,7 +40,8 @@ class AppbarPostDetail extends StatelessWidget {
               ),
             ),
             AppbarPostDetailContent(
-              category: category,
+              postId: postId,
+              // category: category,
               commentCount: commentCount,
               likeCount: likeCount,
               postname: postname,

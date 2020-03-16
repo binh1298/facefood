@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 
 class AppbarPostDetailContent extends StatelessWidget {
   final String postname, category;
-  final int timeNeeded, likeCount, commentCount;
+  final int timeNeeded, likeCount, commentCount, postId;
 
   const AppbarPostDetailContent({
     Key key,
     this.postname,
+    this.postId,
     this.timeNeeded,
     this.likeCount,
     this.commentCount,
@@ -50,10 +51,10 @@ class AppbarPostDetailContent extends StatelessWidget {
                   '-',
                   style: textStyleHeadingDark,
                 ),
-                Text(
-                  category,
-                  style: textStyleHeadingDark,
-                ),
+                // Text(
+                //   category,
+                //   style: textStyleHeadingDark,
+                // ),
               ],
             ),
             SizedBox(

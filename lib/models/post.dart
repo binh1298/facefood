@@ -46,7 +46,7 @@ Future<Post> fetchLastestPost() async {
   // final http.Response response = await apiCaller.get();
 
   Post post = Post(
-    categoryName: 'lulul',
+    categoryName: 'Vietnamese',
     description: 'This taste really good',
     postName: 'Hủ Tiếu Nam Vang',
     timeNeeded: 30,
@@ -126,7 +126,7 @@ Future<Post> fetchAPost(int postID) async {
   // final http.Response response = await apiCaller.get();
 
   Post post = Post(
-    categoryName: 'mlem',
+    categoryName: 'Vietnamese',
     description: 'This taste really good',
     postName: 'Hủ Tiếu Nam Vang',
     timeNeeded: 30,
