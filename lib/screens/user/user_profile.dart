@@ -5,9 +5,9 @@ import 'package:facefood/models/post.dart';
 import 'package:flutter/material.dart';
 
 class UserProfile extends StatefulWidget {
-  final String userId;
+  final String username;
 
-  const UserProfile({Key key, this.userId}) : super(key: key);
+  const UserProfile({Key key, this.username}) : super(key: key);
 
   @override
   _UserProfileState createState() => _UserProfileState();
@@ -23,7 +23,7 @@ class _UserProfileState extends State<UserProfile> {
             SizedBox(
               height: 10,
             ),
-            CardFutureUserDetailInfo(userId: widget.userId),
+            CardFutureUserDetailInfo(username: widget.username),
             SizedBox(
               height: 20,
             ),
@@ -36,22 +36,22 @@ class _UserProfileState extends State<UserProfile> {
             SizedBox(
               height: 10,
             ),
-            FutureBuilder<List<Post>>(
-              future: fetchPostListFromAUser(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListViewPost(
-                    listPost: snapshot.data,
-                  );
-                } else if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
+            // FutureBuilder<List<Post>>(
+            //   future: fetchPopularPostsList(),
+            //   builder: (context, snapshot) {
+            //     if (snapshot.hasData) {
+            //       return ListViewPost(
+            //         listPost: snapshot.data,
+            //       );
+            //     } else if (snapshot.hasError) {
+            //       return Text(snapshot.error.toString());
+            //     } else {
+            //       return Center(
+            //         child: CircularProgressIndicator(),
+            //       );
+            //     }
+            //   },
+            // ),
           ],
         ),
       ),

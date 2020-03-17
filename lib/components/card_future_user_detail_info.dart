@@ -1,20 +1,20 @@
 import 'package:facefood/components/box_single_detail_info.dart';
-import 'package:facefood/models/user_related_infos.dart';
+import 'package:facefood/models/user_brief.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
 class CardFutureUserDetailInfo extends StatelessWidget {
-  final String userId;
+  final String username;
 
   const CardFutureUserDetailInfo({
     Key key,
-    this.userId,
+    this.username,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<UserRelatedInfos>(
-        future: fetchUserRelatedInfos(userId),
+    return FutureBuilder<UserBrief>(
+        future: fetchUserBrief(username),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Padding(
@@ -57,20 +57,20 @@ class CardFutureUserDetailInfo extends StatelessWidget {
                                 children: <Widget>[
                                   Expanded(
                                     child: BoxSingleDetailInfo(
-                                      title: 'Followers',
-                                      number: snapshot.data.totalFollowers,
+                                      title: 'Posts',
+                                      number: snapshot.data.postCount,
                                     ),
                                   ),
                                   Expanded(
                                     child: BoxSingleDetailInfo(
-                                      title: 'Likes',
-                                      number: snapshot.data.likeCount,
+                                      title: 'Follower',
+                                      number: snapshot.data.followersCount,
                                     ),
                                   ),
                                   Expanded(
                                     child: BoxSingleDetailInfo(
                                       title: 'Following',
-                                      number: snapshot.data.totalFollowings,
+                                      number: snapshot.data.followingCount,
                                     ),
                                   ),
                                 ],

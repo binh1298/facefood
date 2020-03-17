@@ -1,5 +1,5 @@
 import 'package:facefood/components/box_single_detail_info.dart';
-import 'package:facefood/models/user_related_infos.dart';
+import 'package:facefood/models/user_details.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class CardUserDetailInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: fetchUserRelatedInfos(userId),
+      future: fetchUserDetails(userId),
       builder: (context, snapshot) {
       if (snapshot.hasData) {
         return Row(
