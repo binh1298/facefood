@@ -26,8 +26,7 @@ class Post {
       this.timeNeeded,
       this.updatedAt,
       this.imageUrl,
-      this.stepCount,
-      this.steps});
+      this.stepCount});
   factory Post.fromJson(dynamic json) {
     return Post(
       id: json['id'] as int,
@@ -44,8 +43,6 @@ class Post {
       likeCount: json['likeCount'] as int,
       commentCount: json['commentCount'] as int,
       stepCount: json["stepCount"],
-      steps:
-          List<PostStep>.from(json["steps"].map((x) => PostStep.fromJson(x))),
     );
   }
 }
@@ -72,6 +69,8 @@ Future<List<Post>> fetchPromotionList() async {
   final http.Response response = await apiCaller.get(route: '/posts/explore');
   if (response.statusCode == 200) {
     var postListJson = json.decode(response.body)['message'] as List;
+    print('print something here');
+    print(postListJson[1].toString());
     return postListJson.map((post) => Post.fromJson(post)).toList();
   } else
     return null;
@@ -128,15 +127,3 @@ Future<List<Post>> fetchPopularPostsList() async {
     return null;
 }
 
-Future<Post> fetchAPost(int postID) async {
-  print('start fetching');
-
-  final http.Response response = await apiCaller.get(route: '/posts/$postID');
-  print('print something here');
-  print(response.body);
-  if (response.statusCode == 200) {
-    var userDetailsJson = json.decode(response.body)['message'];
-    return Post.fromJson(userDetailsJson);
-  } else
-    return null;
-}

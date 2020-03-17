@@ -2,16 +2,15 @@ import 'package:facefood/components/appbar_post_detail.dart';
 import 'package:facefood/components/card_description_string.dart';
 import 'package:facefood/components/card_future_user_brief_fullwidth.dart';
 import 'package:facefood/components/list_future_ingredient.dart';
-import 'package:facefood/components/list_future_steps.dart';
 import 'package:facefood/components/list_of_steps.dart';
 import 'package:facefood/models/post.dart';
+import 'package:facefood/models/post_detail.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
 class PostDetailScreen extends StatefulWidget {
   final int postId;
-  const PostDetailScreen({Key key, this.postId = 1})
-      : super(key: key);
+  const PostDetailScreen({Key key, this.postId = 1}) : super(key: key);
   @override
   _PostDetailScreenState createState() => _PostDetailScreenState();
 }
@@ -20,9 +19,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder<Post>(
-      future:
-        fetchAPost(widget.postId),
+        body: FutureBuilder<PostDetail>(
+      future: fetchPostDetail(widget.postId),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return CustomScrollView(
