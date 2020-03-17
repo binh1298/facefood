@@ -2,6 +2,8 @@ import 'package:facefood/components/button_full_width.dart';
 import 'package:facefood/components/card_future_user_detail_info.dart';
 import 'package:facefood/components/list_view_card_post_fullwidth.dart';
 import 'package:facefood/models/post.dart';
+import 'package:facefood/models/user_details.dart';
+import 'package:facefood/models/user_profile_info.dart';
 import 'package:flutter/material.dart';
 
 class UserProfile extends StatefulWidget {
@@ -18,41 +20,54 @@ class _UserProfileState extends State<UserProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 10,
-            ),
-            CardFutureUserDetailInfo(username: widget.username),
-            SizedBox(
-              height: 20,
-            ),
-            ButtonFullWidth(
-              label: 'Follow',
-              onPressed: () {
-                
-              },
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            // FutureBuilder<List<Post>>(
-            //   future: fetchPopularPostsList(),
-            //   builder: (context, snapshot) {
-            //     if (snapshot.hasData) {
-            //       return ListViewPost(
-            //         listPost: snapshot.data,
-            //       );
-            //     } else if (snapshot.hasError) {
-            //       return Text(snapshot.error.toString());
-            //     } else {
-            //       return Center(
-            //         child: CircularProgressIndicator(),
-            //       );
-            //     }
-            //   },
-            // ),
-          ],
+        // child: FutureBuilder<UserProfileInfo>(
+        //   future: fetchuserProfileInfo(widget.username),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.hasData) {
+        //       return Column(
+        //         children: <Widget>[
+        //           SizedBox(
+        //             height: 10,
+        //           ),
+        //           CardFutureUserDetailInfo(username: widget.username),
+        //           SizedBox(
+        //             height: 20,
+        //           ),
+        //           ButtonFullWidth(
+        //             label: 'Follow',
+        //             onPressed: () {},
+        //           ),
+        //           SizedBox(
+        //             height: 10,
+        //           ),
+        //           // ListViewPost(
+        //           //   listPost: snapshot.data.totalPosts,
+        //           // ),
+        //         ],
+        //       );
+        //     } else if (snapshot.hasError) {
+        //       return Text(snapshot.error.toString());
+        //     } else if (snapshot.connectionState == ConnectionState.done) {
+        //       return Text('Unable to fetch this post');
+        //     } else
+        //       return Center(
+        //         child: CircularProgressIndicator(),
+        //       );
+        //   },
+        // ),
+        child: FutureBuilder<UserDetails>(
+          future: fetchUserProfile(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Center(
+                child: Text(snapshot.data.username),
+              );
+            }
+            else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            }
+            else return LinearProgressIndicator();
+          },
         ),
       ),
     );

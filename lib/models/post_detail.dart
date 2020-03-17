@@ -50,10 +50,7 @@ class PostDetail {
 }
 
 Future<PostDetail> fetchPostDetail(int postID) async {
-  print('start fetching');
   final http.Response response = await apiCaller.get(route: '/posts/$postID');
-  print('print something here');
-  print(response.body);
   if (response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['message'];
     return PostDetail.fromJson(userDetailsJson);

@@ -32,10 +32,7 @@ class UserBrief {
 }
 
 Future<UserBrief> fetchUserBrief(String username) async{
-  print('start fetching');
   final http.Response response = await apiCaller.get(route: '/users/$username');
-  print('print something here');
-  print(response.body);
   if (response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['message'];
     return UserBrief.fromJson(userDetailsJson);

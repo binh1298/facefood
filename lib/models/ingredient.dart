@@ -22,9 +22,7 @@ Future<List<Ingredient>> fetchListIngredient(int postID) async {
   final http.Response response =
       await apiCaller.get(route: '/ingredients?postId=$postID');
   if (response.statusCode == 200) {
-    print('i am here');
     var postListJson = json.decode(response.body)['message'] as List;
-    print(postListJson[0].toString());
     return postListJson.map((post) => Ingredient.fromJson(post)).toList();
   } else
     return null;
