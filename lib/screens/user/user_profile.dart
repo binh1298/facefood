@@ -1,13 +1,17 @@
 import 'package:facefood/components/button_full_width.dart';
-import 'package:facefood/components/card_future_user_detail_info.dart';
+import 'package:facefood/components/card_user_detail_info.dart';
 import 'package:facefood/components/list_view_card_post_fullwidth.dart';
 import 'package:facefood/models/post.dart';
+import 'package:facefood/models/user_details.dart';
+import 'package:facefood/models/user_profile_info.dart';
 import 'package:flutter/material.dart';
 
 class UserProfile extends StatefulWidget {
-  final String userId;
+  final String username;
+  final bool isCurrentUser; //TODO: if true, hide following button
 
-  const UserProfile({Key key, this.userId}) : super(key: key);
+  const UserProfile({Key key, this.username, this.isCurrentUser = false})
+      : super(key: key);
 
   @override
   _UserProfileState createState() => _UserProfileState();
@@ -18,42 +22,61 @@ class _UserProfileState extends State<UserProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 10,
-            ),
-            CardFutureUserDetailInfo(userId: widget.userId),
-            SizedBox(
-              height: 20,
-            ),
-            ButtonFullWidth(
-              label: 'Follow',
-              onPressed: () {
-                
-              },
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            FutureBuilder<List<Post>>(
-              future: fetchPostListFromAUser(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListViewPost(
-                    listPost: snapshot.data,
-                  );
-                } else if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
-          ],
+        child: FutureBuilder<UserProfileInfo>(
+          future: fetchCurrentUserProfileInfo(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 10,
+                  ),
+                  CardUserDetailInfo(
+                    username: snapshot.data.username,
+                    followerCount: snapshot.data.followerCount,
+                    followingCount: snapshot.data.followingCount,
+                    postCount: snapshot.data.postCount,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  // ButtonFullWidth(
+                  //   label: 'Follow',
+                  //   onPressed: () {},
+                  // ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ListViewPost(
+                    listPost: snapshot.data.totalPosts,
+                  ),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            } else if (snapshot.connectionState == ConnectionState.done) {
+              return Text('Unable to fetch this post');
+            } else
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+          },
         ),
+
+        // child: FutureBuilder<UserDetails>(
+        //   future: fetchUserProfile(),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.hasData) {
+        //       return Center(
+        //         child: Text(snapshot.data.username),
+        //       );
+        //     }
+        //     else if (snapshot.hasError) {
+        //       return Text(snapshot.error.toString());
+        //     }
+        //     else return LinearProgressIndicator();
+        //   },
+        // ),
       ),
     );
   }

@@ -6,9 +6,9 @@ import '../style/style.dart';
 class CardPostFullWidth extends StatelessWidget {
   final String postName;
   final String imageUrl;
-  final int postId;
+  final int id;
   final int timeNeeded;
-  final int categoryId;
+  final String categoryName;
   final int likeCount;
   final int commentCount;
 
@@ -18,17 +18,17 @@ class CardPostFullWidth extends StatelessWidget {
       this.likeCount,
       this.commentCount,
       this.postName,
-      this.postId,
-      this.categoryId});
+      this.id,
+      this.categoryName});
 
   @override
   Widget build(BuildContext context) {
-    print(postId);
+    print(id);
     return Card(
       elevation: 10,
       child: InkWell(
           onTap: () {
-            Navigator.pushNamed(context, '/viewPostDetails', arguments: postId);
+            Navigator.pushNamed(context, '/viewPostDetails', arguments: id);
           },
           child: Stack(
             alignment: Alignment.bottomCenter,

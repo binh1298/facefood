@@ -1,18 +1,19 @@
+import 'package:facefood/models/user_brief.dart';
 import 'package:facefood/models/user_details.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
 class CardFutureUserBriefFullwidth extends StatelessWidget {
-  final String userId;
+  final String username;
   const CardFutureUserBriefFullwidth({
     Key key,
-    this.userId,
+    this.username,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<UserDetails>(
-      future: fetchUserProfile(),
+    return FutureBuilder<UserBrief>(
+      future: fetchUserBrief(username),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Padding(
@@ -27,8 +28,8 @@ class CardFutureUserBriefFullwidth extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 6,
                   height: MediaQuery.of(context).size.width / 6,
                   child: CircleAvatar(
-                    backgroundImage: (snapshot.data.avatar != null)
-                        ? NetworkImage(snapshot.data.avatar)
+                    backgroundImage: (snapshot.data.avatarUrl != null)
+                        ? NetworkImage(snapshot.data.avatarUrl)
                         : AssetImage('images/user-default-image.png'),
                   ),
                 ),

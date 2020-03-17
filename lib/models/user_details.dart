@@ -44,6 +44,7 @@ Future<UserDetails> fetchUserProfile() async {
   final http.Response response = await apiCaller.get(
       route: '/profile');
   print(response.body);
+  print('FETCHING USER PROFILE');
   if (response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['user'];
     return UserDetails.fromJson(userDetailsJson);

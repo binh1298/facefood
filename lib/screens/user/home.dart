@@ -9,7 +9,7 @@ import 'package:facefood/screens/guest/explore.dart';
 
 List<Destination> userDestinations = <Destination>[
   Destination('Create Post', Icons.person, CreatePostScreen()),
-  Destination('Profile', Icons.person, UserProfile()),
+  Destination('Profile', Icons.person, UserProfile(username: 'SpacePotato',)),
   Destination('Explore', Icons.person, ExploreScreen()),
 ];
 

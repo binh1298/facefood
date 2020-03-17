@@ -28,8 +28,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return CardPostFullWidth(
-                  postId: snapshot.data.postId,
-                  categoryId: snapshot.data.categoryId,
+                  id: snapshot.data.id,
+                  categoryName: snapshot.data.categoryName,
                   postName: snapshot.data.postName,
                   likeCount: snapshot.data.likeCount,
                   timeNeeded: snapshot.data.timeNeeded,
@@ -37,7 +37,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   imageUrl: snapshot.data.imageUrl,
                 );
               } else if (snapshot.hasError) {
-                return Text(snapshot.error);
+                return Text(snapshot.error.toString());
               } else if (snapshot.connectionState == ConnectionState.done) {
                 return Text('Unable to fetch lastest post');
               } else
@@ -63,7 +63,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     children: snapshot.data
                         .map(
                           (post) => CardPostDetailsHalfSize(
-                            postId: post.postId,
+                            postId: post.id,
                             category: post.categoryId.toString(),
                             name: post.postName,
                             likeCount: post.likeCount,
@@ -76,7 +76,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ),
                 );
               } else if (snapshot.hasError) {
-                return Text(snapshot.error);
+                return Text(snapshot.error.toString());
               } else if (snapshot.connectionState == ConnectionState.done) {
                 return Text('Unable to fetch lastest post');
               } else
@@ -102,7 +102,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     children: snapshot.data
                         .map(
                           (post) => CardPostDetailsHalfSize(
-                            postId: post.postId,
+                            postId: post.id,
                             category: post.categoryId.toString(),
                             name: post.postName,
                             likeCount: post.likeCount,
@@ -115,7 +115,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ),
                 );
               } else if (snapshot.hasError) {
-                return Text(snapshot.error);
+                return Text(snapshot.error.toString());
               } else if (snapshot.connectionState == ConnectionState.done) {
                 return Text('Unable to fetch lastest post');
               } else

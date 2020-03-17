@@ -4,7 +4,7 @@ import 'package:facefood/models/post_step.dart';
 import 'package:facefood/utils/api_caller.dart';
 import 'package:http/http.dart' as http;
 
-class Post {
+class PostDetail {
   int id, timeNeeded, likeCount, commentCount, categoryId;
   String postName, description, imageUrl, username, categoryName;
   bool isDeleted;
@@ -12,7 +12,7 @@ class Post {
   int stepCount;
   List<PostStep> steps;
 
-  Post(
+  PostDetail(
       {this.likeCount,
       this.username,
       this.id,
@@ -26,9 +26,10 @@ class Post {
       this.timeNeeded,
       this.updatedAt,
       this.imageUrl,
-      this.stepCount});
-  factory Post.fromJson(dynamic json) {
-    return Post(
+      this.stepCount,
+      this.steps});
+  factory PostDetail.fromJson(dynamic json) {
+    return PostDetail(
       id: json['id'] as int,
       timeNeeded: json['timeNeeded'] as int,
       categoryName: json['categoryName'] as String,
@@ -43,38 +44,16 @@ class Post {
       likeCount: json['likeCount'] as int,
       commentCount: json['commentCount'] as int,
       stepCount: json["stepCount"],
+      steps: List<PostStep>.from(json["steps"].map((x) => PostStep.fromJson(x))),
     );
   }
 }
 
-Future<Post> fetchLastestPost() async {
-  // final http.Response response = await apiCaller.get();
-  final http.Response response = await apiCaller.get(route: '/posts?order=created_at,desc');
+Future<PostDetail> fetchPostDetail(int postID) async {
+  final http.Response response = await apiCaller.get(route: '/posts/$postID');
   if (response.statusCode == 200) {
-    var userDetailsJson = json.decode(response.body)['message'][0]; // get a list then first item
-    return Post.fromJson(userDetailsJson);
+    var userDetailsJson = json.decode(response.body)['message'];
+    return PostDetail.fromJson(userDetailsJson);
   } else
     return null;
 }
-
-Future<List<Post>> fetchPromotionList() async {
-  // fetch from explore route
-  final http.Response response = await apiCaller.get(route: '/posts/explore');
-  if (response.statusCode == 200) {
-    var postListJson = json.decode(response.body)['message'] as List;
-    return postListJson.map((post) => Post.fromJson(post)).toList();
-  } else
-    return null;
-}
-
-
-
-Future<List<Post>> fetchPopularPostsList() async {
-  final http.Response response = await apiCaller.get(route: '/posts/popular');
-  if (response.statusCode == 200) {
-    var postListJson = json.decode(response.body)['message'] as List;
-    return postListJson.map((post) => Post.fromJson(post)).toList();
-  } else
-    return null;
-}
-
