@@ -33,7 +33,7 @@ class ListFutureIngredient extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           margin: EdgeInsets.only(left: 10),
-                          width: MediaQuery.of(context).size.width / 3.5,
+                          width: MediaQuery.of(context).size.width / 3,
                           child: Text(
                             ingredient.ingredientName,
                             style: textStyleDefault,

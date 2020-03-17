@@ -37,7 +37,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   imageUrl: snapshot.data.imageUrl,
                 );
               } else if (snapshot.hasError) {
-                return Text(snapshot.error);
+                return Text(snapshot.error.toString());
               } else if (snapshot.connectionState == ConnectionState.done) {
                 return Text('Unable to fetch lastest post');
               } else

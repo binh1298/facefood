@@ -3,7 +3,6 @@ import 'package:facefood/components/card_description_string.dart';
 import 'package:facefood/components/card_future_user_brief_fullwidth.dart';
 import 'package:facefood/components/list_future_ingredient.dart';
 import 'package:facefood/components/list_of_steps.dart';
-import 'package:facefood/models/post.dart';
 import 'package:facefood/models/post_detail.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
