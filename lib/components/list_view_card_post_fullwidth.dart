@@ -13,33 +13,38 @@ class ListViewPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: ListView(
-        padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
-        children: <Widget>[
-          Column(
-            children: listPost
-                .map(
-                  (post) => CardPostFullWidth(
-                    categoryName: post.categoryName,
-                    commentCount: post.commentCount,
-                    imageUrl: post.imageUrl,
-                    likeCount: post.likeCount,
-                    id: post.id,
-                    postName: post.postName,
-                    timeNeeded: post.timeNeeded,
-                  ),
-                )
-                .toList(),
-          ),
-          RaisedButton(
-            onPressed: () {},
-            textColor: colorTextPrimary,
-            color: colorPrimary,
-            child: Text('Load more'),
-          ),
-        ],
-      ),
-    );
+    if (listPost.isNotEmpty) {
+      return Flexible(
+        child: ListView(
+          padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+          children: <Widget>[
+            Column(
+              children: listPost
+                  .map(
+                    (post) => CardPostFullWidth(
+                      categoryName: post.categoryName,
+                      commentCount: post.commentCount,
+                      imageUrl: post.imageUrl,
+                      likeCount: post.likeCount,
+                      id: post.id,
+                      postName: post.postName,
+                      timeNeeded: post.timeNeeded,
+                    ),
+                  )
+                  .toList(),
+            ),
+            RaisedButton(
+              onPressed: () {},
+              textColor: colorTextPrimary,
+              color: colorPrimary,
+              child: Text('Load more'),
+            ),
+          ],
+        ),
+      );
+    } else
+      return Center(
+        child: Text('this user haven\'t post anything yet'),
+      );
   }
 }
