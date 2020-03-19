@@ -23,9 +23,7 @@ class CardComment extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              SizedBox(
-                width: 10,
-              ),
+              
               Text(
                 username,
                 style: textStyleTitle,
