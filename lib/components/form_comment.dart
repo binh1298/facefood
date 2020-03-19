@@ -19,7 +19,7 @@ class FormComment extends StatelessWidget {
         ),
         IconButton(
           icon: Icon(Icons.send),
-          onPressed: () {},
+          onPressed: () {}, //TODO duc add action here
         ),
       ],
     ));

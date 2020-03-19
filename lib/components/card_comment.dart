@@ -14,41 +14,44 @@ class CardComment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           SizedBox(
             width: 10,
           ),
-          Container(
-            width: MediaQuery.of(context).size.width / 8,
-            height: MediaQuery.of(context).size.width / 8,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(imgUrl),
-            ),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
             children: <Widget>[
+              SizedBox(
+                width: 10,
+              ),
               Text(
                 username,
                 style: textStyleTitle,
               ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width / 8,
+                height: MediaQuery.of(context).size.width / 8,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(imgUrl),
+                ),
+              ),
+              SizedBox(width: 10),
               Flexible(
                 child: Text(
-                  '  $content',
+                  '$content',
                   style: textStyleSubtitle,
                 ),
               ),
             ],
           ),
-          Divider(
-            indent: 5,
-            color: textStyleDefault.color,
+          SizedBox(
+            width: 10,
           ),
         ],
       ),

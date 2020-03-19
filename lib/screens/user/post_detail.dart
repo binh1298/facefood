@@ -111,9 +111,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   indent: 20,
                   endIndent: 20,
                 ),
-                // ListFutureComments(
-                //   postID: widget.postId,
-                // )
+                ListFutureComments(
+                  postID: widget.postId,
+                )
               ]))
             ],
           );
