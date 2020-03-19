@@ -19,7 +19,7 @@ class Comment{
 Future<List<Comment>> fetchComment(int postID) async{
 
   Comment cmt1 = Comment(
-    content: 'this is a comment this is a ',
+    content: 'this is a comment this is a this is a comment this is a',
     username: 'User1',
     userID: '1',
     imgUrl: 'https://i.picsum.photos/id/919/536/354.jpg',

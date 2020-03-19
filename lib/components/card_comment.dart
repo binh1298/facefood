@@ -25,7 +25,7 @@ class CardComment extends StatelessWidget {
             height: MediaQuery.of(context).size.width / 8,
             child: CircleAvatar(
               backgroundImage: NetworkImage(imgUrl),
-              ),
+            ),
           ),
           SizedBox(
             width: 10,
@@ -38,9 +38,11 @@ class CardComment extends StatelessWidget {
                 username,
                 style: textStyleTitle,
               ),
-              Text(
-                '  $content',
-                style: textStyleSubtitle,
+              Flexible(
+                child: Text(
+                  '  $content',
+                  style: textStyleSubtitle,
+                ),
               ),
             ],
           ),

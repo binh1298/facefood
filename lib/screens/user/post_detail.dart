@@ -1,6 +1,7 @@
 import 'package:facefood/components/appbar_post_detail.dart';
 import 'package:facefood/components/card_description_string.dart';
 import 'package:facefood/components/card_future_user_brief_fullwidth.dart';
+import 'package:facefood/components/list_future_comments.dart';
 import 'package:facefood/components/list_future_ingredient.dart';
 import 'package:facefood/components/list_of_steps.dart';
 import 'package:facefood/models/post_detail.dart';
@@ -35,6 +36,33 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               ),
               SliverList(
                   delegate: SliverChildListDelegate(<Widget>[
+                    // TODO Duc part start here
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      snapshot.data.likeCount.toString(),
+                      style: textStyleHeading.copyWith(fontWeight: FontWeight.normal),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.favorite_border),
+                    ),
+                    Text(
+                      snapshot.data.commentCount.toString(),
+                      style: textStyleHeading.copyWith(fontWeight: FontWeight.normal),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.comment),
+                    ),
+                  ],
+                ),
+                    // TODO Duc part end here
+                Divider(
+                  indent: 20,
+                  endIndent: 20,
+                ),
                 CardFutureUserBriefFullwidth(
                   username: snapshot.data.username,
                 ),
@@ -83,6 +111,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   indent: 20,
                   endIndent: 20,
                 ),
+                // ListFutureComments(
+                //   postID: widget.postId,
+                // )
               ]))
             ],
           );
