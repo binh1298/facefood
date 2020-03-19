@@ -23,10 +23,15 @@ class CardComment extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              
-              Text(
-                username,
-                style: textStyleTitle,
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 8 + 10,
+              ),
+              InkWell(
+                onTap: () {}, // TODO add routing here
+                child: Text(
+                  username,
+                  style: textStyleTitle,
+                ),
               ),
             ],
           ),
