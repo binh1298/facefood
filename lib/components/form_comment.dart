@@ -1,6 +1,8 @@
 import 'package:facefood/components/text_form_field_rectangle.dart';
 import 'package:flutter/material.dart';
 
+
+//TODO duc add action & state here
 class FormComment extends StatelessWidget {
   const FormComment({
     Key key,
@@ -19,7 +21,7 @@ class FormComment extends StatelessWidget {
         ),
         IconButton(
           icon: Icon(Icons.send),
-          onPressed: () {}, //TODO duc add action here
+          onPressed: () {}, 
         ),
       ],
     ));

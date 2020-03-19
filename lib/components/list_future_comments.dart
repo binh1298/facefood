@@ -31,18 +31,22 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
           future: fetchComment(widget.postID),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Column(
-                  children: snapshot.data
-                      .map<Widget>((comment) => CardComment(
-                            imgUrl: comment.imgUrl,
-                            content: comment.content,
-                            username: comment.username,
-                          ))
-                      .toList());
+              if (snapshot.data.isNotEmpty)
+                return Column(
+                    children: snapshot.data
+                        .map<Widget>((comment) => CardComment(
+                              imgUrl:
+                                  'https://i.picsum.photos/id/837/536/354.jpg',
+                              content: comment.content,
+                              username: comment.username,
+                            ))
+                        .toList());
+              else
+                return Center(child: Text('no comment yet.'));
             } else if (snapshot.hasError) {
               return Text(snapshot.error.toString());
             } else if (snapshot.connectionState == ConnectionState.done) {
-              return Text('Unable to fetch this post');
+              return Text('Unable to fetch this post\'s comment');
             } else
               return Center(
                 child: CircularProgressIndicator(),
