@@ -2,12 +2,12 @@ import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
 class CardComment extends StatelessWidget {
-  final String content, username, imgUrl;
+  final String content, username, avatarUrl;
   const CardComment({
     Key key,
-    this.content = 'default',
-    this.username = 'default',
-    this.imgUrl = 'default',
+    this.content,
+    this.username,
+    this.avatarUrl,
   }) : super(key: key);
 
   @override
@@ -38,7 +38,7 @@ class CardComment extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 8,
                 height: MediaQuery.of(context).size.width / 8,
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(imgUrl),
+                  backgroundImage: NetworkImage(avatarUrl),
                 ),
               ),
               SizedBox(width: 10),

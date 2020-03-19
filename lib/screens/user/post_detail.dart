@@ -36,13 +36,14 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               ),
               SliverList(
                   delegate: SliverChildListDelegate(<Widget>[
-                    // TODO Duc part start here
+                // TODO Duc part start here
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       snapshot.data.likeCount.toString(),
-                      style: textStyleHeading.copyWith(fontWeight: FontWeight.normal),
+                      style: textStyleHeading.copyWith(
+                          fontWeight: FontWeight.normal),
                     ),
                     IconButton(
                       onPressed: () {},
@@ -50,7 +51,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     ),
                     Text(
                       snapshot.data.commentCount.toString(),
-                      style: textStyleHeading.copyWith(fontWeight: FontWeight.normal),
+                      style: textStyleHeading.copyWith(
+                          fontWeight: FontWeight.normal),
                     ),
                     IconButton(
                       onPressed: () {},
@@ -58,7 +60,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     ),
                   ],
                 ),
-                    // TODO Duc part end here
+                // TODO Duc part end here
                 Divider(
                   indent: 20,
                   endIndent: 20,
@@ -113,6 +115,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                 ),
                 ListFutureComments(
                   postID: widget.postId,
+                ),
+                SizedBox(
+                  height: 40,
                 )
               ]))
             ],

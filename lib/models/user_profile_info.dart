@@ -43,14 +43,11 @@ class UserProfileInfo {
 }
 
 Future<UserProfileInfo> fetchCurrentUserProfileInfo() async {
-  print('hey im here');
   var currentUser = await getUserFromToken();
   String username = currentUser.username;
   final http.Response response = await apiCaller.get(route: '/users/$username');
   if (response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['message'];
-    print('im over here');
-    print(userDetailsJson['email'].toString());
     return UserProfileInfo.fromJson(userDetailsJson);
   } else
     return null;
