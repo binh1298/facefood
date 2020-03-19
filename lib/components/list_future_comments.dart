@@ -35,8 +35,7 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
                 return Column(
                     children: snapshot.data
                         .map<Widget>((comment) => CardComment(
-                              imgUrl:
-                                  'https://i.picsum.photos/id/837/536/354.jpg',
+                              imgUrl: comment.imgUrl,
                               content: comment.content,
                               username: comment.username,
                             ))
