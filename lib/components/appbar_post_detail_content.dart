@@ -47,38 +47,18 @@ class AppbarPostDetailContent extends StatelessWidget {
                   postname,
                   style: textStyleHeadingDark,
                 ),
-                Text(
-                  '-',
-                  style: textStyleHeadingDark,
-                ),
-                // Text(
-                //   category,
-                //   style: textStyleHeadingDark,
-                // ),
               ],
             ),
             SizedBox(
               height: 10,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
+                Text(category, style: textStyleDarkBackground,),
                 IconTextComponent(
                   icon: Icons.timer,
                   text: timeNeeded.toString() + '\'',
-                  iconColor: colorOnDarkBackground,
-                  style: textStyleDarkBackground,
-                ),
-                SizedBox(width: 10,),
-                IconTextComponent(
-                  icon: Icons.favorite,
-                  text: likeCount.toString(),
-                  iconColor: colorOnDarkBackground,
-                  style: textStyleDarkBackground,
-                ),
-                SizedBox(width: 10,),
-                IconTextComponent(
-                  icon: Icons.insert_comment,
-                  text: commentCount.toString() + '\'',
                   iconColor: colorOnDarkBackground,
                   style: textStyleDarkBackground,
                 ),

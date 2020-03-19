@@ -11,19 +11,24 @@ class ListOfSteps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-            padding: EdgeInsets.only(bottom: 5),
-            height: MediaQuery.of(context).size.width * 1.2,
-            child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: listSteps.map((step) {
-                  var index = listSteps.indexOf(step);
-                  return CardStepPostDetail(
-                      urlImage: step.imageUrl,
-                      step: index,
-                      description: step.description);
-                }).toList()),
-          );
+    if (listSteps.isNotEmpty)
+      return Container(
+        padding: EdgeInsets.only(bottom: 5),
+        height: MediaQuery.of(context).size.width * 1.2,
+        child: ListView(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            children: listSteps.map((step) {
+              var index = listSteps.indexOf(step);
+              return CardStepPostDetail(
+                  urlImage: step.imageUrl,
+                  step: index,
+                  description: step.description);
+            }).toList()),
+      );
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Text('No instruction yet.'),
+    );
   }
 }

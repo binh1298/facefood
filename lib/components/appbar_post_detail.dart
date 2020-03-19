@@ -41,7 +41,7 @@ class AppbarPostDetail extends StatelessWidget {
             ),
             AppbarPostDetailContent(
               postId: postId,
-              // category: category,
+              category: category,
               commentCount: commentCount,
               likeCount: likeCount,
               postname: postname,
