@@ -4,12 +4,13 @@ import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
 class CardUserDetailInfo extends StatelessWidget {
-  final String username;
+  final String username, avatarUrl;
   final int postCount, followerCount, followingCount;
 
   const CardUserDetailInfo({
     Key key,
     this.username,
+    this.avatarUrl,
     this.postCount,
     this.followerCount,
     this.followingCount,
@@ -31,11 +32,9 @@ class CardUserDetailInfo extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 3.75,
               height: MediaQuery.of(context).size.width / 3.75,
               child: CircleAvatar(
-                backgroundColor: Colors.black,
-                child: Icon(
-                  Icons.person,
-                  size: MediaQuery.of(context).size.width / 7,
-                ),
+                backgroundImage: (avatarUrl == null)
+                    ? NetworkImage(avatarUrl)
+                    : AssetImage('lib/assets/images/user-default-image.png'),
               ),
             ),
           ),
