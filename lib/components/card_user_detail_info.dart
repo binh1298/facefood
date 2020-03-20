@@ -28,11 +28,11 @@ class CardUserDetailInfo extends StatelessWidget {
               print('hihihi');
             }, // implement on tap
             child: Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
+              // NO PADDING HERE
               width: MediaQuery.of(context).size.width / 3.75,
               height: MediaQuery.of(context).size.width / 3.75,
               child: CircleAvatar(
-                backgroundImage: (avatarUrl == null)
+                backgroundImage: (avatarUrl != null)
                     ? NetworkImage(avatarUrl)
                     : AssetImage('lib/assets/images/user-default-image.png'),
               ),
