@@ -43,9 +43,11 @@ class AppbarPostDetailContent extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
-                  postname,
-                  style: textStyleHeadingDark,
+                Flexible(
+                  child: Text(
+                    postname,
+                    style: textStyleHeadingDark,
+                  ),
                 ),
               ],
             ),
@@ -55,7 +57,10 @@ class AppbarPostDetailContent extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(category, style: textStyleDarkBackground,),
+                Text(
+                  category,
+                  style: textStyleDarkBackground,
+                ),
                 IconTextComponent(
                   icon: Icons.timer,
                   text: timeNeeded.toString() + '\'',
