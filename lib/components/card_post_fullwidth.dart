@@ -50,19 +50,16 @@ class CardPostFullWidth extends StatelessWidget {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Text(
-                          postName,
-                          textAlign: TextAlign.left,
-                          style: textStyleTitleDarkBackground,
+                        Flexible(
+                          child: Text(
+                            postName,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left,
+                            style: textStyleTitleDarkBackground,
+                          ),
                         ),
                         SizedBox(
                           width: 5,
-                        ),
-                        IconTextComponent(
-                          icon: Icons.access_alarm,
-                          text: timeNeeded.toString() + '\'',
-                          style: textStyleDarkBackground,
-                          iconColor: colorOnDarkBackground,
                         ),
                       ],
                     ),
@@ -82,6 +79,16 @@ class CardPostFullWidth extends StatelessWidget {
                           text: commentCount.toString(),
                           style: textStyleDarkBackground,
                           iconColor: colorOnDarkBackground,
+                        ),
+                        Spacer(),
+                        IconTextComponent(
+                          icon: Icons.access_alarm,
+                          text: timeNeeded.toString() + '\'',
+                          style: textStyleDarkBackground,
+                          iconColor: colorOnDarkBackground,
+                        ),
+                        SizedBox(
+                          width: 40,
                         ),
                       ],
                     ),
