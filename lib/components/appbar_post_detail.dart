@@ -22,7 +22,7 @@ class AppbarPostDetail extends StatelessWidget {
       pinned: true,
       snap: false,
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(30), // set min height
+        preferredSize: Size.fromHeight(40), // set min height
         child: Text(''),
       ),
       backgroundColor: Colors.grey,
@@ -33,7 +33,7 @@ class AppbarPostDetail extends StatelessWidget {
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              height: 600,
+              height: 650,
               child: FittedBox(
                 child: Image.network(imageUrl),
                 fit: BoxFit.cover,

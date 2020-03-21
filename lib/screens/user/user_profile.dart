@@ -29,6 +29,7 @@ class _UserProfileState extends State<UserProfile> {
                     height: 10,
                   ),
                   CardUserDetailInfo(
+                    avatarUrl: snapshot.data.avatarUrl,
                     username: snapshot.data.username,
                     followerCount: snapshot.data.followerCount,
                     followingCount: snapshot.data.followingCount,
