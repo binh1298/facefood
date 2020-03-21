@@ -2,16 +2,11 @@ import 'package:facefood/components/appbar_post_detail.dart';
 import 'package:facefood/components/card_description_string.dart';
 import 'package:facefood/components/card_future_user_brief_fullwidth.dart';
 import 'package:facefood/components/future_like_button.dart';
-import 'package:facefood/components/like_post_button.dart';
 import 'package:facefood/components/list_future_comments.dart';
 import 'package:facefood/components/list_future_ingredient.dart';
 import 'package:facefood/components/list_of_steps.dart';
-import 'package:facefood/models/like.dart';
 import 'package:facefood/models/post_detail.dart';
-import 'package:facefood/models/user_details.dart';
 import 'package:facefood/style/style.dart';
-import 'package:facefood/utils/secure_storage.dart';
-import 'package:facefood/utils/snack_bar.dart';
 import 'package:flutter/material.dart';
 
 class PostDetailScreen extends StatefulWidget {
@@ -34,8 +29,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   Widget build(BuildContext context) {
     ScrollController _scrollController = ScrollController();
     FocusNode _focusNode = FocusNode();
-    bool isLiked;
-    LikePost likeCom = LikePost();
     return Scaffold(
         body: FutureBuilder<PostDetail>(
       future: postDetail,
@@ -55,7 +48,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               ),
               SliverList(
                   delegate: SliverChildListDelegate(<Widget>[
-                // TODO Duc part start here
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -90,7 +82,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     ),
                   ],
                 ),
-                // TODO Duc part end here
                 Divider(
                   indent: 20,
                   endIndent: 20,
