@@ -67,6 +67,17 @@ Future<List<Post>> fetchPromotionList() async {
     return null;
 }
 
+Future<List<Post>> fetchSearchList(String txtSearch, int type) async {
+  // fetch from explore route
+  final List typeString = ['category', 'name', 'ingredient'];
+  String txtType = typeString[type];
+  final http.Response response = await apiCaller.get(route: '/posts/search?type=$txtType&query=$txtSearch');
+  if (response.statusCode == 200) {
+    var postListJson = json.decode(response.body)['message'] as List;
+    return postListJson.map((post) => Post.fromJson(post)).toList();
+  } else
+    return null;
+}
 
 
 Future<List<Post>> fetchPopularPostsList() async {

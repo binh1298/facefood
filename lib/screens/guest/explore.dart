@@ -16,20 +16,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(50),
-          child: SafeArea( // for safety purpose
-            child: TabBar(
-                labelColor: colorPrimary,
-                indicatorColor: colorPrimary,
-                unselectedLabelColor: colorTextDefault,
-                tabs: [
-                  Tab(
-                    child: Text('Explore'),
-                  ),
-                  Tab(
-                    child: Text('Search'),
-                  ),
-                ]),
-          ),
+          child: TabBar(
+              labelColor: colorPrimary,
+              indicatorColor: colorPrimary,
+              unselectedLabelColor: colorTextDefault,
+              tabs: [
+                Tab(
+                  child: Text('Explore'),
+                ),
+                Tab(
+                  child: Text('Search'),
+                ),
+              ]),
         ),
         body: TabBarView(children: [
           TabExplore(),

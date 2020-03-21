@@ -122,6 +122,7 @@ class TabExplore extends StatelessWidget {
               );
           },
         ),
+        SizedBox(height: 30,), // safe spacing
       ],
     );
   }

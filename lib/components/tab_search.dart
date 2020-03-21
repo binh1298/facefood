@@ -1,107 +1,62 @@
-import 'package:facefood/components/text_form_field_rectangle.dart';
+import 'package:facefood/components/card_post_detail_half_size.dart';
+import 'package:facefood/components/form_search_post.dart';
+import 'package:facefood/models/post.dart';
 import 'package:flutter/material.dart';
 
 class TabSearch extends StatefulWidget {
-  const TabSearch({
-    Key key,
-  }) : super(key: key);
+  TabSearch({Key key}) : super(key: key);
 
   @override
   _TabSearchState createState() => _TabSearchState();
 }
 
 class _TabSearchState extends State<TabSearch> {
-  String _txtSearch;
-  int _type = 0;
+
+  Future<List<Post>> listData;
+  String search;
+  int type;
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        Form(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: TextFormFieldRectangle(
-                      hintText: 'Search anything',
-                      onChanged: (value) {
-                        setState(() {
-                          _txtSearch = value;
-                        });
-                      },
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () {
-                      print(_txtSearch);
-                      print(_type.toString());
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Flexible(
-                    child: Radio(
-                      value: 0,
-                      groupValue: _type,
-                      onChanged: (int value) {
-                        setState(() {
-                          _type = value;
-                        });
-                      },
-                    ),
-                  ),
-                  Flexible(
-                    child: Radio(
-                      value: 1,
-                      groupValue: _type,
-                      onChanged: (int value) {
-                        setState(() {
-                          _type = value;
-                        });
-                      },
-                    ),
-                  ),
-                  Flexible(
-                    child: Radio(
-                      value: 2,
-                      groupValue: _type,
-                      onChanged: (int value) {
-                        setState(() {
-                          _type = value;
-                        });
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  // make sure these have same length
-                  Text('  Recipe  '),
-                  Text(' Category '),
-                  Text('Ingredient'),
-                ],
-              ),
-              Divider(
-                indent: 50,
-                endIndent: 50,
-              ),
-            ],
-          ),
+        FormSearchPost(), //TODO change search + type state here;
+        FutureBuilder<List<Post>>(
+          future: fetchPromotionList(), // for demo only
+          //future: fetchSearchList(search, type), //TODO fetch real api here
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data.isNotEmpty) {
+                return Wrap(
+                  children: snapshot.data
+                      .map(
+                        (post) => CardPostDetailsHalfSize(
+                          postId: post.id,
+                          category: post.categoryName,
+                          name: post.postName,
+                          likeCount: post.likeCount,
+                          timeNeeded: post.timeNeeded,
+                          commentCount: post.commentCount,
+                          imageUrl: post.imageUrl,
+                        ),
+                      )
+                      .toList(),
+                );
+              } else
+                return Center(
+                  child: Text('No recipe found.'),
+                );
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            } else if (snapshot.connectionState == ConnectionState.done) {
+              return Text('Unable to fetch lastest post');
+            } else
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+          },
         ),
+        SizedBox(height: 30,),  // safe spacing
       ],
     );
   }

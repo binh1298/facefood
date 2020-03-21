@@ -1,5 +1,3 @@
-import 'package:facefood/components/icon_text.dart';
-import 'package:facefood/components/text_safe.dart';
 import 'package:flutter/material.dart';
 
 import '../style/style.dart';
@@ -54,15 +52,34 @@ class CardPostDetailsHalfSize extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(name, overflow: TextOverflow.ellipsis, style: textStyleHeading.copyWith(fontSize: 20),),
-                        Text(category, overflow: TextOverflow.ellipsis, style: textStyleDefault.copyWith(fontSize: 15),),
+                        Text(
+                          name,
+                          overflow: TextOverflow.ellipsis,
+                          style: textStyleHeading.copyWith(fontSize: 20),
+                        ),
+                        Text(
+                          category,
+                          overflow: TextOverflow.ellipsis,
+                          style: textStyleDefault.copyWith(fontSize: 20),
+                        ),
+                        SizedBox(height: 5,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            Text(likeCount.toString(), style: textStyleDefault,),
+                            Text('${timeNeeded.toString()}\'',
+                                style: textStyleDefault),
+                            Icon(Icons.timer),
+                            Spacer(),
+                            Text(
+                              likeCount.toString(),
+                              style: textStyleDefault,
+                            ),
                             Icon(Icons.favorite_border),
-                            SizedBox(width: 4,),
-                            Text(commentCount.toString(), style: textStyleDefault),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(commentCount.toString(),
+                                style: textStyleDefault),
                             Icon(Icons.chat_bubble_outline),
                           ],
                         )
