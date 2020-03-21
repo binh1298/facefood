@@ -1,19 +1,37 @@
 import 'package:facefood/components/card_comment.dart';
-import 'package:facefood/components/form_comment.dart';
+import 'package:facefood/components/text_form_field_rectangle.dart';
 import 'package:facefood/models/comment.dart';
 import 'package:facefood/style/style.dart';
+import 'package:facefood/utils/secure_storage.dart';
+import 'package:facefood/utils/snack_bar.dart';
 import 'package:flutter/material.dart';
 
 class ListFutureComments extends StatefulWidget {
   final int postID;
-
-  ListFutureComments({Key key, this.postID = 1}) : super(key: key);
+  final FocusNode focusNode;
+  ListFutureComments({
+    Key key,
+    this.focusNode,
+    this.postID = 1,
+  }) : super(key: key);
 
   @override
   _ListFutureCommentsState createState() => _ListFutureCommentsState();
 }
 
 class _ListFutureCommentsState extends State<ListFutureComments> {
+  final _comment = Comment();
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _controller = new TextEditingController();
+  Future<List<Comment>> comments;
+  @override
+  void initState() {
+    setState(() {
+      comments = fetchComment(widget.postID);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,9 +44,62 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
             style: textStyleHeadingPrimary,
           ),
         ),
-        FormComment(),
+        Builder(
+          builder: (context) => Form(
+              key: _formKey,
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: TextFormFieldRectangle(
+                      hintText: 'write some comments here ...',
+                      controller: _controller,
+                      focusNode: widget.focusNode,
+                      onSaved: (value) => {
+                        setState(() {
+                          _comment.content = value;
+                        })
+                      },
+                      validator: (value) {
+                        if (value.toString().isEmpty) {
+                          return 'Enter some Comments';
+                        } else
+                          return null;
+                      },
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.send),
+                    onPressed: () async {
+                      var loginUser = await getUserFromToken();
+                      if (loginUser == null) {
+                        showErrorSnackBar(context, 'Please login first !!');
+                      } else {
+                        final form = _formKey.currentState;
+                        if (form.validate()) {
+                          form.save();
+                          setState(() {
+                            _comment.postID = widget.postID;
+                          });
+                          bool success = await _comment.sendComment(
+                              context, loginUser.userId);
+                          if (success) {
+                            _controller.clear();
+                            setState(() {
+                              comments=fetchComment(widget.postID);
+                            });
+                          }
+                        }
+                      }
+                    },
+                  ),
+                ],
+              )),
+        ),
         FutureBuilder<List<Comment>>(
-          future: fetchComment(widget.postID),
+          future: comments,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data.isNotEmpty)

@@ -1,6 +1,7 @@
 import 'package:facefood/components/appbar_post_detail.dart';
 import 'package:facefood/components/card_description_string.dart';
 import 'package:facefood/components/card_future_user_brief_fullwidth.dart';
+import 'package:facefood/components/future_like_button.dart';
 import 'package:facefood/components/list_future_comments.dart';
 import 'package:facefood/components/list_future_ingredient.dart';
 import 'package:facefood/components/list_of_steps.dart';
@@ -18,12 +19,15 @@ class PostDetailScreen extends StatefulWidget {
 class _PostDetailScreenState extends State<PostDetailScreen> {
   @override
   Widget build(BuildContext context) {
+    ScrollController _scrollController = ScrollController();
+    FocusNode _focusNode = FocusNode();
     return Scaffold(
         body: FutureBuilder<PostDetail>(
       future: fetchPostDetail(widget.postId),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return CustomScrollView(
+            controller: _scrollController,
             slivers: <Widget>[
               AppbarPostDetail(
                 postId: widget.postId, // change to category
@@ -45,17 +49,22 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                       style: textStyleHeading.copyWith(
                           fontWeight: FontWeight.normal),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.favorite_border),
-                    ),
+                    LikeFutureButton(
+                        postId: snapshot.data.id), //snapshot.postId
                     Text(
                       snapshot.data.commentCount.toString(),
                       style: textStyleHeading.copyWith(
                           fontWeight: FontWeight.normal),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        FocusScope.of(context).requestFocus(_focusNode);
+                        _scrollController.animateTo(
+                          MediaQuery.of(context).size.height + 500,
+                          curve: Curves.easeInBack,
+                          duration: const Duration(milliseconds: 1000),
+                        );
+                      },
                       icon: Icon(Icons.comment),
                     ),
                   ],
@@ -115,6 +124,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                 ),
                 ListFutureComments(
                   postID: widget.postId,
+                  focusNode: _focusNode,
                 ),
                 SizedBox(
                   height: 40,

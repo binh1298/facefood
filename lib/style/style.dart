@@ -69,6 +69,7 @@ Color colorTextPrimary = Colors.white;
 Color colorOnWhiteBackground = Colors.black;
 Color colorOnDarkBackground = Colors.white;
 Color colorAppBar = Colors.white;
+Color colorLove = Colors.redAccent;
 //decoration
 
 BoxDecoration decorationRoundContainer = BoxDecoration(

@@ -69,7 +69,7 @@ class CardPostFullWidth extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         IconTextComponent(
-                          icon: Icons.thumb_up,
+                          icon: Icons.favorite,
                           text: likeCount.toString(),
                           style: textStyleDarkBackground,
                           iconColor: colorOnDarkBackground,

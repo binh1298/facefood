@@ -1,5 +1,4 @@
 import 'package:facefood/models/user_brief.dart';
-import 'package:facefood/models/user_details.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
