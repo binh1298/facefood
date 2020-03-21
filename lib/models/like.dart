@@ -37,19 +37,24 @@ class LikePost {
     return success;
   }
 
-  Future<LikePost> checkIfLikePost(int postId) async {
+  Future<bool> checkIfLikePost(int postId) async {
     var user = await getUserFromToken();
     String username = user.username;
+    
     String url = '/likes/status?username=$username&postId=$postId';
     final http.Response response = await apiCaller.get(
       route: url,
     );
-    print('thing : ' + json.decode(response.body)['message']);
-    print(response.statusCode);
+  
     if (response.statusCode == 200) {
-      return LikePost.fromJson(json.decode(response.body)['message']);
-    }else{
-      return null;
-    }
+      var message = json.decode(response.body)['message'];
+      if(message.toString() == "Like not exist!"){
+        return false;
+      }else{
+         LikePost likePost = LikePost.fromJson(json.decode(response.body)['message']);
+         return likePost.isLiked;
+      }
   }
+  return null;
+}
 }

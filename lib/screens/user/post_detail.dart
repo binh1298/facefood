@@ -2,11 +2,16 @@ import 'package:facefood/components/appbar_post_detail.dart';
 import 'package:facefood/components/card_description_string.dart';
 import 'package:facefood/components/card_future_user_brief_fullwidth.dart';
 import 'package:facefood/components/future_like_button.dart';
+import 'package:facefood/components/like_post_button.dart';
 import 'package:facefood/components/list_future_comments.dart';
 import 'package:facefood/components/list_future_ingredient.dart';
 import 'package:facefood/components/list_of_steps.dart';
+import 'package:facefood/models/like.dart';
 import 'package:facefood/models/post_detail.dart';
+import 'package:facefood/models/user_details.dart';
 import 'package:facefood/style/style.dart';
+import 'package:facefood/utils/secure_storage.dart';
+import 'package:facefood/utils/snack_bar.dart';
 import 'package:flutter/material.dart';
 
 class PostDetailScreen extends StatefulWidget {
@@ -17,13 +22,23 @@ class PostDetailScreen extends StatefulWidget {
 }
 
 class _PostDetailScreenState extends State<PostDetailScreen> {
+  Future<PostDetail> postDetail;
+  void initState() {
+    setState(() {
+      postDetail = fetchPostDetail(widget.postId);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     ScrollController _scrollController = ScrollController();
     FocusNode _focusNode = FocusNode();
+    bool isLiked;
+    LikePost likeCom = LikePost();
     return Scaffold(
         body: FutureBuilder<PostDetail>(
-      future: fetchPostDetail(widget.postId),
+      future: postDetail,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return CustomScrollView(
@@ -50,7 +65,13 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                           fontWeight: FontWeight.normal),
                     ),
                     LikeFutureButton(
-                        postId: snapshot.data.id), //snapshot.postId
+                      postId: snapshot.data.id,
+                      notifyParent: () {
+                        setState(() {
+                          postDetail = fetchPostDetail(widget.postId);
+                        });
+                      },
+                    ), //snapshot.postId
                     Text(
                       snapshot.data.commentCount.toString(),
                       style: textStyleHeading.copyWith(
@@ -61,7 +82,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                         FocusScope.of(context).requestFocus(_focusNode);
                         _scrollController.animateTo(
                           MediaQuery.of(context).size.height + 500,
-                          curve: Curves.easeInBack,
+                          curve: Curves.easeInOut,
                           duration: const Duration(milliseconds: 1000),
                         );
                       },
@@ -125,6 +146,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                 ListFutureComments(
                   postID: widget.postId,
                   focusNode: _focusNode,
+                  notifyParent:(){setState(() {
+                    postDetail = fetchPostDetail(widget.postId);
+                  });},
                 ),
                 SizedBox(
                   height: 40,

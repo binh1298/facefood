@@ -9,10 +9,12 @@ import 'package:flutter/material.dart';
 class ListFutureComments extends StatefulWidget {
   final int postID;
   final FocusNode focusNode;
+  final Function notifyParent;
   ListFutureComments({
     Key key,
     this.focusNode,
     this.postID = 1,
+    this.notifyParent,
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _controller = new TextEditingController();
   Future<List<Comment>> comments;
+
   @override
   void initState() {
     setState(() {
@@ -90,6 +93,7 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
                             setState(() {
                               comments=fetchComment(widget.postID);
                             });
+                            widget.notifyParent();
                           }
                         }
                       }
