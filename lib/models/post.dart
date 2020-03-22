@@ -69,7 +69,7 @@ Future<List<Post>> fetchPromotionList() async {
 
 Future<List<Post>> fetchSearchList(String txtSearch, int type) async {
   // fetch from explore route
-  final List typeString = ['category', 'name', 'ingredient'];
+  final List typeString = ['name', 'category', 'ingredient'];
   String txtType = typeString[type];
   final http.Response response = await apiCaller.get(route: '/posts/search?type=$txtType&query=$txtSearch');
   if (response.statusCode == 200) {

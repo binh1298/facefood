@@ -2,8 +2,9 @@ import 'package:facefood/components/text_form_field_rectangle.dart';
 import 'package:flutter/material.dart';
 
 class FormSearchPost extends StatefulWidget {
+  final Function changeParentState;
   const FormSearchPost({
-    Key key,
+    Key key, this.changeParentState,
   }) : super(key: key);
 
   @override
@@ -42,7 +43,7 @@ class _FormSearchPostState extends State<FormSearchPost> {
                   IconButton(
                     icon: Icon(Icons.search),
                     onPressed: () {
-                      //TODO add call function here
+                      widget.changeParentState(_txtSearch, _type);
                     },
                   ),
                 ],

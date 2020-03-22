@@ -11,19 +11,23 @@ class TabSearch extends StatefulWidget {
 }
 
 class _TabSearchState extends State<TabSearch> {
-
-  Future<List<Post>> listData;
-  String search;
-  int type;
+  String _search = '';
+  int _type = 0;
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        FormSearchPost(), //TODO change search + type state here;
+        FormSearchPost(
+          changeParentState: (String changeSearch, int changeType) {
+            setState(() {
+              _search = changeSearch;
+              _type = changeType;
+            });
+          },
+        ),
         FutureBuilder<List<Post>>(
-          future: fetchPromotionList(), // for demo only
-          //future: fetchSearchList(search, type), //TODO fetch real api here
+          future: fetchSearchList(_search, _type),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data.isNotEmpty) {
@@ -47,6 +51,11 @@ class _TabSearchState extends State<TabSearch> {
                   child: Text('No recipe found.'),
                 );
             } else if (snapshot.hasError) {
+              if (_search == '') {
+                return Center(
+                  child: Text('Find your favorite recipe!'),
+                );
+              }
               return Text(snapshot.error.toString());
             } else if (snapshot.connectionState == ConnectionState.done) {
               return Text('Unable to fetch lastest post');
@@ -56,7 +65,9 @@ class _TabSearchState extends State<TabSearch> {
               );
           },
         ),
-        SizedBox(height: 30,),  // safe spacing
+        SizedBox(
+          height: 30,
+        ), // safe spacing
       ],
     );
   }
