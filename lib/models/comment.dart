@@ -1,11 +1,15 @@
 import 'dart:convert';
+
 import 'package:facefood/utils/api_caller.dart';
+import 'package:facefood/utils/snack_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class Comment {
-  final String username, userID, content, avatarUrl;
-
-  Comment({this.avatarUrl, this.username, this.userID, this.content});
+  String username, userID, content, avatarUrl;
+  int postID;
+  Comment(
+      {this.avatarUrl, this.username, this.userID, this.content, this.postID});
 
   factory Comment.fromJson(dynamic json) {
     var comment = Comment(
@@ -16,11 +20,27 @@ class Comment {
     );
     return comment;
   }
+
+  sendComment(BuildContext context,String userId) async {
+    String url = '/comments/';
+    final http.Response response = await apiCaller.post(
+        route: url,
+        body: jsonEncode(<String, String>{
+          'postId': this.postID.toString(),
+          'userId': userId,
+          'content': this.content,
+        }));
+    int status = response.statusCode;
+    print('my status $status');
+    if (response.statusCode == 200) {
+      return true;
+    } else
+      showErrorSnackBar(context, 'Your Comment was not send!');
+    return false;
+  }
 }
 
 Future<List<Comment>> fetchComment(int postID) async {
-    print('print something here');
-
   final http.Response response =
       await apiCaller.get(route: '/comments/$postID');
   if (response.statusCode == 200) {

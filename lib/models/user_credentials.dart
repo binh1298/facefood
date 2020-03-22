@@ -1,10 +1,11 @@
 import 'dart:convert';
-import 'package:facefood/utils/api_routes.dart';
-import 'package:flutter/material.dart';
+
 import 'package:facefood/utils/api_caller.dart';
-import 'package:http/http.dart' as http;
+import 'package:facefood/utils/api_routes.dart';
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:facefood/utils/snack_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class UserTokenCredentials {
   String userId, username, roleName;
