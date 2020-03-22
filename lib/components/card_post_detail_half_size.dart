@@ -1,4 +1,3 @@
-import 'package:facefood/components/icon_text.dart';
 import 'package:flutter/material.dart';
 
 import '../style/style.dart';
@@ -13,9 +12,8 @@ class CardPostDetailsHalfSize extends StatelessWidget {
   final int likeCount;
   final int commentCount;
   const CardPostDetailsHalfSize(
-      {
-        this.postId,
-        this.name,
+      {this.postId,
+      this.name,
       this.imageUrl,
       this.urlPost,
       this.timeNeeded,
@@ -27,62 +25,67 @@ class CardPostDetailsHalfSize extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width / 2,
-      height: MediaQuery.of(context).size.width / 2,
+      height: MediaQuery.of(context).size.width / 1.7,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
         child: Card(
           elevation: 20,
           child: InkWell(
               onTap: () {
-                Navigator.pushNamed(context, '/viewPostDetails', arguments: postId);
+                Navigator.pushNamed(context, '/viewPostDetails',
+                    arguments: postId);
               },
-              child: Stack(
-                alignment: Alignment.bottomCenter,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.width / 3,
                     child: FittedBox(
                       child: Image.network(imageUrl),
                       fit: BoxFit.cover,
                     ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.all(4),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
-                        Container(
-                          color: colorBackgroundDark.withOpacity(0.75),
-                          padding: EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              IconTextComponent(
-                                icon: Icons.favorite,
-                                text: likeCount.toString(),
-                                style: textStyleDarkBackground,
-                                iconColor: colorOnDarkBackground,
-                              ),
-                              IconTextComponent(
-                                icon: Icons.chat_bubble_outline,
-                                text: commentCount.toString(),
-                                style: textStyleDarkBackground,
-                                iconColor: colorOnDarkBackground,
-                              ),
-                              IconTextComponent(
-                                icon: Icons.access_alarm,
-                                text: timeNeeded.toString() + "'",
-                                style: textStyleDarkBackground,
-                                iconColor: colorOnDarkBackground,
-                              ),
-                            ],
-                          ),
+                        Text(
+                          name,
+                          overflow: TextOverflow.ellipsis,
+                          style: textStyleHeading.copyWith(fontSize: 20),
                         ),
+                        Text(
+                          category,
+                          overflow: TextOverflow.ellipsis,
+                          style: textStyleDefault.copyWith(fontSize: 20),
+                        ),
+                        SizedBox(height: 5,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text('${timeNeeded.toString()}\'',
+                                style: textStyleDefault),
+                            Icon(Icons.timer),
+                            Spacer(),
+                            Text(
+                              likeCount.toString(),
+                              style: textStyleDefault,
+                            ),
+                            Icon(Icons.favorite_border),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Text(commentCount.toString(),
+                                style: textStyleDefault),
+                            Icon(Icons.chat_bubble_outline),
+                          ],
+                        )
                       ],
                     ),
-                  ),
+                  )
                 ],
               )),
         ),

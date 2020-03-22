@@ -4,11 +4,11 @@ import 'package:facefood/style/style.dart';
 class TextFormFieldRectangle extends StatelessWidget {
   final bool obscureText;
   final String hintText;
-  final Function onSaved, validator;
+  final Function onSaved, validator, onChanged;
   final FocusNode focusNode;
   final TextEditingController controller;
   TextFormFieldRectangle(
-      {this.hintText, this.obscureText = false, this.onSaved, this.validator,this.focusNode,this.controller});
+      {this.hintText, this.obscureText = false, this.onSaved, this.validator,this.focusNode,this.controller, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +31,7 @@ class TextFormFieldRectangle extends StatelessWidget {
       ),
       validator: validator,
       onSaved: onSaved,
+      onChanged: onChanged,
     );
   }
 }
