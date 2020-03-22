@@ -10,7 +10,8 @@ import 'like_post_button.dart';
 class LikeFutureButton extends StatefulWidget {
   final int postId;
   final Function notifyParent;
-  LikeFutureButton({Key key, this.postId = 1,this.notifyParent}) : super(key: key);
+  LikeFutureButton({Key key, this.postId = 1, this.notifyParent})
+      : super(key: key);
 
   @override
   _LikeFutureButtonState createState() => _LikeFutureButtonState();
@@ -50,7 +51,10 @@ class _LikeFutureButtonState extends State<LikeFutureButton> {
                     );
                   } else {
                     // chua co data
-                    return  CircularProgressIndicator();
+                    return LikePostButton(
+                      color: colorInactive,
+                      onPressed: () {},
+                    );
                   }
                 });
           } else {
