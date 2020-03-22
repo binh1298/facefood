@@ -8,9 +8,9 @@ import 'package:flutter/rendering.dart';
 import 'package:facefood/screens/guest/explore.dart';
 
 List<Destination> userDestinations = <Destination>[
-  Destination('Create Post', Icons.person, CreatePostScreen()),
+  Destination('Create Post', Icons.note_add, CreatePostScreen()),
   Destination('Profile', Icons.person, UserProfile(username: 'SpacePotato',)),
-  Destination('Explore', Icons.person, ExploreScreen()),
+  Destination('Explore', Icons.explore, ExploreScreen()),
 ];
 
 class UserHomeScreen extends StatefulWidget {

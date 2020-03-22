@@ -9,8 +9,8 @@ import 'package:facefood/screens/guest/explore.dart';
 
 List<Destination> guestDestination = <Destination>[
   Destination('Login', Icons.person, LoginScreen()),
-  Destination('Register', Icons.person, RegisterScreen()),
-  Destination('Explore', Icons.person, ExploreScreen()),
+  Destination('Register', Icons.person_add, RegisterScreen()),
+  Destination('Explore', Icons.explore, ExploreScreen()),
 ];
 
 class GuestHomeScreen extends StatefulWidget {
@@ -74,7 +74,7 @@ class _GuestHomeScreenState extends State<GuestHomeScreen>
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.person),
+          child: Icon(Icons.explore),
           onPressed: () {
             setState(() {
               _currentIndex = 2;
