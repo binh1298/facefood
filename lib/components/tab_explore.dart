@@ -101,7 +101,7 @@ class TabExplore extends StatelessWidget {
                       .map(
                         (post) => CardPostDetailsHalfSize(
                           postId: post.id,
-                          category: post.categoryId.toString(),
+                          category: post.categoryName,
                           name: post.postName,
                           likeCount: post.likeCount,
                           timeNeeded: post.timeNeeded,
