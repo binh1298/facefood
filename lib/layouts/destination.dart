@@ -29,6 +29,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
         Widget body;
         switch (settings.name) {
           case '/':
+            title = widget.destination.title;
             body = widget.destination.component;
             break;
           case '/viewPostDetails':
@@ -42,32 +43,35 @@ class _DestinationLayoutState extends State<DestinationLayout> {
         return MaterialPageRoute(
           settings: settings,
           builder: (BuildContext context) {
-            return Scaffold(
-              appBar: title == 'View Post Details'
-                  ? null
-                  : AppBar(
-                      backgroundColor: colorAppBar,
-                      title: Text(
-                        settings.name == '/' ? widget.destination.title : title,
-                        style: textStyleHeading,
-                      ),
-                      iconTheme: IconThemeData(color: Colors.black),
-                      elevation: 0,
-                      actions: widget.destination.title == 'Profile'
-                          ? <Widget>[
-                              IconButton(
-                                icon: Icon(
-                                  Icons.send,
-                                  color: Colors.black,
+            print('hahahah $title');
+            return SafeArea(
+              child: Scaffold(
+                appBar: (title == 'View Post Details' || title == 'Explore')
+                    ? null
+                    : AppBar(
+                        backgroundColor: colorAppBar,
+                        title: Text(
+                          title,
+                          style: textStyleHeading,
+                        ),
+                        iconTheme: IconThemeData(color: Colors.black),
+                        elevation: 0,
+                        actions: widget.destination.title == 'Profile'
+                            ? <Widget>[
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.send,
+                                    color: Colors.black,
+                                  ),
+                                  onPressed: () {
+                                    logout(context);
+                                  },
                                 ),
-                                onPressed: () {
-                                  logout(context);
-                                },
-                              ),
-                            ]
-                          : null,
-                    ),
-              body: body,
+                              ]
+                            : null,
+                      ),
+                body: body,
+              ),
             );
           },
         );

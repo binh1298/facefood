@@ -22,10 +22,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
               unselectedLabelColor: colorTextDefault,
               tabs: [
                 Tab(
-                  child: Text('Explore'),
+                  child: Text('Explore', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                 ),
                 Tab(
-                  child: Text('Search'),
+                  child: Text('Search', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 ),
               ]),
         ),
