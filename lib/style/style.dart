@@ -89,3 +89,11 @@ BoxDecoration boxDecorationDefault = BoxDecoration(
 // Textbox Width
 const double textboxWidthMedium = 220.0;
 const double textboxWidthLarge = 280.0;
+
+
+/// icon
+const iconLogin = Icon(Icons.person);
+const iconRegister = Icon(Icons.person_add);
+const iconCreatePost = Icon(Icons.note_add);
+const iconProfile = Icon(Icons.person);
+const iconExplore = Icon(Icons.whatshot);

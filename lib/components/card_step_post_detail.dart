@@ -20,9 +20,9 @@ class CardStepPostDetail extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
-              blurRadius: 15,
-              offset: Offset(3, 3),
-              color: Colors.black.withOpacity(0.7)),
+              blurRadius: 5,
+              offset: Offset(0, 3),
+              color: Colors.black.withOpacity(0.5)),
         ]),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
