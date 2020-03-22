@@ -27,7 +27,7 @@ dependencies:
   firebase_storage: ^3.0.3
   # Check that you have this dependency (added in the previous step)
   firebase_core: ^0.4.0+9
-
+  shared_preferences: ^0.5.6+3
   # Add the dependency for the FlutterFire plugin for Google Analytics
   firebase_analytics: ^5.0.2
 dev_dependencies:
