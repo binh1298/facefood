@@ -22,7 +22,7 @@ class AppbarPostDetail extends StatelessWidget {
       pinned: true,
       snap: false,
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(40), // set min height
+        preferredSize: Size.fromHeight(60), // set min height
         child: Text(''),
       ),
       backgroundColor: Colors.grey,

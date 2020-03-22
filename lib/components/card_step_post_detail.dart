@@ -16,51 +16,51 @@ class CardStepPostDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: boxDecorationDefault,
-      margin: EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width * 0.75,
-            height: MediaQuery.of(context).size.width * 0.6,
-            child: FittedBox(
-              child: Image.network(urlImage),
-              fit: BoxFit.cover,
-            ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Expanded(
-            child: Container(
-              color: colorBackground,
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              width: MediaQuery.of(context).size.width * 0.75,
-              height: MediaQuery.of(context).size.width * 0.5,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Step ${step + 1} ',
-                      style: textStyleSubtitleBold,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    description,
-                    style: textStyleDefault,
-                    overflow: TextOverflow.fade,
-                  ),
-                ],
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      child: Container(
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+              blurRadius: 15,
+              offset: Offset(3, 3),
+              color: Colors.black.withOpacity(0.7)),
+        ]),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Column(
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width * 0.75,
+                height: MediaQuery.of(context).size.width * 0.6,
+                child: FittedBox(
+                  child: Image.network(urlImage),
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
+              Expanded(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.75,
+                  color: Colors.white,
+                  child: Column(children: <Widget>[
+                    SizedBox(height: 5,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Text('Step ${(step + 1).toString()}', style: textStyleTitle,),
+                        SizedBox(width: 20,),
+                      ],
+                    ),
+                    SizedBox(height: 5,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(description, style: textStyleDefault, overflow: TextOverflow.fade,),
+                    ),
+                  ],)
+                  ),
+                ),
+              
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

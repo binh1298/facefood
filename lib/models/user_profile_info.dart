@@ -52,3 +52,12 @@ Future<UserProfileInfo> fetchCurrentUserProfileInfo() async {
   } else
     return null;
 }
+
+Future<UserProfileInfo> fetchOtherUserProfile(String username) async {
+  final http.Response response = await apiCaller.get(route: '/users/$username');
+  if (response.statusCode == 200) {
+    var userDetailsJson = json.decode(response.body)['message'];
+    return UserProfileInfo.fromJson(userDetailsJson);
+  } else
+    return null;
+}
