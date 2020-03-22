@@ -60,7 +60,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
                             ? <Widget>[
                                 IconButton(
                                   icon: Icon(
-                                    Icons.send,
+                                    Icons.exit_to_app,
                                     color: Colors.black,
                                   ),
                                   onPressed: () {
