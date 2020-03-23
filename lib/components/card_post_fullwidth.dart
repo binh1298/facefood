@@ -38,7 +38,7 @@ class CardPostFullWidth extends StatelessWidget {
                 height: MediaQuery.of(context).size.width * 0.7,
                 child: FittedBox(
                   child: Image.network(imageUrl),
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
               ),
               Container(
