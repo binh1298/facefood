@@ -1,7 +1,9 @@
 import 'package:facefood/components/button_confirm_component.dart';
+import 'package:facefood/components/button_with_icon.dart';
 import 'package:facefood/components/image_upload_component.dart';
 import 'package:facefood/components/text_from_field_rectangle_with_title.dart';
 import 'package:facefood/models/post.dart';
+import 'package:facefood/style/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +29,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       TextFormFieldRectangleWithTitle(
                         hintText: 'Post name',
                         titleText: 'Name:',
@@ -43,7 +47,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       TextFormFieldRectangleWithTitle(
                         hintText: 'Time in minute',
                         titleText: 'Time Needed: ',
@@ -60,7 +66,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       TextFormFieldRectangleWithTitle(
                         hintText: 'Category of the dish.',
                         titleText: 'Category:',
@@ -76,8 +84,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         //   return '';
                         // },
                       ),
-                      SizedBox(height: 10,),
-                      ImageUploadComponent('posts',_post),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      ImageUploadComponent('posts', _post),
                       TextFormFieldRectangleWithTitle(
                         maxLine: null,
                         hintText: 'Describe your dish...',
@@ -94,7 +104,41 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
+
+                      TextFormFieldRectangleWithTitle(
+                        maxLine: null,
+                        hintText: 'Describe step here...',
+                        titleText: 'Step 1: ',
+                        onSaved: (description) {
+                          setState(() {
+                            _post.description = description;
+                          });
+                        },
+                        validator: (description) {
+                          if (description.isEmpty) {
+                            return 'Please enter description';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      ImageUploadComponent('posts', _post),
+                      ButtonWithIcon(
+                        onPressed: () {},
+                        label: 'Add new Step',
+                        icon: Icon(
+                          Icons.add,
+                          color: colorOnDarkBackground,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       ButtonConfirmComponent(
                         onPressed: () async {
                           final form = _formkey.currentState;
@@ -108,7 +152,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         },
                         text: 'Create a Post',
                       ),
-                      SizedBox(height: 50,), // avoid overlap with navbar
+                      SizedBox(
+                        height: 50,
+                      ), // avoid overlap with navbar
                     ],
                   )))
         ]),
