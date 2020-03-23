@@ -155,7 +155,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                             }
                           }
                         },
-                        text: 'Create a Post',
+                        text: 'Create Post',
                       ),
                       SizedBox(
                         height: 50,
