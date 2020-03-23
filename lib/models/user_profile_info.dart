@@ -37,7 +37,7 @@ class UserProfileInfo {
       commentCount: json['commentCount'] as int,
       followerCount: json['followerCount'] as int,
       followingCount: json['followingCount'] as int,
-      totalPosts: List<Post>.from(json['totalPosts']['rows'].map((x) => Post.fromJson(x))),
+      totalPosts: List<Post>.from(json['posts'].map((x) => Post.fromJson(x))),
     );
   }
 }
