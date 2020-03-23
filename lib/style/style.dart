@@ -60,7 +60,9 @@ TextStyle textStyleDarkBackground = textStyleDefault.copyWith(
 
 // Color
 Color colorTextDefault = Colors.black;
-Color colorPrimary = Color(0xFFE02E2E);
+//Color colorPrimary = Color(0xFFE02E2E);
+Color colorPrimary = Color(0xFFC78FFF);
+
 Color colorBackground = Colors.white;
 Color colorBackgroundDark = Colors.black;
 Color colorInactive = Colors.grey;
