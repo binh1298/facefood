@@ -36,7 +36,7 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
                     child: Text(_image == null ? "Add image" : "Update Image",
                         style: TextStyle(color: Colors.white)),
                     onPressed: () => chooseFile(),
-                    color: Colors.red,
+                    color: colorPrimary,
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 0)),
               ),
               Container(
@@ -46,7 +46,7 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
                     child: Text('Delete image',
                         style: TextStyle(color: Colors.white)),
                     onPressed: _image != null ? () => deleteFile() : null,
-                    color: Colors.red,
+                    color: colorPrimary,
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 0)),
               )
             ],
