@@ -28,16 +28,6 @@ class _UserProfileState extends State<UserProfile> {
                   SizedBox(
                     height: 10,
                   ),
-                  CardUserDetailInfo(
-                    avatarUrl: snapshot.data.avatarUrl,
-                    username: snapshot.data.username,
-                    followerCount: snapshot.data.followerCount,
-                    followingCount: snapshot.data.followingCount,
-                    postCount: snapshot.data.postCount,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
                   // ButtonFullWidth(
                   //   label: 'Follow',
                   //   onPressed: () {},
@@ -45,8 +35,10 @@ class _UserProfileState extends State<UserProfile> {
                   SizedBox(
                     height: 10,
                   ),
+                  Divider(),
                   ListViewPost(
                     listPost: snapshot.data.totalPosts,
+                    userProfileInfoInfo: snapshot.data,
                   ),
                 ],
               );
