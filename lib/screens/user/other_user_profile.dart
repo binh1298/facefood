@@ -50,6 +50,8 @@ class _OtherUserProfileState extends State<OtherUserProfile> {
                   ),
                   ListViewPost(
                     listPost: snapshot.data.totalPosts,
+                    userProfileInfoInfo: snapshot.data,
+                    isCurrentUser: false,
                   ),
                 ],
               );
