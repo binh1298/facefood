@@ -6,18 +6,18 @@ import 'package:flutter/material.dart';
 
 //TODO this is for viewing others profile
 
-class UserProfile extends StatefulWidget {
+class OtherUserProfile extends StatefulWidget {
   final String username;
   final bool isCurrentUser; 
 
-  const UserProfile({Key key, this.username, this.isCurrentUser = false})
+  const OtherUserProfile({Key key, this.username, this.isCurrentUser = false})
       : super(key: key);
 
   @override
-  _UserProfileState createState() => _UserProfileState();
+  _OtherUserProfileState createState() => _OtherUserProfileState();
 }
 
-class _UserProfileState extends State<UserProfile> {
+class _OtherUserProfileState extends State<OtherUserProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
