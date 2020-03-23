@@ -51,7 +51,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
           builder: (BuildContext context) {
             return SafeArea(
               child: Scaffold(
-                appBar: (title == 'View Post Details' || title == 'Explore')
+                appBar: (title == 'View Post Details' || title == 'View User Details' || title == 'Explore')
                     ? null
                     : AppBar(
                         backgroundColor: colorAppBar,
