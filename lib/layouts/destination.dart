@@ -1,5 +1,6 @@
 import 'package:facefood/classes/view_navigation_observer.dart';
 import 'package:facefood/screens/guest/explore.dart';
+import 'package:facefood/screens/user/other_user_profile.dart';
 import 'package:facefood/screens/user/post_detail.dart';
 import 'package:facefood/style/style.dart';
 import 'package:facefood/utils/authorization.dart';
@@ -36,6 +37,11 @@ class _DestinationLayoutState extends State<DestinationLayout> {
             title = 'View Post Details';
             body = PostDetailScreen(postId: settings.arguments);
             break;
+          case '/viewUserDetails':
+            title = 'View User Details';
+            body = OtherUserProfile(username: settings.arguments);
+            break;
+
           default:
             body = ExploreScreen();
             break;
@@ -43,10 +49,9 @@ class _DestinationLayoutState extends State<DestinationLayout> {
         return MaterialPageRoute(
           settings: settings,
           builder: (BuildContext context) {
-            print('hahahah $title');
             return SafeArea(
               child: Scaffold(
-                appBar: (title == 'View Post Details' || title == 'Explore')
+                appBar: (title == 'View Post Details' || title == 'View User Details' || title == 'Explore')
                     ? null
                     : AppBar(
                         backgroundColor: colorAppBar,

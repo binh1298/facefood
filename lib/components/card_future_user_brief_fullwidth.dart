@@ -1,4 +1,5 @@
 import 'package:facefood/models/user_brief.dart';
+import 'package:facefood/models/user_profile_info.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +12,8 @@ class CardFutureUserBriefFullwidth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<UserBrief>(
-      future: fetchUserBrief(username),
+    return FutureBuilder<UserProfileInfo>(
+      future: fetchOtherUserProfile(username),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Padding(
@@ -35,19 +36,24 @@ class CardFutureUserBriefFullwidth extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      snapshot.data.fullname,
-                      style: textStyleTitle,
-                    ),
-                    Text(
-                      '@${snapshot.data.username}',
-                      style: textStyleSubtitle,
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/viewUserDetails', arguments: username);
+                  },
+                                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        snapshot.data.fullname,
+                        style: textStyleTitle,
+                      ),
+                      Text(
+                        '@${snapshot.data.username}',
+                        style: textStyleSubtitle,
+                      ),
+                    ],
+                  ),
                 ),
                 Divider(
                   indent: 5,

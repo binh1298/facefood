@@ -8,11 +8,12 @@ import 'package:flutter/material.dart';
 class ListViewPost extends StatelessWidget {
   final List<Post> listPost;
   final UserProfileInfo userProfileInfoInfo;
-
+  final bool isCurrentUser;
   const ListViewPost({
     Key key,
     this.listPost,
     this.userProfileInfoInfo,
+    this.isCurrentUser = true
   }) : super(key: key);
 
   @override
@@ -22,13 +23,13 @@ class ListViewPost extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
           children: <Widget>[
-            CardUserDetailInfo(
+            isCurrentUser ? CardUserDetailInfo(
               avatarUrl: userProfileInfoInfo.avatarUrl,
               username: userProfileInfoInfo.username,
               followerCount: userProfileInfoInfo.followerCount,
               followingCount: userProfileInfoInfo.followingCount,
               postCount: userProfileInfoInfo.postCount,
-            ),
+            ) : SizedBox(height: 0,),
             Divider(),
             SizedBox(
               height: 20,

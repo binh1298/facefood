@@ -107,7 +107,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       SizedBox(
                         height: 20,
                       ),
-
+                      Divider(
+                        color: Colors.black,
+                      ),
                       TextFormFieldRectangleWithTitle(
                         maxLine: null,
                         hintText: 'Describe step here...',
@@ -136,6 +138,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           color: colorOnDarkBackground,
                         ),
                       ),
+                       Divider(
+                        color: Colors.black,
+                      ),
                       SizedBox(
                         height: 20,
                       ),
@@ -150,7 +155,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                             }
                           }
                         },
-                        text: 'Create a Post',
+                        text: 'Create Post',
                       ),
                       SizedBox(
                         height: 50,
