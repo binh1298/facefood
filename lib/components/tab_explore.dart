@@ -47,7 +47,7 @@ class TabExplore extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextSafeComponent(
-            text: 'Promotion: 20% Off This Week!',
+            text: 'Meals of the day',
             style: textStyleTitle,
           ),
         ),
