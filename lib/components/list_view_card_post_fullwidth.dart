@@ -54,6 +54,7 @@ class ListViewPost extends StatelessWidget {
               color: colorPrimary,
               child: Text('Load more'),
             ),
+            SizedBox(height: 30,),
           ],
         ),
       );
