@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -42,6 +44,20 @@ class ApiCaller {
       },
       body: body,
     );
+  }
+
+  put({String route, dynamic body}) async {
+    String token = await getJwtToken();
+    http.Response response = await http.put(
+      '$apiUrl$route',
+      headers: <String, String>{
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+      },
+      body: body,
+    );
+    // print('PUT $uri ${response.body}');
+    return response;
   }
 }
 
