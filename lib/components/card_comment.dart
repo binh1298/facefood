@@ -49,14 +49,14 @@ class CardComment extends StatelessWidget {
                 itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                   PopupMenuItem(
                       child: InkWell(
-                    child: isReported?Text('unreport user'):Text('Report user'),
+                    child: isReported?Text('Unreport user'):Text('Report user'),
                     onTap: () async {
                       bool success = await reportComment(commentId);
                       if (success) {
-                        showInfoSnackBar(context, isReported?'unreport success':'report success');
+                        showInfoSnackBar(context, isReported?'Unreport success':'Report success');
                         fetchComments();
                       } else {
-                        showErrorSnackBar(context, isReported?'unreport fail':'report fail');
+                        showErrorSnackBar(context, isReported?'Unreport fail':'Report fail');
                       }
                     },
                   )),
@@ -67,14 +67,14 @@ class CardComment extends StatelessWidget {
                         ? () async {
                             bool success = await removeComment(commentId);
                             if (success) {
-                              showInfoSnackBar(context,'remove success');
+                              showInfoSnackBar(context,'Remove success');
                               fetchComments();
                             } else {
-                              showErrorSnackBar(context,'remove fail');
+                              showErrorSnackBar(context,'Remove fail');
                             }
                           }
                         : () {
-                            showErrorSnackBar(context, 'can\'t remove comment');
+                            showErrorSnackBar(context, 'Can\'t remove comment');
                           }, //TODO Binh giup vs
                   )),
                 ],
