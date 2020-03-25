@@ -61,7 +61,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
                         ),
                         iconTheme: IconThemeData(color: Colors.black),
                         elevation: 0,
-                        actions: widget.destination.title == 'Profile'
+                        actions: title == 'Profile'
                             ? <Widget>[
                                 IconButton(
                                   icon: Icon(
