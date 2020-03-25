@@ -117,12 +117,20 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
                         return Column(
                             children: snapshot.data
                                 .map<Widget>((comment) => CardComment(
+                                      isReported: comment.isReported,
                                       postOwner: widget.postOwner,
                                       loginUser: snapshot2.data.username,
                                       commentId: comment.commentId,
                                       avatarUrl: comment.avatarUrl,
                                       content: comment.content,
                                       username: comment.username,
+                                      fetchComments: () {
+                                        setState(() {
+                                          comments =
+                                              fetchComment(widget.postID);
+                                        });
+                                        widget.notifyParent();
+                                      },
                                     ))
                                 .toList());
                       } else

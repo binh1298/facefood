@@ -8,11 +8,13 @@ import 'package:http/http.dart' as http;
 class Comment {
   String username, userID, content, avatarUrl;
   int postID,commentId;
+  bool isReported;
   Comment(
-      {this.avatarUrl, this.username, this.userID, this.content, this.postID,this.commentId});
+      {this.avatarUrl, this.username, this.userID, this.content, this.postID,this.commentId,this.isReported});
 
   factory Comment.fromJson(dynamic json) {
     var comment = Comment(
+      isReported: json['isReported'] as bool,
       commentId:json['id'] as int,
       username: json['username'] as String,
       userID: json['userId'] as String,
@@ -53,7 +55,7 @@ Future<List<Comment>> fetchComment(int postID) async {
 
 Future<bool> removeComment(int commentId) async {
   final http.Response response =
-      await apiCaller.get(route: '/comments/$commentId/remove');
+      await apiCaller.put(route: '/comments/$commentId/delete');
   if (response.statusCode == 200) {
     return true;
   } else
@@ -61,7 +63,7 @@ Future<bool> removeComment(int commentId) async {
 }
 Future<bool> reportComment(int commentId) async {
   final http.Response response =
-      await apiCaller.get(route: '/comments/$commentId/report');
+      await apiCaller.put(route: '/comments/$commentId/report');
   if (response.statusCode == 200) {
     return true;
   } else
