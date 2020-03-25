@@ -1,13 +1,19 @@
+import 'package:facefood/models/comment.dart';
 import 'package:facefood/style/style.dart';
+import 'package:facefood/utils/snack_bar.dart';
 import 'package:flutter/material.dart';
 
 class CardComment extends StatelessWidget {
-  final String content, username, avatarUrl;
+  final String content, username, avatarUrl,loginUser,postOwner;
+  final int commentId;
   const CardComment({
     Key key,
     this.content,
+    this.loginUser,
+    this.commentId,
     this.username,
     this.avatarUrl,
+    this.postOwner,
   }) : super(key: key);
 
   @override
@@ -40,10 +46,26 @@ class CardComment extends StatelessWidget {
                   PopupMenuItem(
                       child: InkWell(
                     child: Text('Report user'),
+                    onTap: () async {
+                        bool success = await reportComment(commentId);
+                        if(success){
+                          showInfoSnackBar(context, 'report success');
+                        }else{
+                          showErrorSnackBar(context, 'report fail');
+                        }
+                    },
                   )),
                   PopupMenuItem(
                       child: InkWell(
                     child: Text('Remove comment'),
+                    onTap:loginUser==postOwner?()async{
+                      bool success =await removeComment(commentId);
+                         if(success){
+                          showInfoSnackBar(context, 'remove success');
+                        }else{
+                          showErrorSnackBar(context, 'remove fail');
+                        }
+                    }:(){showErrorSnackBar(context, 'can\'t delete comment');},//TODO Binh giup vs
                   )),
                 ],
               ),
