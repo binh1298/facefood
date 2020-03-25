@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:facefood/utils/secure_storage.dart';
@@ -14,8 +13,8 @@ class ApiCaller {
     return http.post(
       '$apiUrl$route',
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token',
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
       },
       body: body,
     );
@@ -27,20 +26,20 @@ class ApiCaller {
     return http.get(
       '$apiUrl$route',
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token',
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
       },
     );
   }
-  
+
   patch({String route, dynamic body}) async {
     print('PATCH $apiUrl$route');
     String token = await getJwtToken();
     return http.patch(
       '$apiUrl$route',
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token',
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
       },
       body: body,
     );
