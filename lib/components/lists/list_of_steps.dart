@@ -1,4 +1,4 @@
-import 'package:facefood/components/card_step_post_detail.dart';
+import 'package:facefood/components/cards/card_step_post_detail.dart';
 import 'package:facefood/models/post_step.dart';
 import 'package:flutter/material.dart';
 

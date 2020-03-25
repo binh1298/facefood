@@ -1,5 +1,5 @@
-import 'package:facefood/components/button_confirm_component.dart';
-import 'package:facefood/components/text_form_field_rectangle.dart';
+import 'package:facefood/components/buttons/button_confirm_component.dart';
+import 'package:facefood/components/text_form_fields/text_form_field_rectangle.dart';
 import 'package:facefood/models/user_register.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';

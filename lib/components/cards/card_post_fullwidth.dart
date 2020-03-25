@@ -1,7 +1,6 @@
 import 'package:facefood/components/icon_text.dart';
+import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
-
-import '../style/style.dart';
 
 class CardPostFullWidth extends StatelessWidget {
   final String postName;

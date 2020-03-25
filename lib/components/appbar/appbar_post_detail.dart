@@ -1,4 +1,4 @@
-import 'package:facefood/components/appbar_post_detail_content.dart';
+import 'package:facefood/components/appbar/appbar_post_detail_content.dart';
 import 'package:flutter/material.dart';
 
 class AppbarPostDetail extends StatelessWidget {

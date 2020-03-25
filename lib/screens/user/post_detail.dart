@@ -1,10 +1,10 @@
-import 'package:facefood/components/appbar_post_detail.dart';
-import 'package:facefood/components/card_description_string.dart';
-import 'package:facefood/components/card_future_user_brief_fullwidth.dart';
+import 'package:facefood/components/appbar/appbar_post_detail.dart';
+import 'package:facefood/components/cards/card_description_string.dart';
+import 'package:facefood/components/cards/card_future_user_brief_fullwidth.dart';
 import 'package:facefood/components/future_like_button.dart';
-import 'package:facefood/components/list_future_comments.dart';
-import 'package:facefood/components/list_future_ingredient.dart';
-import 'package:facefood/components/list_of_steps.dart';
+import 'package:facefood/components/lists/list_of_steps.dart';
+import 'package:facefood/components/lists/list_future_comments.dart';
+import 'package:facefood/components/lists/list_future_ingredient.dart';
 import 'package:facefood/models/post_detail.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';

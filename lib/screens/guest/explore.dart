@@ -1,5 +1,5 @@
-import 'package:facefood/components/tab_explore.dart';
-import 'package:facefood/components/tab_search.dart';
+import 'package:facefood/components/tabs/tab_explore.dart';
+import 'package:facefood/components/tabs/tab_search.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 

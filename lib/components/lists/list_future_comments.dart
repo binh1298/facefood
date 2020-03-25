@@ -1,5 +1,5 @@
-import 'package:facefood/components/card_comment.dart';
-import 'package:facefood/components/text_form_field_rectangle.dart';
+import 'package:facefood/components/cards/card_comment.dart';
+import 'package:facefood/components/text_form_fields/text_form_field_rectangle.dart';
 import 'package:facefood/models/comment.dart';
 import 'package:facefood/models/user_details.dart';
 import 'package:facefood/style/style.dart';

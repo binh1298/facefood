@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:facefood/style/style.dart';
 
-import '../style/style.dart';
-
 class ButtonFullWidth extends StatelessWidget {
   final String label;
   final Function onPressed;

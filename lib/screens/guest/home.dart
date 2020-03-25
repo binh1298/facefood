@@ -1,5 +1,5 @@
 import 'package:facefood/classes/destination.dart';
-import 'package:facefood/components/button_navigation.dart';
+import 'package:facefood/components/buttons/button_navigation.dart';
 import 'package:facefood/layouts/destination.dart';
 import 'package:facefood/screens/guest/login.dart';
 import 'package:facefood/screens/guest/register.dart';

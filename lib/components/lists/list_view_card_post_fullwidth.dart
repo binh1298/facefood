@@ -1,5 +1,5 @@
-import 'package:facefood/components/card_post_fullwidth.dart';
-import 'package:facefood/components/card_user_detail_info.dart';
+import 'package:facefood/components/cards/card_post_fullwidth.dart';
+import 'package:facefood/components/cards/card_user_detail_info.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/models/user_profile_info.dart';
 import 'package:facefood/style/style.dart';

@@ -1,7 +1,7 @@
-import 'package:facefood/components/button_confirm_component.dart';
-import 'package:facefood/components/button_with_icon.dart';
+import 'package:facefood/components/buttons/button_confirm_component.dart';
+import 'package:facefood/components/buttons/button_with_icon.dart';
 import 'package:facefood/components/image_upload_component.dart';
-import 'package:facefood/components/text_from_field_rectangle_with_title.dart';
+import 'package:facefood/components/text_form_fields/text_from_field_rectangle_with_title.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/cupertino.dart';

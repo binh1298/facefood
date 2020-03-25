@@ -1,5 +1,5 @@
-import 'package:facefood/components/card_post_detail_half_size.dart';
-import 'package:facefood/components/form_search_post.dart';
+import 'package:facefood/components/cards/card_post_detail_half_size.dart';
+import 'package:facefood/components/forms/form_search_post.dart';
 import 'package:facefood/models/post.dart';
 import 'package:flutter/material.dart';
 

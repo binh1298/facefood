@@ -1,6 +1,5 @@
+import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
-
-import '../style/style.dart';
 
 class CardPostDetailsHalfSize extends StatelessWidget {
   final int postId;
