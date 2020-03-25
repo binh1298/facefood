@@ -112,14 +112,13 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
               if (snapshot.data.isNotEmpty)
                 return FutureBuilder<UserDetails>(
                     future: getUserFromToken(),
-                    builder: (context, snapshot2) {
-                      if (snapshot2.hasData) {
+                    builder: (context, snapshotUser) {
                         return Column(
                             children: snapshot.data
                                 .map<Widget>((comment) => CardComment(
                                       isReported: comment.isReported,
                                       postOwner: widget.postOwner,
-                                      loginUser: snapshot2.data.username,
+                                      loginUser: snapshotUser.hasData?snapshotUser.data.username:null,
                                       commentId: comment.commentId,
                                       avatarUrl: comment.avatarUrl,
                                       content: comment.content,
@@ -133,10 +132,7 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
                                       },
                                     ))
                                 .toList());
-                      } else
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
+                      
                     });
               else
                 return Center(child: Text('no comment yet.'));
