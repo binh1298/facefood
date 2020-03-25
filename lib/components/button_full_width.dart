@@ -19,7 +19,7 @@ class ButtonFullWidth extends StatelessWidget {
         color: colorPrimary,
         onPressed:onPressed,
         child: Text(label,
-        style: textStyleButtonPrimary,),
+        style: textStyleButtonPrimary.copyWith(color: Colors.white),),
       ),
     );
   }

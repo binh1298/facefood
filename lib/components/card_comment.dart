@@ -33,6 +33,20 @@ class CardComment extends StatelessWidget {
                   style: textStyleTitle,
                 ),
               ),
+              Spacer(),
+              PopupMenuButton(
+                icon: Icon(Icons.more_vert),
+                itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                  PopupMenuItem(
+                      child: InkWell(
+                    child: Text('Report user'),
+                  )),
+                  PopupMenuItem(
+                      child: InkWell(
+                    child: Text('Remove comment'),
+                  )),
+                ],
+              ),
             ],
           ),
           Row(
