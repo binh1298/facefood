@@ -1,6 +1,7 @@
 import 'package:facefood/components/card_comment.dart';
 import 'package:facefood/components/text_form_field_rectangle.dart';
 import 'package:facefood/models/comment.dart';
+import 'package:facefood/models/user_details.dart';
 import 'package:facefood/style/style.dart';
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:facefood/utils/snack_bar.dart';
@@ -10,11 +11,13 @@ class ListFutureComments extends StatefulWidget {
   final int postID;
   final FocusNode focusNode;
   final Function notifyParent;
+  final String postOwner;
   ListFutureComments({
     Key key,
     this.focusNode,
     this.postID = 1,
     this.notifyParent,
+    this.postOwner,
   }) : super(key: key);
 
   @override
@@ -91,7 +94,7 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
                           if (success) {
                             _controller.clear();
                             setState(() {
-                              comments=fetchComment(widget.postID);
+                              comments = fetchComment(widget.postID);
                             });
                             widget.notifyParent();
                           }
@@ -107,14 +110,34 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data.isNotEmpty)
-                return Column(
-                    children: snapshot.data
-                        .map<Widget>((comment) => CardComment(
-                              avatarUrl: comment.avatarUrl,
-                              content: comment.content,
-                              username: comment.username,
-                            ))
-                        .toList());
+                return FutureBuilder<UserDetails>(
+                    future: getUserFromToken(),
+                    builder: (context, snapshot2) {
+                      if (snapshot2.hasData) {
+                        return Column(
+                            children: snapshot.data
+                                .map<Widget>((comment) => CardComment(
+                                      isReported: comment.isReported,
+                                      postOwner: widget.postOwner,
+                                      loginUser: snapshot2.data.username,
+                                      commentId: comment.commentId,
+                                      avatarUrl: comment.avatarUrl,
+                                      content: comment.content,
+                                      username: comment.username,
+                                      fetchComments: () {
+                                        setState(() {
+                                          comments =
+                                              fetchComment(widget.postID);
+                                        });
+                                        widget.notifyParent();
+                                      },
+                                    ))
+                                .toList());
+                      } else
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                    });
               else
                 return Center(child: Text('no comment yet.'));
             } else if (snapshot.hasError) {

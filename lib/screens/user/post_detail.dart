@@ -135,6 +135,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   endIndent: 20,
                 ),
                 ListFutureComments(
+                  postOwner: snapshot.data.username,
                   postID: widget.postId,
                   focusNode: _focusNode,
                   notifyParent:(){setState(() {
