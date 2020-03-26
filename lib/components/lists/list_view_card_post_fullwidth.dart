@@ -49,12 +49,12 @@ class ListViewPost extends StatelessWidget {
                   )
                   .toList(),
             ),
-            RaisedButton(
-              onPressed: () {},
-              textColor: colorTextPrimary,
-              color: colorPrimary,
-              child: Text('Load more'),
-            ),
+            // RaisedButton(
+            //   onPressed: () {},
+            //   textColor: colorTextPrimary,
+            //   color: colorPrimary,
+            //   child: Text('Load more'),
+            // ),
             SizedBox(height: 30,),
           ],
         ),
