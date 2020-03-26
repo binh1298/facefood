@@ -1,4 +1,3 @@
-import 'package:facefood/classes/view_navigation_observer.dart';
 import 'package:facefood/screens/not_found_screen.dart';
 import 'package:facefood/screens/user/other_user_profile.dart';
 import 'package:facefood/screens/user/post_detail.dart';
@@ -7,9 +6,8 @@ import '../classes/destination.dart';
 
 class DestinationLayout extends StatefulWidget {
   final Destination destination;
-  final VoidCallback onNavigation;
 
-  DestinationLayout({Key key, this.destination, this.onNavigation})
+  DestinationLayout({Key key, this.destination})
       : super(key: key);
 
   @override
@@ -20,9 +18,6 @@ class _DestinationLayoutState extends State<DestinationLayout> {
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      observers: <NavigatorObserver>[
-        ViewNavigatorObserver(widget.onNavigation),
-      ],
       onGenerateRoute: (RouteSettings settings) {
         Widget body;
         switch (settings.name) {
