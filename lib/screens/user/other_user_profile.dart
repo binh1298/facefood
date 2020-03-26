@@ -1,10 +1,7 @@
-import 'package:facefood/components/buttons/button_full_width.dart';
 import 'package:facefood/models/user_profile_info.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:facefood/components/lists/list_view_card_post_fullwidth.dart';
-//TODO this is for viewing others profile
-
 class OtherUserProfile extends StatefulWidget {
   final String username;
 

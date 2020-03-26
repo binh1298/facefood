@@ -1,4 +1,3 @@
-import 'package:facefood/models/user_brief.dart';
 import 'package:facefood/models/user_profile_info.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
