@@ -36,9 +36,7 @@ class ListViewPost extends StatelessWidget {
                         label: 'Follow',
                         onPressed: () {},
                       )
-                    : SizedBox(
-                        height: 0,
-                      );
+                    : null;
               },
             ),
             Divider(),
