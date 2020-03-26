@@ -1,9 +1,7 @@
 import 'package:facefood/classes/view_navigation_observer.dart';
-import 'package:facefood/screens/guest/explore.dart';
+import 'package:facefood/screens/not_found_screen.dart';
 import 'package:facefood/screens/user/other_user_profile.dart';
 import 'package:facefood/screens/user/post_detail.dart';
-import 'package:facefood/style/style.dart';
-import 'package:facefood/utils/authorization.dart';
 import 'package:flutter/material.dart';
 import '../classes/destination.dart';
 
@@ -19,7 +17,6 @@ class DestinationLayout extends StatefulWidget {
 }
 
 class _DestinationLayoutState extends State<DestinationLayout> {
-  String title = '';
   @override
   Widget build(BuildContext context) {
     return Navigator(
@@ -30,20 +27,17 @@ class _DestinationLayoutState extends State<DestinationLayout> {
         Widget body;
         switch (settings.name) {
           case '/':
-            title = widget.destination.title;
             body = widget.destination.component;
             break;
           case '/viewPostDetails':
-            title = 'View Post Details';
             body = PostDetailScreen(postId: settings.arguments);
             break;
           case '/viewUserDetails':
-            title = 'View User Details';
             body = OtherUserProfile(username: settings.arguments);
             break;
 
           default:
-            body = ExploreScreen();
+            body = NotFoundScreen();
             break;
         }
         return MaterialPageRoute(
@@ -51,30 +45,6 @@ class _DestinationLayoutState extends State<DestinationLayout> {
           builder: (BuildContext context) {
             return SafeArea(
               child: Scaffold(
-                appBar: (title == 'View Post Details' || title == 'View User Details' || title == 'Explore')
-                    ? null
-                    : AppBar(
-                        backgroundColor: colorAppBar,
-                        title: Text(
-                          title,
-                          style: textStyleHeading,
-                        ),
-                        iconTheme: IconThemeData(color: Colors.black),
-                        elevation: 0,
-                        actions: title == 'Profile'
-                            ? <Widget>[
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.exit_to_app,
-                                    color: Colors.black,
-                                  ),
-                                  onPressed: () {
-                                    logout(context);
-                                  },
-                                ),
-                              ]
-                            : null,
-                      ),
                 body: body,
               ),
             );
