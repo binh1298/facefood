@@ -49,34 +49,35 @@ class CardComment extends StatelessWidget {
                 itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                   PopupMenuItem(
                       child: InkWell(
-                    child: isReported?Text('Unreport user'):Text('Report user'),
+                    child: isReported
+                        ? Text('Unreport user')
+                        : Text('Report user'),
                     onTap: () async {
                       bool success = await reportComment(commentId);
                       if (success) {
-                        showInfoSnackBar(context, isReported?'Unreport success':'Report success');
+                        showInfoSnackBar(context,
+                            isReported ? 'Unreport success' : 'Report success');
                         fetchComments();
                       } else {
-                        showErrorSnackBar(context, isReported?'Unreport fail':'Report fail');
+                        showErrorSnackBar(context,
+                            isReported ? 'Unreport fail' : 'Report fail');
                       }
                     },
                   )),
-                  PopupMenuItem(
-                      child: InkWell(
-                    child: Text('Remove comment'),
-                    onTap: loginUser == postOwner
-                        ? () async {
-                            bool success = await removeComment(commentId);
-                            if (success) {
-                              showInfoSnackBar(context,'Remove success');
-                              fetchComments();
-                            } else {
-                              showErrorSnackBar(context,'Remove fail');
-                            }
-                          }
-                        : () {
-                            showErrorSnackBar(context, 'Can\'t remove comment');
-                          }, //TODO Binh giup vs
-                  )),
+                  (loginUser == postOwner)
+                      ? PopupMenuItem(
+                          child: InkWell(
+                              child: Text('Remove comment'),
+                              onTap: () async {
+                                bool success = await removeComment(commentId);
+                                if (success) {
+                                  showInfoSnackBar(context, 'Remove success');
+                                  fetchComments();
+                                } else {
+                                  showErrorSnackBar(context, 'Remove fail');
+                                }
+                              }))
+                      : null,
                 ],
               ),
             ],
