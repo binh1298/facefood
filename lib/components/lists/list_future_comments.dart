@@ -111,33 +111,28 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
             if (snapshot.hasData) {
               if (snapshot.data.isNotEmpty)
                 return FutureBuilder<UserDetails>(
-                    future: getUserFromToken(),
-                    builder: (context, snapshot2) {
-                      if (snapshot2.hasData) {
-                        return Column(
-                            children: snapshot.data
-                                .map<Widget>((comment) => CardComment(
-                                      isReported: comment.isReported,
-                                      postOwner: widget.postOwner,
-                                      loginUser: snapshot2.data.username,
-                                      commentId: comment.commentId,
-                                      avatarUrl: comment.avatarUrl,
-                                      content: comment.content,
-                                      username: comment.username,
-                                      fetchComments: () {
-                                        setState(() {
-                                          comments =
-                                              fetchComment(widget.postID);
-                                        });
-                                        widget.notifyParent();
-                                      },
-                                    ))
-                                .toList());
-                      } else
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                    });
+                  future: getUserFromToken(),
+                  builder: (context, snapshotUser) {
+                    return Column(
+                        children: snapshot.data
+                            .map<Widget>((comment) => CardComment(
+                                  isReported: comment.isReported,
+                                  postOwner: widget.postOwner,
+                                  loginUser: snapshotUser.data?.username,
+                                  commentId: comment.commentId,
+                                  avatarUrl: comment.avatarUrl,
+                                  content: comment.content,
+                                  username: comment.username,
+                                  fetchComments: () {
+                                    setState(() {
+                                      comments = fetchComment(widget.postID);
+                                    });
+                                    widget.notifyParent();
+                                  },
+                                ))
+                            .toList());
+                  },
+                );
               else
                 return Center(child: Text('no comment yet.'));
             } else if (snapshot.hasError) {
