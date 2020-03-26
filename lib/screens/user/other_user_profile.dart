@@ -7,9 +7,8 @@ import 'package:facefood/components/lists/list_view_card_post_fullwidth.dart';
 
 class OtherUserProfile extends StatefulWidget {
   final String username;
-  final bool isCurrentUser; 
 
-  const OtherUserProfile({Key key, this.username, this.isCurrentUser = false})
+  const OtherUserProfile({Key key, this.username})
       : super(key: key);
 
   @override
@@ -39,7 +38,6 @@ class _OtherUserProfileState extends State<OtherUserProfile> {
                   ListViewPost(
                     listPost: snapshot.data.totalPosts,
                     userProfileInfoInfo: snapshot.data,
-                    isCurrentUser: false,
                   ),
                 ],
               );

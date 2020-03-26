@@ -1,4 +1,3 @@
-import 'package:facefood/components/cards/card_user_detail_info.dart';
 import 'package:facefood/models/user_profile_info.dart';
 import 'package:facefood/components/lists/list_view_card_post_fullwidth.dart';
 import 'package:facefood/style/style.dart';
@@ -7,9 +6,8 @@ import 'package:flutter/material.dart';
 
 class UserProfile extends StatefulWidget {
   final String username;
-  final bool isCurrentUser; //TODO: if true, hide following button
 
-  const UserProfile({Key key, this.username, this.isCurrentUser = false})
+  const UserProfile({Key key, this.username})
       : super(key: key);
 
   @override
@@ -46,17 +44,6 @@ class _UserProfileState extends State<UserProfile> {
           if (snapshot.hasData) {
             return ListView(
               children: <Widget>[
-                SizedBox(
-                  height: 10,
-                ),
-                CardUserDetailInfo(
-                  avatarUrl: snapshot.data.avatarUrl,
-                  username: snapshot.data.username,
-                  followerCount: snapshot.data.followerCount,
-                  followingCount: snapshot.data.followingCount,
-                  postCount: snapshot.data.postCount,
-                ),
-                Divider(),
                 ListViewPost(
                   listPost: snapshot.data.totalPosts,
                   userProfileInfoInfo: snapshot.data,

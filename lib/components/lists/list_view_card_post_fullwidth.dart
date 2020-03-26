@@ -2,18 +2,15 @@ import 'package:facefood/components/buttons/button_full_width.dart';
 import 'package:facefood/components/cards/card_post_fullwidth.dart';
 import 'package:facefood/components/cards/card_user_detail_info.dart';
 import 'package:facefood/models/post.dart';
+import 'package:facefood/models/user_details.dart';
 import 'package:facefood/models/user_profile_info.dart';
+import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 
 class ListViewPost extends StatelessWidget {
   final List<Post> listPost;
   final UserProfileInfo userProfileInfoInfo;
-  final bool isCurrentUser;
-  const ListViewPost(
-      {Key key,
-      this.listPost,
-      this.userProfileInfoInfo,
-      this.isCurrentUser = true})
+  const ListViewPost({Key key, this.listPost, this.userProfileInfoInfo})
       : super(key: key);
 
   @override
@@ -30,14 +27,20 @@ class ListViewPost extends StatelessWidget {
               followingCount: userProfileInfoInfo.followingCount,
               postCount: userProfileInfoInfo.postCount,
             ),
-            isCurrentUser
-                ? SizedBox(
-                    height: 0,
-                  )
-                : ButtonFullWidth(
-                    label: 'Follow',
-                    onPressed: () {},
-                  ),
+            FutureBuilder<UserDetails>(
+              future: getUserFromToken(),
+              builder: (context, snapshotUserDetails) {
+                return (snapshotUserDetails.data.username !=
+                        userProfileInfoInfo.username)
+                    ? ButtonFullWidth(
+                        label: 'Follow',
+                        onPressed: () {},
+                      )
+                    : SizedBox(
+                        height: 0,
+                      );
+              },
+            ),
             Divider(),
             SizedBox(
               height: 20,
