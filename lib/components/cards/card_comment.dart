@@ -37,7 +37,10 @@ class CardComment extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 8 + 10,
               ),
               InkWell(
-                onTap: () {}, // TODO add routing here
+                onTap: () {
+                  Navigator.pushNamed(context, '/viewUserDetails',
+                      arguments: username);
+                },
                 child: Text(
                   username,
                   style: textStyleTitle,
@@ -48,22 +51,19 @@ class CardComment extends StatelessWidget {
                 icon: Icon(Icons.more_vert),
                 itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                   PopupMenuItem(
-                      child: InkWell(
-                    child: isReported
-                        ? Text('Unreport user')
-                        : Text('Report user'),
-                    onTap: () async {
-                      bool success = await reportComment(commentId);
-                      if (success) {
-                        showInfoSnackBar(context,
-                            isReported ? 'Unreport success' : 'Report success');
-                        fetchComments();
-                      } else {
-                        showErrorSnackBar(context,
-                            isReported ? 'Unreport fail' : 'Report fail');
-                      }
-                    },
-                  )),
+                    child: InkWell(
+                      child: Text('Report comment'),
+                      onTap: () async {
+                        bool success = await reportComment(commentId);
+                        if (success) {
+                          showInfoSnackBar(context, 'Report success');
+                          fetchComments();
+                        } else {
+                          showErrorSnackBar(context, 'Report fail');
+                        }
+                      },
+                    ),
+                  ),
                   (loginUser == postOwner)
                       ? PopupMenuItem(
                           child: InkWell(
