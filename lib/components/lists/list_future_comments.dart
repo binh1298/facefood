@@ -60,7 +60,7 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
                   ),
                   Expanded(
                     child: TextFormFieldRectangle(
-                      hintText: 'write some comments here ...',
+                      hintText: 'Write a comment',
                       controller: _controller,
                       focusNode: widget.focusNode,
                       onSaved: (value) => {
@@ -70,7 +70,7 @@ class _ListFutureCommentsState extends State<ListFutureComments> {
                       },
                       validator: (value) {
                         if (value.toString().isEmpty) {
-                          return 'Enter some Comments';
+                          return 'Enter some comment';
                         } else
                           return null;
                       },
