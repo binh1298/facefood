@@ -19,6 +19,15 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: colorAppBar,
+        title: Text(
+          'Create Post',
+          style: textStyleHeading,
+        ),
+        iconTheme: IconThemeData(color: Colors.black),
+        elevation: 0,
+      ),
       body: Container(
         child: ListView(children: <Widget>[
           Form(
