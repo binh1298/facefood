@@ -30,13 +30,15 @@ class ListViewPost extends StatelessWidget {
             FutureBuilder<UserDetails>(
               future: getUserFromToken(),
               builder: (context, snapshotUserDetails) {
-                return (snapshotUserDetails.data.username !=
-                        userProfileInfoInfo.username)
-                    ? ButtonFullWidth(
-                        label: 'Follow',
-                        onPressed: () {},
-                      )
-                    : null;
+                if (snapshotUserDetails.hasData) {
+                  return (snapshotUserDetails.data?.username !=
+                          userProfileInfoInfo.username)
+                      ? ButtonFullWidth(
+                          label: 'Follow',
+                          onPressed: () {},
+                        )
+                      : null;
+                } return SizedBox(height: 0,);
               },
             ),
             Divider(),
