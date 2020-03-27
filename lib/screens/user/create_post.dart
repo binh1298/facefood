@@ -3,6 +3,7 @@ import 'package:facefood/components/buttons/button_with_icon.dart';
 import 'package:facefood/components/image_upload_component.dart';
 import 'package:facefood/components/text_form_fields/text_from_field_rectangle_with_title.dart';
 import 'package:facefood/models/post.dart';
+import 'package:facefood/models/post_step.dart';
 import 'package:facefood/style/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,12 @@ class CreatePostScreen extends StatefulWidget {
 class _CreatePostScreenState extends State<CreatePostScreen> {
   final _formkey = GlobalKey<FormState>();
   final _post = Post();
+
+  @override
+  void initState() {
+    super.initState();
+    _post.steps = List<PostStep>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +103,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       SizedBox(
                         height: 10,
                       ),
-                      ImageUploadComponent('posts', _post),
+                      ImageUploadComponent('posts', (imageUrl) {
+                        setState(() {
+                          _post.imageUrl = imageUrl;
+                        });
+                      }),
                       TextFormFieldRectangleWithTitle(
                         maxLine: null,
                         hintText: 'Describe your dish...',
@@ -113,41 +124,79 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           return null;
                         },
                       ),
-                      SizedBox(
-                        height: 20,
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: _post.steps.length,
+                        physics: ClampingScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: <Widget>[
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Divider(
+                                color: Colors.black,
+                              ),
+                              TextFormFieldRectangleWithTitle(
+                                maxLine: null,
+                                hintText: 'Describe step here...',
+                                titleText: 'Step ${index + 1}: ',
+                                onSaved: (value) {
+                                  setState(() {
+                                    _post.steps[index].description = value;
+                                  });
+                                },
+                                validator: (description) {
+                                  if (description.isEmpty) {
+                                    return 'Please enter description';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              ImageUploadComponent('posts', (imageUrl) {
+                                setState(() {
+                                  _post.steps[index].imageUrl = imageUrl;
+                                });
+                              }),
+                            ],
+                          );
+                        },
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          ButtonWithIcon(
+                            onPressed: () {
+                              PostStep postStep = PostStep();
+                              setState(() {
+                                _post.steps.add(postStep);
+                              });
+                            },
+                            label: 'Add new Step',
+                            icon: Icon(
+                              Icons.add,
+                              color: colorOnDarkBackground,
+                            ),
+                          ),
+                          if (_post.steps.length > 0)
+                            ButtonWithIcon(
+                              onPressed: () {
+                                setState(() {
+                                  _post.steps.removeLast();
+                                });
+                              },
+                              label: 'Remove step',
+                              icon: Icon(
+                                Icons.remove,
+                                color: colorOnDarkBackground,
+                              ),
+                            ),
+                        ],
                       ),
                       Divider(
-                        color: Colors.black,
-                      ),
-                      TextFormFieldRectangleWithTitle(
-                        maxLine: null,
-                        hintText: 'Describe step here...',
-                        titleText: 'Step 1: ',
-                        onSaved: (description) {
-                          setState(() {
-                            _post.description = description;
-                          });
-                        },
-                        validator: (description) {
-                          if (description.isEmpty) {
-                            return 'Please enter description';
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      ImageUploadComponent('posts', _post),
-                      ButtonWithIcon(
-                        onPressed: () {},
-                        label: 'Add new Step',
-                        icon: Icon(
-                          Icons.add,
-                          color: colorOnDarkBackground,
-                        ),
-                      ),
-                       Divider(
                         color: Colors.black,
                       ),
                       SizedBox(

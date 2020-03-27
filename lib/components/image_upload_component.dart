@@ -8,10 +8,10 @@ import 'package:flutter/painting.dart';
 
 class ImageUploadComponent extends StatefulWidget {
   final String location;
-  final Post _post;
+  final Function onSuccess;
 
   @override
-  ImageUploadComponent(this.location, this._post);
+  ImageUploadComponent(this.location, this.onSuccess);
 
   _ImageUploadComponentState createState() => _ImageUploadComponentState();
 }
@@ -94,7 +94,7 @@ class _ImageUploadComponentState extends State<ImageUploadComponent> {
     storageReference.getDownloadURL().then((fileURL) {
       setState(() {
         _uploadedFileURL = fileURL;
-        widget._post.imageUrl = _uploadedFileURL;
+        widget.onSuccess(_uploadedFileURL);
       });
     });
   }

@@ -26,7 +26,8 @@ class Post {
       this.timeNeeded,
       this.updatedAt,
       this.imageUrl,
-      this.stepCount});
+      this.stepCount,
+      this.steps,});
   factory Post.fromJson(dynamic json) {
     return Post(
       id: json['id'] as int,
