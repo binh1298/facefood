@@ -49,11 +49,6 @@ class MyApp extends StatelessWidget {
               else
                 return GuestHomeScreen();
             }),
-
-        // '/register': (context) => RegisterScreen(),
-        // '/userProfile': (context) => UserProfile(),
-        // '/postDetail': (context) => PostDetailScreen(),
-        // '/create_post': (context) => CreatePostScreen(),
       },
     );
   }
