@@ -1,9 +1,6 @@
 import 'package:facefood/components/buttons/button_confirm_component.dart';
-import 'package:facefood/components/buttons/button_full_width.dart';
 import 'package:facefood/components/buttons/button_with_icon.dart';
 import 'package:facefood/components/columns/column_image_updator.dart';
-import 'package:facefood/components/image_post_safe.dart';
-import 'package:facefood/components/image_upload_component.dart';
 import 'package:facefood/components/text_form_fields/text_from_field_rectangle_with_title.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/models/post_step.dart';
@@ -83,6 +80,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           if (value.isEmpty) {
                             return 'Please enter time needed!';
                           }
+                          if (int.tryParse(value) == null)
+                            return 'Please enter a valid time';
                           return null;
                         },
                       ),
@@ -97,23 +96,16 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                             _post.categoryName = category;
                           });
                         },
-                        // validator: (value) {
-                        //   if (value.isEmpty) {
-                        //     return 'Please enter time needed!';
-                        //   }
-                        //   return '';
-                        // },
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter category name!';
+                          }
+                          return null;
+                        },
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      // ImageUploadComponent('posts', (imageUrl) {
-                      //   print('gagaga');
-                      //   setState(() {
-                      //     _post.imageUrl = imageUrl;
-                      //     print(_post.imageUrl);
-                      //   });
-                      // }),
                       ColumnImageUpdator((imageUrl) {
                         setState(() {
                           _post.imageUrl = imageUrl;
@@ -135,6 +127,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           return null;
                         },
                       ),
+
+                      Divider(
+                        color: Colors.black,
+                      ),
+
                       ListView.builder(
                         shrinkWrap: true,
                         itemCount: _post.steps.length,
@@ -215,19 +212,32 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         height: 20,
                       ),
                       ButtonConfirmComponent(
+                        text: 'Create Post',
                         onPressed: () async {
                           final form = _formkey.currentState;
-                          if (form.validate()) {
-                            form.save();
+                          if (!form.validate()) return;
+                          if (_post.imageUrl == null) {
+                            showErrorSnackBar(context, 'Post must have images');
+                            return;
+                          }
+                          if(_post.steps.any((step) => step.imageUrl == null)){
+                            showErrorSnackBar(context, 'Post must have images');
+                            return;
+                          }
+                          
+                          form.save();
 
-                            bool success = await _post.createPost();
-                            if (success) {
-                              showInfoSnackBar(
-                                  context, 'Create Post Successfully!');
-                            }
+                          if (_post.steps.length <= 0) {
+                            showErrorSnackBar(context, 'Post must have steps');
+                            return;
+                          }
+
+                          bool success = await _post.createPost();
+                          if (success) {
+                            showInfoSnackBar(
+                                context, 'Create Post Successfully!');
                           }
                         },
-                        text: 'Create Post',
                       ),
                       SizedBox(
                         height: 50,
