@@ -21,7 +21,6 @@ class UserHomeScreen extends StatefulWidget {
 class _UserHomeScreenState extends State<UserHomeScreen>
     with TickerProviderStateMixin {
   int _currentIndex = 2;
-  AnimationController _hide;
 
   @override
   Widget build(BuildContext context) {
