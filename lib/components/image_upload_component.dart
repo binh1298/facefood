@@ -1,4 +1,3 @@
-import 'package:facefood/models/post.dart';
 import 'package:facefood/style/style.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
