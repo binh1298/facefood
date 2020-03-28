@@ -1,3 +1,4 @@
+import 'package:facefood/components/update_image_component.dart';
 import 'package:facefood/screens/not_found_screen.dart';
 import 'package:facefood/screens/user/other_user_profile.dart';
 import 'package:facefood/screens/user/post_detail.dart';
@@ -7,8 +8,7 @@ import '../classes/destination.dart';
 class DestinationLayout extends StatefulWidget {
   final Destination destination;
 
-  DestinationLayout({Key key, this.destination})
-      : super(key: key);
+  DestinationLayout({Key key, this.destination}) : super(key: key);
 
   @override
   _DestinationLayoutState createState() => _DestinationLayoutState();
@@ -30,7 +30,9 @@ class _DestinationLayoutState extends State<DestinationLayout> {
           case '/viewUserDetails':
             body = OtherUserProfile(username: settings.arguments);
             break;
-
+          case '/updateImage':
+            body = UpdateImageComponent();
+            break;
           default:
             body = NotFoundScreen();
             break;

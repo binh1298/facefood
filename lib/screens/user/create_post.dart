@@ -1,10 +1,14 @@
 import 'package:facefood/components/buttons/button_confirm_component.dart';
+import 'package:facefood/components/buttons/button_full_width.dart';
 import 'package:facefood/components/buttons/button_with_icon.dart';
+import 'package:facefood/components/columns/column_image_updator.dart';
+import 'package:facefood/components/image_post_safe.dart';
 import 'package:facefood/components/image_upload_component.dart';
 import 'package:facefood/components/text_form_fields/text_from_field_rectangle_with_title.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/models/post_step.dart';
 import 'package:facefood/style/style.dart';
+import 'package:facefood/utils/snack_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -72,7 +76,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         inputType: TextInputType.number,
                         onSaved: (timeNeeded) {
                           setState(() {
-                            _post.timeNeeded = timeNeeded;
+                            _post.timeNeeded = int.tryParse(timeNeeded);
                           });
                         },
                         validator: (value) {
@@ -90,7 +94,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         titleText: 'Category:',
                         onSaved: (category) {
                           setState(() {
-                            _post.categoryId = category;
+                            _post.categoryName = category;
                           });
                         },
                         // validator: (value) {
@@ -103,7 +107,14 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       SizedBox(
                         height: 10,
                       ),
-                      ImageUploadComponent('posts', (imageUrl) {
+                      // ImageUploadComponent('posts', (imageUrl) {
+                      //   print('gagaga');
+                      //   setState(() {
+                      //     _post.imageUrl = imageUrl;
+                      //     print(_post.imageUrl);
+                      //   });
+                      // }),
+                      ColumnImageUpdator((imageUrl) {
                         setState(() {
                           _post.imageUrl = imageUrl;
                         });
@@ -129,6 +140,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         itemCount: _post.steps.length,
                         physics: ClampingScrollPhysics(),
                         itemBuilder: (BuildContext context, int index) {
+                          _post.steps[index].stepCount = index + 1;
                           return Column(
                             children: <Widget>[
                               SizedBox(
@@ -156,7 +168,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                               SizedBox(
                                 height: 20,
                               ),
-                              ImageUploadComponent('posts', (imageUrl) {
+                              ColumnImageUpdator((imageUrl) {
                                 setState(() {
                                   _post.steps[index].imageUrl = imageUrl;
                                 });
@@ -207,9 +219,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           final form = _formkey.currentState;
                           if (form.validate()) {
                             form.save();
-                            bool success = true;
+
+                            bool success = await _post.createPost();
                             if (success) {
-                              Navigator.pushNamed(context, '/create_post');
+                              showInfoSnackBar(
+                                  context, 'Create Post Successfully!');
                             }
                           }
                         },
