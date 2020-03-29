@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class Ingredient {
   String ingredientName, unitName;
-  int value;
+  int value, id;
 
   Ingredient({this.ingredientName, this.unitName, this.value});
 
@@ -16,6 +16,12 @@ class Ingredient {
     );
     return ingredient;
   }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "ingredientName": ingredientName,
+        "unitName": unitName,
+        "value": value,
+      };
 }
 
 Future<List<Ingredient>> fetchListIngredient(int postID) async {
