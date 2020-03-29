@@ -59,10 +59,11 @@ class Post {
     final http.Response response = await apiCaller.post(
       route: '/posts',
       body: jsonEncode(
-        <String, String>{
+        <String, dynamic>{
           'postName': postName,
           'description': description,
           'categoryName': categoryName,
+          'timeNeeded': timeNeeded,
           'imageUrl': imageUrl,
           'steps': jsonEncode(stepsString),
           'userId': user.userId,
