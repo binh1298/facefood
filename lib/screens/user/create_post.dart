@@ -1,7 +1,10 @@
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:facefood/components/buttons/button_confirm_component.dart';
 import 'package:facefood/components/buttons/button_with_icon.dart';
 import 'package:facefood/components/columns/column_image_updator.dart';
+import 'package:facefood/components/rows/row_ingredient_form_field.dart';
 import 'package:facefood/components/text_form_fields/text_from_field_rectangle_with_title.dart';
+import 'package:facefood/models/category.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/models/post_step.dart';
 import 'package:facefood/style/style.dart';
@@ -17,7 +20,9 @@ class CreatePostScreen extends StatefulWidget {
 class _CreatePostScreenState extends State<CreatePostScreen> {
   final _formkey = GlobalKey<FormState>();
   final _post = Post();
-
+  String currentText = "";
+  GlobalKey<AutoCompleteTextFieldState<String>> autoCompleteFieldKey =
+      GlobalKey();
   @override
   void initState() {
     super.initState();
@@ -88,24 +93,77 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       SizedBox(
                         height: 10,
                       ),
-                      TextFormFieldRectangleWithTitle(
-                        hintText: 'Category of the dish.',
-                        titleText: 'Category:',
-                        onSaved: (category) {
-                          setState(() {
-                            _post.categoryName = category;
-                          });
-                        },
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter category name!';
-                          }
-                          return null;
+
+                      FutureBuilder<List<Category>>(
+                        future: fetchCategoryList(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData)
+                            return TextFormFieldRectangleWithTitle(
+                              hintText: 'Category of the dish.',
+                              titleText: 'Category:',
+                              onSaved: (category) {
+                                setState(() {
+                                  _post.categoryName = category;
+                                });
+                              },
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'Please enter category name!';
+                                }
+                                return null;
+                              },
+                            );
+                          return Row(
+                            children: <Widget>[
+                              Container(
+                                width: MediaQuery.of(context).size.width / 3.5,
+                                child: Text(
+                                  'Category:',
+                                  style: textStyleDefaultPrimary,
+                                ),
+                              ),
+                              Expanded(
+                                child: SimpleAutoCompleteTextField(
+                                  key: autoCompleteFieldKey,
+                                  decoration: inputDecorationTextFormField(
+                                      'Category of the dish'),
+                                  controller: TextEditingController(
+                                      text: _post.categoryName),
+                                  suggestions: snapshot.data
+                                      .map((category) => category.categoryName)
+                                      .toList(),
+                                  textChanged: (text) {
+                                    setState(() {
+                                      _post.categoryName = text;
+                                    });
+                                  },
+                                  clearOnSubmit: false,
+                                  textSubmitted: (text) => setState(
+                                    () {
+                                      if (text != "") {
+                                        _post.categoryName = text;
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
                         },
                       ),
                       SizedBox(
                         height: 10,
                       ),
+
+                      // FutureBuilder<L>(
+                      //   stream: null,
+                      //   builder: (context, snapshot) {
+                      //     return RowIngredientFormField(
+                      //       hintText: 'Ingredient Name',
+                      //     );
+                      //   }
+                      // ),
+
                       ColumnImageUpdator((imageUrl) {
                         setState(() {
                           _post.imageUrl = imageUrl;
@@ -211,6 +269,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       SizedBox(
                         height: 20,
                       ),
+
                       ButtonConfirmComponent(
                         text: 'Create Post',
                         onPressed: () async {
@@ -220,11 +279,18 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                             showErrorSnackBar(context, 'Post must have images');
                             return;
                           }
-                          if(_post.steps.any((step) => step.imageUrl == null)){
+                          if (_post.steps
+                              .any((step) => step.imageUrl == null)) {
                             showErrorSnackBar(context, 'Post must have images');
                             return;
                           }
-                          
+                          if (_post.categoryName == null ||
+                              _post.categoryName.length <= 0) {
+                            showErrorSnackBar(
+                                context, 'Post must have category');
+                            return;
+                          }
+
                           form.save();
 
                           if (_post.steps.length <= 0) {

@@ -33,18 +33,7 @@ class TextFormFieldRectangleWithTitle extends StatelessWidget {
             maxLines: maxLine,
             obscureText: obscureText,
             style: textStyleDefault,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              hintText: hintText,
-              border: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(
-                  const Radius.circular(20.0),
-                ),
-                borderSide: BorderSide(
-                  style: BorderStyle.solid,
-                ),
-              ),
-            ),
+            decoration: inputDecorationTextFormField(hintText),
             validator: validator,
             onSaved: onSaved,
           ),

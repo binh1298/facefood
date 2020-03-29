@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // Text
-TextStyle textStyleDefault =
-    TextStyle(fontFamily: 'Montserrat', fontSize: 18.0, color: colorOnWhiteBackground);
+TextStyle textStyleDefault = TextStyle(
+    fontFamily: 'Montserrat', fontSize: 18.0, color: colorOnWhiteBackground);
 
 TextStyle textStyleQuotation = textStyleDefault.copyWith(
   fontFamily: 'Times New Roman',
@@ -20,7 +20,6 @@ TextStyle textStyleHeadingPrimary = textStyleHeading.copyWith(
 TextStyle textStyleHeadingDark = textStyleHeading.copyWith(
   color: colorOnDarkBackground,
 );
-
 
 TextStyle textStyleTitle = textStyleDefault.copyWith(
   fontWeight: FontWeight.bold,
@@ -75,18 +74,31 @@ Color colorLove = Colors.redAccent;
 //decoration
 
 BoxDecoration decorationRoundContainer = BoxDecoration(
-  color: Colors.green,
-  borderRadius: new BorderRadius.only(
-  topLeft: Radius.circular(20),
-  topRight: Radius.circular(20),
-  )
-);
+    color: Colors.green,
+    borderRadius: new BorderRadius.only(
+      topLeft: Radius.circular(20),
+      topRight: Radius.circular(20),
+    ));
 
 BoxDecoration boxDecorationDefault = BoxDecoration(
   color: colorBackground,
-  
   border: Border.all(width: 0.5),
 );
+
+InputDecoration inputDecorationTextFormField(String hintText) {
+  return InputDecoration(
+    contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+    hintText: hintText,
+    border: OutlineInputBorder(
+      borderRadius: const BorderRadius.all(
+        const Radius.circular(20.0),
+      ),
+      borderSide: BorderSide(
+        style: BorderStyle.solid,
+      ),
+    ),
+  );
+}
 
 // Textbox Width
 const double textboxWidthMedium = 220.0;
