@@ -4,9 +4,12 @@ import 'package:facefood/components/buttons/button_with_icon.dart';
 import 'package:facefood/components/columns/column_image_updator.dart';
 import 'package:facefood/components/rows/row_ingredient_form_field.dart';
 import 'package:facefood/components/text_form_fields/text_from_field_rectangle_with_title.dart';
+import 'package:facefood/components/text_safe.dart';
 import 'package:facefood/models/category.dart';
+import 'package:facefood/models/ingredient.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/models/post_step.dart';
+import 'package:facefood/models/unit.dart';
 import 'package:facefood/style/style.dart';
 import 'package:facefood/utils/snack_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,6 +30,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   void initState() {
     super.initState();
     _post.steps = List<PostStep>();
+    _post.ingredients = List<Ingredient>();
   }
 
   @override
@@ -48,9 +52,16 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
               child: Padding(
                   padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextSafeComponent(
+                        text: 'Basic Info',
+                        style: textStyleHeading,
+                      ),
                       SizedBox(
                         height: 10,
                       ),
@@ -152,18 +163,79 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         },
                       ),
                       SizedBox(
+                        height: 20,
+                      ),
+                      Divider(
+                        color: Colors.black,
+                      ),
+                      SizedBox(
                         height: 10,
                       ),
+                      TextSafeComponent(
+                        text: 'Ingredients',
+                        style: textStyleHeading,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      FutureBuilder<List<Unit>>(
+                        future: fetchUnitList(),
+                        builder: (context, snapshot) {
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: _post.ingredients.length,
+                            physics: ClampingScrollPhysics(),
+                            itemBuilder: (BuildContext context, int index) {
+                              return RowIngredientFormField(
+                                snapshot.data
+                                    .map((unit) => unit.unitName)
+                                    .toList(),
+                                unitName: _post.ingredients[index].unitName,
+                                onIngredientNameSaved: (String value) {
+                                  setState(() {
+                                    _post.ingredients[index].ingredientName = value;
+                                  });
+                                },
+                                onUnitValueSaved: (String value) {
+                                  setState(() {
+                                    _post.ingredients[index].value = int.tryParse(value);
+                                  });
+                                },
+                                onUnitNameChanged: (String value) {
+                                  setState(() {
+                                    _post.ingredients[index].unitName = value;
+                                  });
+                                },
+                                titleText: 'Ingredient:',
+                              );
+                            },
+                          );
+                        },
+                      ),
 
-                      // FutureBuilder<L>(
-                      //   stream: null,
-                      //   builder: (context, snapshot) {
-                      //     return RowIngredientFormField(
-                      //       hintText: 'Ingredient Name',
-                      //     );
-                      //   }
-                      // ),
-
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          ButtonWithIcon(
+                            onPressed: () {
+                              Ingredient ingredient = Ingredient();
+                              setState(() {
+                                _post.ingredients.add(ingredient);
+                              });
+                            },
+                            label: 'Add Ingredient',
+                          ),
+                          if (_post.ingredients.length > 0)
+                            ButtonWithIcon(
+                              onPressed: () {
+                                setState(() {
+                                  _post.ingredients.removeLast();
+                                });
+                              },
+                              label: 'Remove Ingredient',
+                            ),
+                        ],
+                      ),
                       ColumnImageUpdator((imageUrl) {
                         setState(() {
                           _post.imageUrl = imageUrl;
@@ -189,7 +261,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       Divider(
                         color: Colors.black,
                       ),
-
+                      TextSafeComponent(
+                        text: 'Steps',
+                        style: textStyleHeading,
+                      ),
                       ListView.builder(
                         shrinkWrap: true,
                         itemCount: _post.steps.length,
@@ -243,10 +318,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                               });
                             },
                             label: 'Add new Step',
-                            icon: Icon(
-                              Icons.add,
-                              color: colorOnDarkBackground,
-                            ),
                           ),
                           if (_post.steps.length > 0)
                             ButtonWithIcon(
@@ -256,10 +327,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 });
                               },
                               label: 'Remove step',
-                              icon: Icon(
-                                Icons.remove,
-                                color: colorOnDarkBackground,
-                              ),
                             ),
                         ],
                       ),
