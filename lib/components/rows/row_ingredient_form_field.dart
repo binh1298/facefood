@@ -14,7 +14,7 @@ class RowIngredientFormField extends StatelessWidget {
 
   final bool obscureText;
   final String titleText;
-  final Function onSaved, validator;
+  final Function onSaved;
   final int maxLine;
   final TextInputType inputType;
   RowIngredientFormField(this.suggestions,
@@ -24,7 +24,6 @@ class RowIngredientFormField extends StatelessWidget {
       this.unitName,
       this.obscureText = false,
       this.onSaved,
-      this.validator,
       this.titleText,
       this.maxLine = 1,
       this.inputType = TextInputType.text});
@@ -49,7 +48,12 @@ class RowIngredientFormField extends StatelessWidget {
                 obscureText: obscureText,
                 style: textStyleDefault,
                 decoration: inputDecorationTextFormField('Name'),
-                validator: validator,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter Ingredient name';
+                  }
+                  return null;
+                },
                 onSaved: onIngredientNameSaved,
               ),
             ),
@@ -69,7 +73,12 @@ class RowIngredientFormField extends StatelessWidget {
                 obscureText: obscureText,
                 style: textStyleDefault,
                 decoration: inputDecorationTextFormField('Value'),
-                validator: validator,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter Ingredient value';
+                  }
+                  return null;
+                },
                 onSaved: onUnitValueSaved,
               ),
             ),

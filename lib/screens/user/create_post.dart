@@ -360,6 +360,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
                           form.save();
 
+                          if (_post.ingredients.length <= 0) {
+                            showErrorSnackBar(context, 'Post must have ingredients');
+                            return;
+                          }
+
                           if (_post.steps.length <= 0) {
                             showErrorSnackBar(context, 'Post must have steps');
                             return;
