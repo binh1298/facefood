@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:facefood/models/ingredient.dart';
 import 'package:facefood/models/post_step.dart';
 import 'package:facefood/models/user_details.dart';
 import 'package:facefood/utils/api_caller.dart';
@@ -13,7 +14,7 @@ class Post {
   String createdAt, updatedAt;
   int stepCount;
   List<PostStep> steps;
-
+  List<Ingredient> ingredients;
   Post({
     this.likeCount,
     this.username,
