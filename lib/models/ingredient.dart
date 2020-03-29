@@ -3,8 +3,8 @@ import 'package:facefood/utils/api_caller.dart';
 import 'package:http/http.dart' as http;
 
 class Ingredient {
-  final String ingredientName, unitName;
-  final int value;
+  String ingredientName, unitName;
+  int value;
 
   Ingredient({this.ingredientName, this.unitName, this.value});
 
