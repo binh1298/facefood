@@ -218,19 +218,19 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                     .toList(),
                                 unitName: _post.ingredients[index].unitName,
                                 onIngredientNameSaved: (String value) {
-                                  setState(() {
+                                  // setState(() {
                                     _post.ingredients[index].ingredientName = value;
-                                  });
+                                  // });
                                 },
                                 onUnitValueSaved: (String value) {
-                                  setState(() {
+                                  // setState(() {
                                     _post.ingredients[index].value = int.tryParse(value);
-                                  });
+                                  // });
                                 },
                                 onUnitNameChanged: (String value) {
-                                  setState(() {
+                                  // setState(() {
                                     _post.ingredients[index].unitName = value;
-                                  });
+                                  // });
                                 },
                                 titleText: 'Ingredient:',
                               );
