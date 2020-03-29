@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:facefood/style/style.dart';
+
 class ButtonConfirmComponent extends StatelessWidget {
   final Function onPressed;
   final String text;
@@ -15,10 +16,12 @@ class ButtonConfirmComponent extends StatelessWidget {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: onPressed,
-        child: Text(text,
-            textAlign: TextAlign.center,
-            style: textStyleDefault.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: textStyleDefault.copyWith(
+              color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
