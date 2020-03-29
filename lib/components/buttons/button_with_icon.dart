@@ -15,13 +15,17 @@ class ButtonWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-        child: RaisedButton.icon(
-            color: colorPrimary,
-            onPressed: this.onPressed,
-            icon: this.icon,
-            label: Text(this.label,
-                textAlign: TextAlign.center,
-                style: textStyleDefault.copyWith(
-                    color: Colors.white, fontWeight: FontWeight.bold))));
+      child: RaisedButton.icon(
+        color: colorPrimary,
+        onPressed: this.onPressed,
+        icon: this.icon,
+        label: Text(
+          this.label,
+          textAlign: TextAlign.center,
+          style: textStyleDefault.copyWith(
+              color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
   }
 }
