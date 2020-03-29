@@ -104,7 +104,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       SizedBox(
                         height: 10,
                       ),
-
                       FutureBuilder<List<Category>>(
                         future: fetchCategoryList(),
                         builder: (context, snapshot) {
@@ -163,6 +162,33 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         },
                       ),
                       SizedBox(
+                        height: 10,
+                      ),
+                      TextFormFieldRectangleWithTitle(
+                        maxLine: null,
+                        hintText: 'Describe your dish...',
+                        titleText: 'Description:',
+                        onSaved: (description) {
+                          setState(() {
+                            _post.description = description;
+                          });
+                        },
+                        validator: (description) {
+                          if (description.isEmpty) {
+                            return 'Please enter description';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      ColumnImageUpdator((imageUrl) {
+                        setState(() {
+                          _post.imageUrl = imageUrl;
+                        });
+                      }),
+                      SizedBox(
                         height: 20,
                       ),
                       Divider(
@@ -212,7 +238,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           );
                         },
                       ),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
@@ -236,27 +261,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                             ),
                         ],
                       ),
-                      ColumnImageUpdator((imageUrl) {
-                        setState(() {
-                          _post.imageUrl = imageUrl;
-                        });
-                      }),
-                      TextFormFieldRectangleWithTitle(
-                        maxLine: null,
-                        hintText: 'Describe your dish...',
-                        titleText: 'Description:',
-                        onSaved: (description) {
-                          setState(() {
-                            _post.description = description;
-                          });
-                        },
-                        validator: (description) {
-                          if (description.isEmpty) {
-                            return 'Please enter description';
-                          }
-                          return null;
-                        },
-                      ),
+                      
 
                       Divider(
                         color: Colors.black,
