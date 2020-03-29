@@ -8,18 +8,27 @@ class ButtonWithIcon extends StatelessWidget {
   const ButtonWithIcon(
       {Key key,
       @required this.onPressed,
-      @required this.icon,
+      this.icon,
       @required this.label})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: RaisedButton.icon(
+      child: (icon!= null) ? RaisedButton.icon(
         color: colorPrimary,
         onPressed: this.onPressed,
         icon: this.icon,
         label: Text(
+          this.label,
+          textAlign: TextAlign.center,
+          style: textStyleDefault.copyWith(
+              color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ) : RaisedButton(
+        color: colorPrimary,
+        onPressed: this.onPressed,
+        child: Text(
           this.label,
           textAlign: TextAlign.center,
           style: textStyleDefault.copyWith(
