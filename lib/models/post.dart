@@ -57,6 +57,11 @@ class Post {
     List stepsString = steps.map((step) {
       return step.toJson();
     }).toList();
+
+    List ingredientsString = ingredients.map((ingredient) { 
+      return ingredient.toJson();
+    }).toList();
+
     final http.Response response = await apiCaller.post(
       route: '/posts',
       body: jsonEncode(
@@ -67,6 +72,7 @@ class Post {
           'timeNeeded': timeNeeded,
           'imageUrl': imageUrl,
           'steps': jsonEncode(stepsString),
+          'ingredients': jsonEncode(ingredientsString),
           'userId': user.userId,
         },
       ),
