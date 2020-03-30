@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:facefood/models/user_profile_info.dart';
 import 'package:facefood/utils/api_caller.dart';
-import 'package:facefood/utils/secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 // class LikePost {
@@ -48,7 +46,7 @@ Future<bool> checkIfFollowingUser(String username, String following) async {
   );
   if (response.statusCode == 200) {
     var message = json.decode(response.body)['message'];
-    print('Is liked: ' + json.decode(response.body)['message'].toString());
+    print('checkIfFollowingUser: ' + json.decode(response.body)['message'].toString());
     if (message.toString() == "true") {
       return true;
     } else {

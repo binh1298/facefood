@@ -41,6 +41,7 @@ class _FutureFollowButtonState extends State<FutureFollowButton> {
                       isFollowing = checkIfFollowingUser(
                           widget.username, widget.following);
                     });
+                    widget.notifyParent(0);
                   }
                 : () async {
                     await changeFollowingStatus(
@@ -49,6 +50,7 @@ class _FutureFollowButtonState extends State<FutureFollowButton> {
                       isFollowing = checkIfFollowingUser(
                           widget.username, widget.following);
                     });
+                    widget.notifyParent(1);
                   },
           );
         }

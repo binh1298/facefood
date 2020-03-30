@@ -13,6 +13,7 @@ class OtherUserProfile extends StatefulWidget {
 }
 
 class _OtherUserProfileState extends State<OtherUserProfile> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
