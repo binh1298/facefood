@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:facefood/models/ingredient.dart';
 import 'package:facefood/models/post_step.dart';
 import 'package:facefood/models/user_details.dart';
+import 'package:facefood/models/user_profile_info.dart';
 import 'package:facefood/utils/api_caller.dart';
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -58,7 +59,7 @@ class Post {
       return step.toJson();
     }).toList();
 
-    List ingredientsString = ingredients.map((ingredient) { 
+    List ingredientsString = ingredients.map((ingredient) {
       return ingredient.toJson();
     }).toList();
 
@@ -119,6 +120,17 @@ Future<List<Post>> fetchSearchList(String txtSearch, int type) async {
 
 Future<List<Post>> fetchPopularPostsList() async {
   final http.Response response = await apiCaller.get(route: '/posts/popular');
+  if (response.statusCode == 200) {
+    var postListJson = json.decode(response.body)['message'] as List;
+    return postListJson.map((post) => Post.fromJson(post)).toList();
+  } else
+    return null;
+}
+
+Future<List<Post>> fetchNewsfeed() async {
+  final currentUser = await getUserFromToken();
+  final http.Response response = await apiCaller.get(
+      route: '/posts/feed?username=${currentUser.username}');
   if (response.statusCode == 200) {
     var postListJson = json.decode(response.body)['message'] as List;
     return postListJson.map((post) => Post.fromJson(post)).toList();
