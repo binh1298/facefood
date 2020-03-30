@@ -1,3 +1,4 @@
+import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
 showErrorSnackBar(BuildContext context, String message) {
@@ -38,6 +39,7 @@ showInfoDialog(BuildContext context) {
       return AlertDialog(
         title: Text("Reason"),
         content: TextField(
+          decoration: inputDecorationTextFormField('Tell us why...'),
           onChanged: (value) {
             reportCause = value;
           },
@@ -47,7 +49,7 @@ showInfoDialog(BuildContext context) {
           FlatButton(
             child: Text("Close"),
             onPressed: () {
-              Navigator.of(context).pop(reportCause);
+              Navigator.of(context).pop(null);
             },
           ),
           FlatButton(
