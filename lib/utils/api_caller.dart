@@ -55,7 +55,7 @@ class ApiCaller {
       },
       body: body,
     );
-    // print('PUT $uri ${response.body}');
+    print('PUT $apiUrl$route ${response.body}');
     return response;
   }
 }

@@ -61,9 +61,13 @@ Future<bool> removeComment(int commentId) async {
   } else
     return false;
 }
-Future<bool> reportComment(int commentId) async {
+Future<bool> reportComment(int commentId, String reportCause) async {
   final http.Response response =
-      await apiCaller.put(route: '/comments/$commentId/report');
+      await apiCaller.put(
+        route: '/comments/$commentId/report',
+        body: jsonEncode(<String, String>{
+          'reportCause': reportCause,
+        }));
   if (response.statusCode == 200) {
     return true;
   } else
