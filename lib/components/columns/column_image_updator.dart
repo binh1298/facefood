@@ -21,6 +21,7 @@ class _ColumnImageUpdatorState extends State<ColumnImageUpdator> {
       children: <Widget>[
         ButtonFullWidth(
           label: 'Update Image',
+          color: colorConfirmButton,
           onPressed: () async {
             final imageUrl = await Navigator.pushNamed(
               context,

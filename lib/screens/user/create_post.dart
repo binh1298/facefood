@@ -267,6 +267,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                               });
                             },
                             label: 'Add Ingredient     ',
+                            color: colorConfirmButton,
                           ),
                           if (_post.ingredients.length > 0)
                             ButtonWithIcon(
@@ -276,6 +277,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 });
                               },
                               label: 'Remove Ingredient',
+                              color: colorCancelButton,
                             ),
                         ],
                       ),
@@ -340,6 +342,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                               });
                             },
                             label: ' Add Step      ',
+                            color: colorConfirmButton,
                           ),
                           if (_post.steps.length > 0)
                             ButtonWithIcon(
@@ -349,6 +352,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 });
                               },
                               label: 'Remove step',
+                              color: colorCancelButton,
                             ),
                         ],
                       ),

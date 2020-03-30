@@ -11,7 +11,7 @@ class ButtonConfirmComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 5.0,
-      color: colorPrimary,
+      color: colorConfirmButton,
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),

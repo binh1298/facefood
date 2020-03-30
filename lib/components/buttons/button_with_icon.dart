@@ -5,10 +5,12 @@ class ButtonWithIcon extends StatelessWidget {
   final Function onPressed;
   final Icon icon;
   final String label;
+  final Color color;
   const ButtonWithIcon(
       {Key key,
       @required this.onPressed,
       this.icon,
+      this.color = colorPrimary,
       @required this.label})
       : super(key: key);
 
@@ -16,7 +18,7 @@ class ButtonWithIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: (icon!= null) ? RaisedButton.icon(
-        color: colorPrimary,
+        color: color,
         onPressed: this.onPressed,
         icon: this.icon,
         label: Text(
@@ -26,7 +28,7 @@ class ButtonWithIcon extends StatelessWidget {
               color: Colors.white),
         ),
       ) : RaisedButton(
-        color: colorPrimary,
+        color: color,
         onPressed: this.onPressed,
         child: Text(
           this.label,
