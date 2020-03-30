@@ -1,23 +1,56 @@
 import 'package:flutter/material.dart';
 
 showErrorSnackBar(BuildContext context, String message) {
-  Scaffold.of(context)..removeCurrentSnackBar()..showSnackBar(
-    SnackBar(
-      content: Text(
-        '$message',
-        // style: textStyleErrorMessage,
+  Scaffold.of(context)
+    ..removeCurrentSnackBar()
+    ..showSnackBar(
+      SnackBar(
+        content: Text(
+          '$message',
+          // style: textStyleErrorMessage,
+        ),
       ),
-    ),
-  );
+    );
 }
 
 showInfoSnackBar(BuildContext context, String message) {
-  Scaffold.of(context)..removeCurrentSnackBar()..showSnackBar(
-    SnackBar(
-      content: Text(
-        '$message',
-        // style: textStyleErrorMessage,
+  Scaffold.of(context)
+    ..removeCurrentSnackBar()
+    ..showSnackBar(
+      SnackBar(
+        content: Text(
+          '$message',
+          // style: textStyleErrorMessage,
+        ),
       ),
-    ),
+    );
+}
+
+showInfoDialog(BuildContext context) {
+  // flutter defined function
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: Text("Reason"),
+        content: TextField(),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          FlatButton(
+            child: Text("Close"),
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+          ),
+          FlatButton(
+            child: Text("Submit"),
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+          ),
+        ],
+      );
+    },
   );
 }
