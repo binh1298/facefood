@@ -70,6 +70,7 @@ class _UserProfileState extends State<UserProfile> {
                   ListViewPost(
                     listPost: snapshot.data.totalPosts,
                     userProfileInfoInfo: snapshot.data,
+                    refreshList: refreshList,
                   ),
                 ],
               );
