@@ -1,6 +1,6 @@
-import 'package:facefood/components/buttons/button_full_width.dart';
 import 'package:facefood/components/cards/card_post_fullwidth.dart';
 import 'package:facefood/components/cards/card_user_detail_info.dart';
+import 'package:facefood/components/future_follow_button.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/models/user_details.dart';
 import 'package:facefood/models/user_profile_info.dart';
@@ -33,9 +33,10 @@ class ListViewPost extends StatelessWidget {
                 if (snapshotUserDetails.hasData) {
                   return (snapshotUserDetails.data?.username !=
                           userProfileInfoInfo.username)
-                      ? ButtonFullWidth(
-                          label: 'Follow',
-                          onPressed: () {},
+                      ? FutureFollowButton(
+                          notifyParent: () {},
+                          username: userProfileInfoInfo.username,
+                          following: snapshotUserDetails.data.username,
                         )
                       : SizedBox(
                           height: 0,

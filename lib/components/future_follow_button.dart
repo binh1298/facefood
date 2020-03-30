@@ -1,0 +1,59 @@
+import 'package:facefood/components/buttons/button_full_width.dart';
+import 'package:facefood/models/follow.dart';
+import 'package:flutter/material.dart';
+
+class FutureFollowButton extends StatefulWidget {
+  final String username;
+  final String following;
+  final Function notifyParent;
+  const FutureFollowButton({
+    Key key,
+    this.username,
+    this.notifyParent,
+    this.following,
+  }) : super(key: key);
+
+  @override
+  _FutureFollowButtonState createState() => _FutureFollowButtonState();
+}
+
+class _FutureFollowButtonState extends State<FutureFollowButton> {
+  Future<bool> isFollowing;
+  @override
+  void initState() {
+    super.initState();
+    isFollowing = checkIfFollowingUser(widget.username, widget.following);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<bool>(
+      future: isFollowing,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return ButtonFullWidth(
+            label: snapshot.data ? 'UNFOLLOW' : 'FOLLOW',
+            onPressed: snapshot.data
+                ? () async {
+                    await changeFollowingStatus(
+                        snapshot.data, widget.username, widget.following);
+                    setState(() {
+                      isFollowing = checkIfFollowingUser(
+                          widget.username, widget.following);
+                    });
+                  }
+                : () async {
+                    await changeFollowingStatus(
+                        snapshot.data, widget.username, widget.following);
+                    setState(() {
+                      isFollowing = checkIfFollowingUser(
+                          widget.username, widget.following);
+                    });
+                  },
+          );
+        }
+        return CircularProgressIndicator();
+      },
+    );
+  }
+}
