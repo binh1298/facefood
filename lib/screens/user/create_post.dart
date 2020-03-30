@@ -365,6 +365,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
                       ButtonConfirmComponent(
                         text: 'Create Post',
+                        color: colorConfirmButton,
                         onPressed: () async {
                           final form = _formkey.currentState;
                           if (!form.validate()) return;
