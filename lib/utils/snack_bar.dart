@@ -27,8 +27,34 @@ showInfoSnackBar(BuildContext context, String message) {
     );
 }
 
-showInfoDialog(BuildContext context) {
-  
+showConfirmDialog(BuildContext context, String actionName) {
+   return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: Text("Confirm Dialog"),
+        content: Text('Are you sure you want to $actionName'),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          FlatButton(
+            child: Text("Close"),
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+          ),
+          FlatButton(
+            child: Text("Accept"),
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+showTextDialog(BuildContext context) {
   // flutter defined function
   return showDialog(
     context: context,
@@ -63,3 +89,4 @@ showInfoDialog(BuildContext context) {
     },
   );
 }
+
