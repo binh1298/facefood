@@ -49,34 +49,46 @@ class CardComment extends StatelessWidget {
               Spacer(),
               PopupMenuButton(
                 icon: Icon(Icons.more_vert),
-                itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                itemBuilder: (BuildContext contextPopup) => <PopupMenuEntry>[
                   PopupMenuItem(
-                    child: InkWell(
-                      child: Text('Report comment'),
-                      onTap: () async {
-                        bool success = await reportComment(commentId);
-                        if (success) {
-                          showInfoSnackBar(context, 'Report success');
-                          fetchComments();
-                        } else {
-                          showErrorSnackBar(context, 'Report fail');
-                        }
-                      },
+                    child: Builder(
+                      builder: (context) {
+                        return InkWell(
+                          child: Text('Report comment'),
+                          onTap: () async {
+                            
+                            bool success = await showInfoDialog(context);
+                            // print(success);
+                            if (success) {
+                              reportComment(commentId);
+                              showInfoSnackBar(context, 'Report success');
+                              fetchComments();
+                            } 
+                            // else {
+                            //   showErrorSnackBar(context, 'Report fail');
+                            // }
+                          },
+                        );
+                      }
                     ),
                   ),
                   (loginUser == postOwner)
                       ? PopupMenuItem(
-                          child: InkWell(
-                              child: Text('Remove comment'),
-                              onTap: () async {
-                                bool success = await removeComment(commentId);
-                                if (success) {
-                                  showInfoSnackBar(context, 'Remove success');
-                                  fetchComments();
-                                } else {
-                                  showErrorSnackBar(context, 'Remove fail');
-                                }
-                              }))
+                          child: Builder(
+                            builder: (context) {
+                              return InkWell(
+                                  child: Text('Remove comment'),
+                                  onTap: () async {
+                                    bool success = await removeComment(commentId);
+                                    if (success) {
+                                      showInfoSnackBar(context, 'Remove success');
+                                      fetchComments();
+                                    } else {
+                                      showErrorSnackBar(context, 'Remove fail');
+                                    }
+                                  });
+                            }
+                          ))
                       : null,
                 ],
               ),
