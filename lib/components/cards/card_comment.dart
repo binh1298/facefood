@@ -57,10 +57,10 @@ class CardComment extends StatelessWidget {
                           child: Text('Report comment'),
                           onTap: () async {
                             
-                            bool success = await showInfoDialog(context);
-                            // print(success);
-                            if (success) {
-                              reportComment(commentId);
+                            String reportCause = await showInfoDialog(context);
+                            print(reportCause);
+                            if (reportCause != null && reportCause.length > 0) {
+                              reportComment(commentId, reportCause);
                               showInfoSnackBar(context, 'Report success');
                               fetchComments();
                             } 

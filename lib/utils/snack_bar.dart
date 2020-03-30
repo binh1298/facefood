@@ -27,26 +27,33 @@ showInfoSnackBar(BuildContext context, String message) {
 }
 
 showInfoDialog(BuildContext context) {
+  
   // flutter defined function
   return showDialog(
     context: context,
     builder: (BuildContext context) {
+      String reportCause;
+
       // return object of type Dialog
       return AlertDialog(
         title: Text("Reason"),
-        content: TextField(),
+        content: TextField(
+          onChanged: (value) {
+            reportCause = value;
+          },
+        ),
         actions: <Widget>[
           // usually buttons at the bottom of the dialog
           FlatButton(
             child: Text("Close"),
             onPressed: () {
-              Navigator.of(context).pop(false);
+              Navigator.of(context).pop(reportCause);
             },
           ),
           FlatButton(
             child: Text("Submit"),
             onPressed: () {
-              Navigator.of(context).pop(true);
+              Navigator.of(context).pop(reportCause);
             },
           ),
         ],
