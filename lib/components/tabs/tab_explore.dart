@@ -122,7 +122,53 @@ class TabExplore extends StatelessWidget {
               );
           },
         ),
-        SizedBox(height: 30,), // safe spacing
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextSafeComponent(
+            text: 'Newsfeed',
+            style: textStyleTitle,
+          ),
+        ),
+        FutureBuilder<List<Post>>(
+          future: fetchNewsfeed(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data.isNotEmpty)
+                return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: snapshot.data
+                        .map(
+                          (post) => CardPostDetailsHalfSize(
+                            postId: post.id,
+                            category: post.categoryName,
+                            name: post.postName,
+                            likeCount: post.likeCount,
+                            timeNeeded: post.timeNeeded,
+                            commentCount: post.commentCount,
+                            imageUrl: post.imageUrl,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                );
+              else
+                return Center(
+                  child: Text('''You haven't followed anyone yet '''),
+                );
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            } else if (snapshot.connectionState == ConnectionState.done) {
+              return Text('Unable to fetch lastest post');
+            } else
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+          },
+        ),
+        SizedBox(
+          height: 30,
+        ), // safe spacing
       ],
     );
   }

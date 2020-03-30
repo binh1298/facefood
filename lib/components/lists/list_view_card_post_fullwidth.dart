@@ -30,9 +30,9 @@ class _ListViewPostState extends State<ListViewPost> {
             CardUserDetailInfo(
               avatarUrl: widget.userProfileInfoInfo.avatarUrl,
               username: widget.userProfileInfoInfo.username,
-              followerCount: widget.userProfileInfoInfo.followerCount,
-              followingCount:
-                  (widget.userProfileInfoInfo.followingCount + followCount),
+              followerCount:
+                  (widget.userProfileInfoInfo.followerCount + followCount),
+              followingCount: widget.userProfileInfoInfo.followingCount,
               postCount: widget.userProfileInfoInfo.postCount,
             ),
             FutureBuilder<UserDetails>(
