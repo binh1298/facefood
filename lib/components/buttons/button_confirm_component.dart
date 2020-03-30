@@ -20,7 +20,7 @@ class ButtonConfirmComponent extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: textStyleDefault.copyWith(
-              color: Colors.white, fontWeight: FontWeight.bold),
+              color: Colors.white),
         ),
       ),
     );

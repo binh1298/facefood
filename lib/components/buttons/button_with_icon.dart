@@ -23,7 +23,7 @@ class ButtonWithIcon extends StatelessWidget {
           this.label,
           textAlign: TextAlign.center,
           style: textStyleDefault.copyWith(
-              color: Colors.white, fontWeight: FontWeight.bold),
+              color: Colors.white),
         ),
       ) : RaisedButton(
         color: colorPrimary,
@@ -32,7 +32,7 @@ class ButtonWithIcon extends StatelessWidget {
           this.label,
           textAlign: TextAlign.center,
           style: textStyleDefault.copyWith(
-              color: Colors.white, fontWeight: FontWeight.bold),
+              color: Colors.white),
         ),
       ),
     );
