@@ -34,6 +34,7 @@ class _ColumnImageUpdatorState extends State<ColumnImageUpdator> {
             }
           },
         ),
+        SizedBox(height: 10,),
         Container(
           width: MediaQuery.of(context).size.width - 10,
           height: MediaQuery.of(context).size.width * 0.7,
