@@ -11,7 +11,8 @@ import 'package:flutter/material.dart';
 class ListViewPost extends StatefulWidget {
   final List<Post> listPost;
   final UserProfileInfo userProfileInfoInfo;
-  const ListViewPost({Key key, this.listPost, this.userProfileInfoInfo})
+  final Function refreshList;
+  const ListViewPost({Key key, this.listPost, this.userProfileInfoInfo, this.refreshList})
       : super(key: key);
 
   @override
@@ -33,7 +34,7 @@ class _ListViewPostState extends State<ListViewPost> {
               followerCount:
                   (widget.userProfileInfoInfo.followerCount + followCount),
               followingCount: widget.userProfileInfoInfo.followingCount,
-              postCount: widget.userProfileInfoInfo.postCount,
+              postCount: widget.userProfileInfoInfo.activePostsCount,
             ),
             FutureBuilder<UserDetails>(
               future: getUserFromToken(),
@@ -67,7 +68,8 @@ class _ListViewPostState extends State<ListViewPost> {
             Column(
               children: widget.listPost
                   .map(
-                    (post) => CardPostFullWidth(
+                    (post) => post.isDeleted ? SizedBox(height: 0,) : CardPostFullWidth(
+                      refreshList: widget.refreshList,
                       categoryName: post.categoryName,
                       commentCount: post.commentCount,
                       imageUrl: post.imageUrl,

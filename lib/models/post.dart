@@ -137,3 +137,10 @@ Future<List<Post>> fetchNewsfeed() async {
   } else
     return null;
 }
+
+Future<bool> putRemovePost(int id) async {
+  final http.Response response = await apiCaller.put(
+    route: '/posts/$id',
+  );
+  return response.statusCode == 200;
+}

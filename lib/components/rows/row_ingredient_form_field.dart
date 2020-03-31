@@ -82,6 +82,9 @@ class RowIngredientFormField extends StatelessWidget {
                 onSaved: onUnitValueSaved,
               ),
             ),
+            SizedBox(
+              width: 10,
+            ),
             Expanded(
               child: SimpleAutoCompleteTextField(
                 key: autoCompleteFieldKey,

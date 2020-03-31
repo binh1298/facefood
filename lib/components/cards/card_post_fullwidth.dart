@@ -1,5 +1,7 @@
 import 'package:facefood/components/icon_text.dart';
+import 'package:facefood/models/post.dart';
 import 'package:facefood/style/style.dart';
+import 'package:facefood/utils/snack_bar.dart';
 import 'package:flutter/material.dart';
 
 class CardPostFullWidth extends StatelessWidget {
@@ -10,7 +12,7 @@ class CardPostFullWidth extends StatelessWidget {
   final String categoryName;
   final int likeCount;
   final int commentCount;
-
+  final Function refreshList;
   const CardPostFullWidth(
       {this.imageUrl,
       this.timeNeeded,
@@ -18,7 +20,8 @@ class CardPostFullWidth extends StatelessWidget {
       this.commentCount,
       this.postName,
       this.id,
-      this.categoryName});
+      this.categoryName,
+      this.refreshList});
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,13 @@ class CardPostFullWidth extends StatelessWidget {
       child: InkWell(
           onTap: () {
             Navigator.pushNamed(context, '/viewPostDetails', arguments: id);
+          },
+          onLongPress: () async {
+            bool confirm = await showConfirmDialog(context, 'delete post');
+            if(confirm!= null && confirm) {
+              bool success = await putRemovePost(id);
+              if(success) refreshList();
+            }
           },
           child: Stack(
             alignment: Alignment.bottomCenter,

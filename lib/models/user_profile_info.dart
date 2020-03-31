@@ -7,23 +7,23 @@ import 'package:http/http.dart' as http;
 
 class UserProfileInfo {
   String userId, username, avatarUrl, email, fullname, roleName;
-  int postCount, likeCount, commentCount, followerCount, followingCount;
+  int postCount, likeCount, commentCount, followerCount, followingCount, activePostsCount;
   List<Post> totalPosts;
 
-  UserProfileInfo({
-    this.userId,
-    this.username,
-    this.avatarUrl,
-    this.email,
-    this.fullname,
-    this.roleName,
-    this.postCount,
-    this.likeCount,
-    this.commentCount,
-    this.followerCount,
-    this.followingCount,
-    this.totalPosts
-  });
+  UserProfileInfo(
+      {this.userId,
+      this.username,
+      this.avatarUrl,
+      this.email,
+      this.fullname,
+      this.roleName,
+      this.postCount,
+      this.likeCount,
+      this.commentCount,
+      this.followerCount,
+      this.followingCount,
+      this.totalPosts,
+      this.activePostsCount});
 
   factory UserProfileInfo.fromJson(dynamic json) {
     return UserProfileInfo(
@@ -37,6 +37,7 @@ class UserProfileInfo {
       commentCount: json['commentCount'] as int,
       followerCount: json['followerCount'] as int,
       followingCount: json['followingCount'] as int,
+      activePostsCount: json['activePostsCount'] as int,
       totalPosts: List<Post>.from(json['posts'].map((x) => Post.fromJson(x))),
     );
   }

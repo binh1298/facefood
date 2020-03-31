@@ -59,7 +59,7 @@ TextStyle textStyleDarkBackground = textStyleDefault.copyWith(
 
 // Color
 Color colorTextDefault = Colors.black;
-Color colorPrimary = Color(0xFFE02E2E);
+const Color colorPrimary = Color(0xFFE02E2E);
 // Color colorPrimary = Color(0xFFC78FFF);
 
 Color colorBackground = Colors.white;
@@ -71,6 +71,8 @@ Color colorOnWhiteBackground = Colors.black;
 Color colorOnDarkBackground = Colors.white;
 Color colorAppBar = Colors.white;
 Color colorLove = Colors.redAccent;
+Color colorConfirmButton = Colors.orange;
+Color colorCancelButton = Colors.grey;
 //decoration
 
 BoxDecoration decorationRoundContainer = BoxDecoration(

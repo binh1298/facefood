@@ -21,6 +21,7 @@ class _ColumnImageUpdatorState extends State<ColumnImageUpdator> {
       children: <Widget>[
         ButtonFullWidth(
           label: 'Update Image',
+          color: colorConfirmButton,
           onPressed: () async {
             final imageUrl = await Navigator.pushNamed(
               context,
@@ -34,6 +35,7 @@ class _ColumnImageUpdatorState extends State<ColumnImageUpdator> {
             }
           },
         ),
+        SizedBox(height: 10,),
         Container(
           width: MediaQuery.of(context).size.width - 10,
           height: MediaQuery.of(context).size.width * 0.7,

@@ -1,5 +1,6 @@
 import 'package:facefood/components/buttons/button_full_width.dart';
 import 'package:facefood/models/follow.dart';
+import 'package:facefood/style/style.dart';
 import 'package:flutter/material.dart';
 
 class FutureFollowButton extends StatefulWidget {
@@ -33,6 +34,7 @@ class _FutureFollowButtonState extends State<FutureFollowButton> {
         if (snapshot.hasData) {
           return ButtonFullWidth(
             label: snapshot.data ? 'UNFOLLOW' : 'FOLLOW',
+            color: snapshot.data ? colorCancelButton : colorPrimary,
             onPressed: snapshot.data
                 ? () async {
                     await changeFollowingStatus(

@@ -22,7 +22,7 @@ class CreatePostScreen extends StatefulWidget {
 
 class _CreatePostScreenState extends State<CreatePostScreen> {
   final _formkey = GlobalKey<FormState>();
-  final _post = Post();
+  Post _post = Post();
   String currentText = "";
   GlobalKey<AutoCompleteTextFieldState<String>> autoCompleteFieldKey =
       GlobalKey();
@@ -44,6 +44,22 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         ),
         iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.refresh,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              setState(() {
+                _post = Post();
+                _post.steps = List<PostStep>();
+                _post.ingredients = List<Ingredient>();
+                _formkey?.currentState?.reset();
+              });
+            },
+          ),
+        ],
       ),
       body: Container(
         child: ListView(children: <Widget>[
@@ -219,17 +235,19 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 unitName: _post.ingredients[index].unitName,
                                 onIngredientNameSaved: (String value) {
                                   // setState(() {
-                                    _post.ingredients[index].ingredientName = value;
+                                  _post.ingredients[index].ingredientName =
+                                      value;
                                   // });
                                 },
                                 onUnitValueSaved: (String value) {
                                   // setState(() {
-                                    _post.ingredients[index].value = int.tryParse(value);
+                                  _post.ingredients[index].value =
+                                      int.tryParse(value);
                                   // });
                                 },
                                 onUnitNameChanged: (String value) {
                                   // setState(() {
-                                    _post.ingredients[index].unitName = value;
+                                  _post.ingredients[index].unitName = value;
                                   // });
                                 },
                                 titleText: 'Ingredient:',
@@ -248,7 +266,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 _post.ingredients.add(ingredient);
                               });
                             },
-                            label: 'Add Ingredient',
+                            label: 'Add Ingredient     ',
+                            color: colorConfirmButton,
                           ),
                           if (_post.ingredients.length > 0)
                             ButtonWithIcon(
@@ -258,10 +277,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 });
                               },
                               label: 'Remove Ingredient',
+                              color: colorCancelButton,
                             ),
                         ],
                       ),
-                      
 
                       Divider(
                         color: Colors.black,
@@ -322,7 +341,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 _post.steps.add(postStep);
                               });
                             },
-                            label: 'Add new Step',
+                            label: ' Add Step      ',
+                            color: colorConfirmButton,
                           ),
                           if (_post.steps.length > 0)
                             ButtonWithIcon(
@@ -332,6 +352,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 });
                               },
                               label: 'Remove step',
+                              color: colorCancelButton,
                             ),
                         ],
                       ),
@@ -344,6 +365,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
                       ButtonConfirmComponent(
                         text: 'Create Post',
+                        color: colorConfirmButton,
                         onPressed: () async {
                           final form = _formkey.currentState;
                           if (!form.validate()) return;
@@ -366,7 +388,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           form.save();
 
                           if (_post.ingredients.length <= 0) {
-                            showErrorSnackBar(context, 'Post must have ingredients');
+                            showErrorSnackBar(
+                                context, 'Post must have ingredients');
                             return;
                           }
 

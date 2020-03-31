@@ -57,7 +57,7 @@ class CardComment extends StatelessWidget {
                           child: Text('Report comment'),
                           onTap: () async {
                             
-                            String reportCause = await showInfoDialog(context);
+                            String reportCause = await showTextDialog(context);
                             print(reportCause);
                             if (reportCause != null && reportCause.length > 0) {
                               reportComment(commentId, reportCause);

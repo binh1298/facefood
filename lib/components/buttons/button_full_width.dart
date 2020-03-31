@@ -4,8 +4,8 @@ import 'package:facefood/style/style.dart';
 class ButtonFullWidth extends StatelessWidget {
   final String label;
   final Function onPressed;
-
-  ButtonFullWidth({this.label,this.onPressed});
+  final Color color;
+  ButtonFullWidth({this.label,this.onPressed, this.color = colorPrimary});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class ButtonFullWidth extends StatelessWidget {
       width: double.infinity,
       height: 40,
       child: RaisedButton(
-        color: colorPrimary,
+        color: color,
         onPressed:onPressed,
         child: Text(label,
         style: textStyleButtonPrimary.copyWith(color: Colors.white),),
