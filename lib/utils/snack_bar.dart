@@ -33,8 +33,8 @@ showConfirmDialog(BuildContext context, String actionName) {
     builder: (BuildContext context) {
       // return object of type Dialog
       return AlertDialog(
-        title: Text("Confirm Dialog"),
-        content: Text('Are you sure you want to $actionName'),
+        title: Text("Confirm request"),
+        content: Text('Are you sure you want to $actionName?'),
         actions: <Widget>[
           // usually buttons at the bottom of the dialog
           FlatButton(

@@ -38,6 +38,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             controller: _scrollController,
             slivers: <Widget>[
               AppbarPostDetail(
+                username: snapshot.data.username,
                 postId: widget.postId, // change to category
                 commentCount: snapshot.data.commentCount,
                 category: snapshot.data.categoryName,
@@ -47,105 +48,110 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                 timeNeeded: snapshot.data.timeNeeded,
               ),
               SliverList(
-                  delegate: SliverChildListDelegate(<Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      snapshot.data.likeCount.toString(),
-                      style: textStyleHeading.copyWith(
-                          fontWeight: FontWeight.normal),
+                delegate: SliverChildListDelegate(
+                  <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          snapshot.data.likeCount.toString(),
+                          style: textStyleHeading.copyWith(
+                              fontWeight: FontWeight.normal),
+                        ),
+                        LikeFutureButton(
+                          postId: snapshot.data.id,
+                          notifyParent: () {
+                            setState(() {
+                              postDetail = fetchPostDetail(widget.postId);
+                            });
+                          },
+                        ), //snapshot.postId
+                        Text(
+                          snapshot.data.commentCount.toString(),
+                          style: textStyleHeading.copyWith(
+                              fontWeight: FontWeight.normal),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            FocusScope.of(context).requestFocus(_focusNode);
+                            _scrollController.animateTo(
+                              MediaQuery.of(context).size.height + 500,
+                              curve: Curves.easeInOut,
+                              duration: const Duration(milliseconds: 1000),
+                            );
+                          },
+                          icon: Icon(Icons.comment),
+                        ),
+                      ],
                     ),
-                    LikeFutureButton(
-                      postId: snapshot.data.id,
+                    Divider(
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                    CardFutureUserBriefFullwidth(
+                      username: snapshot.data.username,
+                    ),
+                    Divider(
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                    CardDescriptionString(
+                      description: snapshot.data.description,
+                    ),
+                    Divider(
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                    ListFutureIngredient(
+                      postID: snapshot.data.id,
+                    ),
+                    Divider(
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              'Step by step',
+                              style: textStyleHeadingPrimary,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          ListOfSteps(
+                            listSteps: snapshot.data.steps,
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Divider(
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                    ListFutureComments(
+                      postOwner: snapshot.data.username,
+                      postID: widget.postId,
+                      focusNode: _focusNode,
                       notifyParent: () {
                         setState(() {
                           postDetail = fetchPostDetail(widget.postId);
                         });
                       },
-                    ), //snapshot.postId
-                    Text(
-                      snapshot.data.commentCount.toString(),
-                      style: textStyleHeading.copyWith(
-                          fontWeight: FontWeight.normal),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        FocusScope.of(context).requestFocus(_focusNode);
-                        _scrollController.animateTo(
-                          MediaQuery.of(context).size.height + 500,
-                          curve: Curves.easeInOut,
-                          duration: const Duration(milliseconds: 1000),
-                        );
-                      },
-                      icon: Icon(Icons.comment),
-                    ),
+                    SizedBox(
+                      height: 40,
+                    )
                   ],
                 ),
-                Divider(
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                CardFutureUserBriefFullwidth(
-                  username: snapshot.data.username,
-                ),
-                Divider(
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                CardDescriptionString(
-                  description: snapshot.data.description,
-                ),
-                Divider(
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                ListFutureIngredient(
-                  postID: snapshot.data.id,
-                ),
-                Divider(
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          'Step by step',
-                          style: textStyleHeadingPrimary,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      ListOfSteps(
-                        listSteps: snapshot.data.steps,
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Divider(
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                ListFutureComments(
-                  postOwner: snapshot.data.username,
-                  postID: widget.postId,
-                  focusNode: _focusNode,
-                  notifyParent:(){setState(() {
-                    postDetail = fetchPostDetail(widget.postId);
-                  });},
-                ),
-                SizedBox(
-                  height: 40,
-                )
-              ]))
+              ),
             ],
           );
         } else if (snapshot.hasError) {

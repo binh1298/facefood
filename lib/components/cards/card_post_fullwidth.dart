@@ -29,14 +29,17 @@ class CardPostFullWidth extends StatelessWidget {
     return Card(
       elevation: 10,
       child: InkWell(
-          onTap: () {
-            Navigator.pushNamed(context, '/viewPostDetails', arguments: id);
+          onTap: () async {
+            var deleted = await Navigator.pushNamed(
+                context, '/viewPostDetails',
+                arguments: id);
+            if (deleted && deleted == true) refreshList();
           },
           onLongPress: () async {
-            bool confirm = await showConfirmDialog(context, 'delete post');
-            if(confirm!= null && confirm) {
+            bool confirm = await showConfirmDialog(context, 'delete this post');
+            if (confirm != null && confirm) {
               bool success = await putRemovePost(id);
-              if(success) refreshList();
+              if (success) refreshList();
             }
           },
           child: Stack(
