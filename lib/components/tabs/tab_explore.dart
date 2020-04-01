@@ -122,6 +122,7 @@ class TabExplore extends StatelessWidget {
               );
           },
         ),
+
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextSafeComponent(
@@ -129,6 +130,7 @@ class TabExplore extends StatelessWidget {
             style: textStyleTitle,
           ),
         ),
+
         FutureBuilder<List<Post>>(
           future: fetchNewsfeed(),
           builder: (context, snapshot) {
@@ -156,8 +158,17 @@ class TabExplore extends StatelessWidget {
                 return Center(
                   child: Text('''You haven't followed anyone yet '''),
                 );
+            } else if (snapshot.data == null) {
+              return Center(
+                child: Text('''Log in to see your newsfeed !'''),
+              );
             } else if (snapshot.hasError) {
-              return Text(snapshot.error.toString());
+              print('ERROR AT NEWSFEED:');
+              print(snapshot.error.toString());
+              return Text(
+                snapshot.error.toString(),
+              );
+              //for guest view
             } else if (snapshot.connectionState == ConnectionState.done) {
               return Text('Unable to fetch lastest post');
             } else
@@ -167,7 +178,7 @@ class TabExplore extends StatelessWidget {
           },
         ),
         SizedBox(
-          height: 30,
+          height: 40,
         ), // safe spacing
       ],
     );
