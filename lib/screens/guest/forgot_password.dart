@@ -1,10 +1,8 @@
 import 'package:facefood/components/buttons/button_confirm_component.dart';
 import 'package:facefood/components/text_form_fields/text_form_field_rectangle.dart';
-import 'package:facefood/restart_app.dart';
-import 'package:facefood/utils/secure_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:facefood/models/user_credentials.dart';
 import 'package:facefood/style/style.dart';
+import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   @override

@@ -113,28 +113,28 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 15.0,
                         ),
-                        Row(
-                          children: <Widget>[
-                            SizedBox(
-                              width: 13,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ForgotPasswordScreen()));
-                              },
-                              child: Text(
-                                'Forgot your password?',
-                                style: textStyleDefault.copyWith(
-                                    fontSize: 15,
-                                    decoration: TextDecoration.underline),
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: <Widget>[
+                        //     SizedBox(
+                        //       width: 13,
+                        //     ),
+                        //     InkWell(
+                        //       onTap: () {
+                        //         Navigator.push(
+                        //             context,
+                        //             MaterialPageRoute(
+                        //                 builder: (context) =>
+                        //                     ForgotPasswordScreen()));
+                        //       },
+                        //       child: Text(
+                        //         'Forgot your password?',
+                        //         style: textStyleDefault.copyWith(
+                        //             fontSize: 15,
+                        //             decoration: TextDecoration.underline),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         SizedBox(
                           height: 10.0,
                         ),
