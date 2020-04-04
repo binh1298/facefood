@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         //   ),
                         // ),
                         SizedBox(
-                          height: 10.0,
+                          height: 40.0,
                         ),
                         ButtonConfirmComponent(
                           text: 'Login',
