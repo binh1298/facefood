@@ -7,14 +7,16 @@ class TextFormFieldRectangleWithTitle extends StatelessWidget {
   final Function onSaved, validator;
   final int maxLine;
   final TextInputType inputType;
+  final String initialValue;
   TextFormFieldRectangleWithTitle(
       {this.hintText,
       this.obscureText = false,
       this.onSaved,
       this.validator,
       this.titleText,
-      this.maxLine = 1, 
-      this.inputType = TextInputType.text});
+      this.maxLine = 1,
+      this.inputType = TextInputType.text,
+      this.initialValue});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class TextFormFieldRectangleWithTitle extends StatelessWidget {
         ),
         Expanded(
           child: TextFormField(
+            initialValue: initialValue,
             keyboardType: inputType,
             maxLines: maxLine,
             obscureText: obscureText,

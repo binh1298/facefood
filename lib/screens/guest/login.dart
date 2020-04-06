@@ -1,6 +1,7 @@
 import 'package:facefood/components/buttons/button_confirm_component.dart';
 import 'package:facefood/components/text_form_fields/text_form_field_rectangle.dart';
 import 'package:facefood/restart_app.dart';
+import 'package:facefood/screens/guest/forgot_password.dart';
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:facefood/models/user_credentials.dart';
@@ -14,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _loginFormKey = GlobalKey<FormState>();
   final _userCredentials = UserLoginCredentials();
+  bool remember = true;
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +33,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          height: 200.0,
-                          child: Image.asset('lib/assets/images/logo.ico'),
+                          height: 160.0,
+                          child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: Image.asset('lib/assets/images/logo.ico')),
                         ),
                         Center(
                             child: Text("Facefood", style: textStyleHeading)),
-                        SizedBox(height: 45.0),
+                        SizedBox(height: 30.0),
                         TextFormFieldRectangle(
                           hintText: 'Username',
                           onSaved: (username) {
@@ -65,8 +69,29 @@ class _LoginScreenState extends State<LoginScreen> {
                             return null;
                           },
                         ),
+                        // InkWell(
+                        //   onTap: () {
+                        //     setState(() {
+                        //       remember = !remember;
+                        //     });
+                        //   },
+                        //   child: Row(
+                        //     children: <Widget>[
+                        //       Checkbox(
+                        //         value: remember,
+                        //         onChanged: (bool value) {},
+                        //       ),
+                        //       Text(
+                        //         'Remember my password',
+                        //         style: textStyleDefault.copyWith(
+                        //           fontSize: 15,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                         SizedBox(
-                          height: 35.0,
+                          height: 40.0,
                         ),
                         ButtonConfirmComponent(
                           text: 'Login',
@@ -77,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               bool success =
                                   await _userCredentials.login(context);
                               var user = await getUserFromToken();
-                              String id= user.username;
+                              String id = user.username;
                               print('after login $id');
                               if (success) {
                                 RestartWidget.restartApp(context);
@@ -87,6 +112,31 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(
                           height: 15.0,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 13,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ForgotPasswordScreen()));
+                              },
+                              child: Text(
+                                'Forgot your password?',
+                                style: textStyleDefault.copyWith(
+                                    fontSize: 15,
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10.0,
                         ),
                       ],
                     ),

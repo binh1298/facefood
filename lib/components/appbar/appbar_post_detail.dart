@@ -1,6 +1,7 @@
 import 'package:facefood/components/appbar/appbar_post_detail_content.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/models/user_details.dart';
+import 'package:facefood/screens/user/edit_post.dart';
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:facefood/utils/snack_bar.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,39 @@ class AppbarPostDetail extends StatelessWidget {
         FutureBuilder<UserDetails>(
           future: getUserFromToken(),
           builder: (context, snapshotUser) {
-            if (username == snapshotUser.data.username) {
+            if (snapshotUser.data == null)
+              return SizedBox(
+                height: 0,
+              );
+            else if (username == snapshotUser.data.username) {
+              return IconButton(
+                icon: Icon(Icons.edit),
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EditPostScreen(
+                              name: postname,
+                              category: category,
+                              time: timeNeeded.toString(),
+                            )),
+                  );
+                },
+              );
+            } else
+              return SizedBox(
+                height: 0,
+              );
+          },
+        ),
+        FutureBuilder<UserDetails>(
+          future: getUserFromToken(),
+          builder: (context, snapshotUser) {
+            if (snapshotUser.data == null)
+              return SizedBox(
+                height: 0,
+              );
+            else if (username == snapshotUser.data.username) {
               return IconButton(
                 icon: Icon(Icons.delete),
                 onPressed: () async {
