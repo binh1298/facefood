@@ -80,7 +80,7 @@ class CardUserDetailInfo extends StatelessWidget {
                     child: Container(
                       height: 32,
                       child: Text(
-                        fullname,
+                        fullname == null ? 'Not Updated' : fullname,
                         style: textStyleHeading,
                       ),
                     ),
