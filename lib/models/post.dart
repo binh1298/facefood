@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:facefood/models/ingredient.dart';
 import 'package:facefood/models/post_step.dart';
 import 'package:facefood/models/user_details.dart';
-import 'package:facefood/models/user_profile_info.dart';
 import 'package:facefood/utils/api_caller.dart';
 import 'package:facefood/utils/secure_storage.dart';
 import 'package:http/http.dart' as http;
