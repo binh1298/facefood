@@ -1,7 +1,6 @@
 import 'package:facefood/components/cards/card_post_fullwidth.dart';
 import 'package:facefood/components/cards/card_user_detail_info.dart';
 import 'package:facefood/components/future_follow_button.dart';
-import 'package:facefood/components/future_follow_button.dart';
 import 'package:facefood/models/post.dart';
 import 'package:facefood/models/user_details.dart';
 import 'package:facefood/models/user_profile_info.dart';
@@ -35,6 +34,7 @@ class _ListViewPostState extends State<ListViewPost> {
                   (widget.userProfileInfoInfo.followerCount + followCount),
               followingCount: widget.userProfileInfoInfo.followingCount,
               postCount: widget.userProfileInfoInfo.activePostsCount,
+              refreshList: widget.refreshList,
             ),
             FutureBuilder<UserDetails>(
               future: getUserFromToken(),
