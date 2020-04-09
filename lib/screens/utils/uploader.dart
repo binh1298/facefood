@@ -14,7 +14,7 @@ class Uploader extends StatefulWidget {
 
 class _UploaderState extends State<Uploader> {
   final FirebaseStorage _storage =
-      FirebaseStorage(storageBucket: 'gs://facefood-41e90.appspot.com/');
+      FirebaseStorage(storageBucket: 'gs://facefood-41e90.appspot.com');
 
   StorageUploadTask _uploadTask;
   void _startUpload() async {
