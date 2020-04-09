@@ -1,16 +1,19 @@
 import 'package:facefood/components/box_single_detail_info.dart';
+import 'package:facefood/models/user_details.dart';
 import 'package:facefood/models/user_profile_info.dart';
 import 'package:facefood/style/style.dart';
+import 'package:facefood/utils/secure_storage.dart';
 import 'package:facefood/utils/snack_bar.dart';
 import 'package:flutter/material.dart';
 
 class CardUserDetailInfo extends StatelessWidget {
-  final String username, avatarUrl;
+  final String username, avatarUrl, fullname;
   final int postCount, followerCount, followingCount;
   final Function refreshList;
   const CardUserDetailInfo(
       {Key key,
       this.username,
+      this.fullname,
       this.avatarUrl,
       this.postCount,
       this.followerCount,
@@ -40,7 +43,7 @@ class CardUserDetailInfo extends StatelessWidget {
                 }
                 refreshList();
               }
-            }, // implement on tap
+            },
             child: Container(
               // NO PADDING HERE
               width: MediaQuery.of(context).size.width / 3.75,
@@ -58,11 +61,28 @@ class CardUserDetailInfo extends StatelessWidget {
               height: 100,
               child: Column(
                 children: <Widget>[
-                  Container(
-                    height: 32,
-                    child: Text(
-                      username,
-                      style: textStyleHeading,
+                  GestureDetector(
+                    onTap: () async {
+                      UserDetails userDetails = await getUserFromToken();
+                      if (userDetails?.username == username) {
+                        String fullname = await showTextDialog(
+                            context, "Update name", "Enter new Name");
+                        print(fullname);
+                        if (fullname != null && fullname.length > 0) {
+                          updateFullname(username, fullname);
+                          showInfoSnackBar(context, 'Update success');
+                          refreshList();
+                        } else {
+                          showErrorSnackBar(context, 'Update failed');
+                        }
+                      }
+                    },
+                    child: Container(
+                      height: 32,
+                      child: Text(
+                        fullname,
+                        style: textStyleHeading,
+                      ),
                     ),
                   ),
                   Expanded(

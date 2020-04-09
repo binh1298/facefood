@@ -70,3 +70,11 @@ Future<bool> putUserAvatar(String username, String imageUrl) async {
   print(response.body);
   return response.statusCode == 200;
 }
+
+Future<bool> updateFullname(String username, String fullname) async {
+  final http.Response response = await apiCaller.put(
+    route: '/users/$username/fullname?value=$fullname',
+  );
+  print(response.body);
+  return response.statusCode == 200;
+}
