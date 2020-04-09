@@ -54,7 +54,7 @@ showConfirmDialog(BuildContext context, String actionName) {
     },
   );
 }
-showTextDialog(BuildContext context) {
+Future<String> showTextDialog(BuildContext context, String title, String textHint) {
   // flutter defined function
   return showDialog(
     context: context,
@@ -63,9 +63,9 @@ showTextDialog(BuildContext context) {
 
       // return object of type Dialog
       return AlertDialog(
-        title: Text("Reason"),
+        title: Text(title),
         content: TextField(
-          decoration: inputDecorationTextFormField('Tell us why...'),
+          decoration: inputDecorationTextFormField(textHint),
           onChanged: (value) {
             reportCause = value;
           },
