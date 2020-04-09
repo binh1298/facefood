@@ -30,7 +30,7 @@ class AppbarPostDetail extends StatelessWidget {
         FutureBuilder<UserDetails>(
           future: getUserFromToken(),
           builder: (context, snapshotUser) {
-            if (username == snapshotUser.data.username) {
+            if (username == snapshotUser.data?.username) {
               return IconButton(
                 icon: Icon(Icons.delete),
                 onPressed: () async {

@@ -130,7 +130,7 @@ Future<List<Post>> fetchPopularPostsList() async {
 Future<List<Post>> fetchNewsfeed() async {
   final currentUser = await getUserFromToken();
   final http.Response response = await apiCaller.get(
-      route: '/posts/feed?username=${currentUser.username}');
+      route: '/posts/feed?username=${currentUser?.username}');
   if (response.statusCode == 200) {
     var postListJson = json.decode(response.body)['message'] as List;
     return postListJson.map((post) => Post.fromJson(post)).toList();
