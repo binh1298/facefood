@@ -62,3 +62,11 @@ Future<UserProfileInfo> fetchOtherUserProfile(String username) async {
   } else
     return null;
 }
+
+Future<bool> putUserAvatar(String username, String imageUrl) async {
+  final http.Response response = await apiCaller.put(
+    route: '/users/$username/avatar?$imageUrl',
+  );
+  print(response.body);
+  return response.statusCode == 200;
+}
